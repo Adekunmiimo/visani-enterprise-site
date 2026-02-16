@@ -39,7 +39,11 @@ export default function HomePage() {
   return (
     <>
       {/* HERO (cinematic) */}
-      <CinematicSection backgroundImage="/richheroimg.png" overlay="medium" reveal={false}>
+      <CinematicSection
+        backgroundImage="/richheroimg.png"
+        overlay="medium"
+        reveal={false}
+      >
         <div className="mx-auto max-w-7xl px-6 py-36">
           <div className="max-w-4xl">
             <p className="text-sm font-semibold uppercase tracking-wide text-white/80">
@@ -52,8 +56,8 @@ export default function HomePage() {
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85">
-              Visani America helps enterprise leaders convert AI ambition into disciplined
-              execution and measurable outcomes powered by A.R.I.S.E.X™,
+              Visani America helps enterprise leaders convert AI ambition into
+              disciplined execution and measurable outcomes powered by A.R.I.S.E.X™,
               our proprietary execution system.
             </p>
 
@@ -67,8 +71,8 @@ export default function HomePage() {
             </div>
 
             <p className="mt-6 max-w-xl text-sm text-white/70">
-              Built for leaders who need outcomes they can defend in the boardroom, in risk
-              reviews, and in day-to-day operations.
+              Built for leaders who need outcomes they can defend in the boardroom,
+              in risk reviews, and in day-to-day operations.
             </p>
           </div>
         </div>
@@ -110,13 +114,9 @@ export default function HomePage() {
 
       {/* PROBLEM (cinematic) */}
       <CinematicSection backgroundImage="/robo1.png" overlay="medium">
-        {/* Contrast control (kept from your original, stacked on top of CinematicSection overlay) */}
-        {/* <div className="absolute inset-0 bg-black/45" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/55 to-black/40" /> */}
-
         <div className="relative mx-auto max-w-7xl px-6 py-28">
           <div className="grid items-center gap-20 lg:grid-cols-2">
-            {/* LEFT   HUMANOID */}
+            {/* LEFT - HUMANOID */}
             <div className="relative">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/15 bg-black shadow-[0_40px_90px_-35px_rgba(0,0,0,0.25)]">
                 <Image
@@ -126,9 +126,6 @@ export default function HomePage() {
                   className="object-cover"
                   priority
                 />
-
-                {/* <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
-                <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" /> */}
               </div>
 
               <p className="mt-4 text-xs text-white/60">
@@ -136,7 +133,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* RIGHT   TEXT */}
+            {/* RIGHT - TEXT */}
             <div className="max-w-xl">
               <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
                 The Execution Gap
@@ -154,7 +151,9 @@ export default function HomePage() {
               </p>
 
               <div className="mt-8 border-l-2 border-white/30 pl-6">
-                <p className="text-sm font-semibold text-white">The technology is ready.</p>
+                <p className="text-sm font-semibold text-white">
+                  The technology is ready.
+                </p>
                 <p className="mt-2 text-sm text-white/75">
                   Enterprise execution usually is not.
                 </p>
@@ -211,9 +210,6 @@ export default function HomePage() {
                   className="object-cover"
                   priority
                 />
-
-                {/* <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/45 via-transparent to-black/25" />
-                <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" /> */}
               </div>
 
               <p className="mt-4 text-xs text-brand-muted">
@@ -231,7 +227,7 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-7xl px-6 py-20">
           <div className="grid items-center gap-14 lg:grid-cols-2">
             {/* IMAGE */}
-            <div className="order-2 lg:order-1 relative">
+            <div className="order-2 relative lg:order-1">
               <div className="relative aspect-[5/4] overflow-hidden rounded-2xl border border-brand-border bg-black shadow-[0_35px_80px_-30px_rgba(0,0,0,0.3)]">
                 <Image
                   src="/img333.jpg"
@@ -240,9 +236,6 @@ export default function HomePage() {
                   className="object-cover"
                   priority
                 />
-
-                {/* <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-black/20" />
-                <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" /> */}
               </div>
 
               <p className="mt-3 text-xs text-brand-muted">
@@ -251,7 +244,7 @@ export default function HomePage() {
             </div>
 
             {/* TEXT */}
-            <div className="order-1 lg:order-2 max-w-xl">
+            <div className="order-1 max-w-xl lg:order-2">
               <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
                 The Solution
               </p>
@@ -334,15 +327,14 @@ export default function HomePage() {
                     "
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   />
-
-                  {/* <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                  <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" /> */}
                 </div>
 
                 <div className="relative p-8">
                   <p className="text-sm font-semibold text-brand-slate">{item.title}</p>
 
-                  <p className="mt-3 text-sm leading-relaxed text-brand-muted">{item.desc}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-brand-muted">
+                    {item.desc}
+                  </p>
 
                   <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-slate transition-colors group-hover:text-brand-navy">
                     <span>Discuss this outcome</span>
@@ -541,6 +533,7 @@ export default function HomePage() {
                           />
                         </svg>
                       )}
+
                       {item.type === "list" && (
                         <svg
                           className="h-7 w-7"
@@ -556,6 +549,7 @@ export default function HomePage() {
                           />
                         </svg>
                       )}
+
                       {item.type === "grid" && (
                         <svg
                           className="h-7 w-7"
@@ -571,6 +565,7 @@ export default function HomePage() {
                           />
                         </svg>
                       )}
+
                       {item.type === "arrow" && (
                         <svg
                           className="h-7 w-7"
@@ -586,6 +581,7 @@ export default function HomePage() {
                           />
                         </svg>
                       )}
+
                       {item.type === "shield" && (
                         <svg
                           className="h-7 w-7"
@@ -601,6 +597,7 @@ export default function HomePage() {
                           />
                         </svg>
                       )}
+
                       {item.type === "pulse" && (
                         <svg
                           className="h-7 w-7"
@@ -649,18 +646,26 @@ export default function HomePage() {
 
       <CTABand />
 
-      {/* GLOBAL reveal styles (you removed this in your current file; it must exist somewhere)
+      {/* ✅ FIX ADDED BACK: reveal styles must exist so useRevealOnScroll can work */}
       <style jsx global>{`
         .reveal {
           opacity: 0;
           transform: translateY(16px);
           transition: opacity 0.6s ease, transform 0.6s ease;
+          will-change: opacity, transform;
         }
         .reveal-visible {
           opacity: 1;
           transform: translateY(0);
         }
-      `}</style> */}
+        @media (prefers-reduced-motion: reduce) {
+          .reveal {
+            transition: none;
+            transform: none;
+            opacity: 1;
+          }
+        }
+      `}</style>
     </>
   );
 }
