@@ -1,10 +1,15 @@
 import { Section } from "@/components/section";
 import { ButtonLink } from "@/components/button";
 import Image from "next/image";
+import { HashScroll } from "@/components/hash-scroll";
+import { ExecutiveBriefingForm } from "@/components/executive-briefing-form";
 
 export default function ContactPage() {
   return (
     <>
+      {/* ✅ Ensures /contact#briefing works reliably */}
+      <HashScroll />
+
       {/* ================= CONTACT HERO (EXECUTIVE, DARK THEME) ================= */}
       <Section
         className="relative overflow-hidden"
@@ -44,9 +49,16 @@ export default function ContactPage() {
                 decision rights, risk exposure, and whether AI can be defended under
                 executive and board scrutiny.
               </p>
+
+              {/* ✅ In-page scroll */}
+              <div className="mt-10 flex flex-wrap gap-4">
+                <ButtonLink href="#briefing" variant="primary" className="px-8 py-3">
+                  Go to Briefing Request Form
+                </ButtonLink>
+              </div>
             </div>
 
-            {/* RIGHT (visible on all breakpoints) */}
+            {/* RIGHT */}
             <div className="relative">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] border border-white/15 bg-black shadow-[0_60px_160px_-55px_rgba(0,0,0,0.65)]">
                 <Image
@@ -83,15 +95,12 @@ export default function ContactPage() {
 
               <h2 className="mt-6 text-3xl font-semibold tracking-tight text-brand-slate">
                 A working session
-                <span className="block text-brand-slate/80">
-                  not a sales conversation
-                </span>
+                <span className="block text-brand-slate/80">not a sales conversation</span>
               </h2>
 
               <p className="mt-8 text-base leading-relaxed text-brand-muted">
                 This briefing is structured as a focused executive working discussion.
-                There are no demos, vendor pitches, or generic transformation
-                frameworks.
+                There are no demos, vendor pitches, or generic transformation frameworks.
               </p>
 
               <p className="mt-6 text-base leading-relaxed text-brand-muted">
@@ -101,7 +110,7 @@ export default function ContactPage() {
               </p>
             </div>
 
-            {/* RIGHT (Turbopack-safe: single-line className string) */}
+            {/* RIGHT */}
             <div className="relative rounded-[32px] border border-brand-border bg-white px-20 py-20 shadow-[0_40px_100px_-35px_rgba(0,0,0,0.14)]">
               <p className="mb-14 text-sm font-semibold uppercase tracking-widest text-brand-muted">
                 Session focus
@@ -116,9 +125,7 @@ export default function ContactPage() {
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-6">
                     <span className="mt-2 h-3.5 w-3.5 rounded-full bg-brand-slate/70" />
-                    <p className="text-base leading-relaxed text-brand-muted">
-                      {item}
-                    </p>
+                    <p className="text-base leading-relaxed text-brand-muted">{item}</p>
                   </li>
                 ))}
               </ul>
@@ -139,9 +146,7 @@ export default function ContactPage() {
 
             <h2 className="mt-6 text-3xl font-semibold tracking-tight text-brand-slate sm:text-4xl">
               Designed for leaders
-              <span className="block text-brand-slate/80">
-                accountable for outcomes
-              </span>
+              <span className="block text-brand-slate/80">accountable for outcomes</span>
             </h2>
 
             <p className="mx-auto mt-8 max-w-3xl text-base leading-relaxed text-brand-muted">
@@ -207,6 +212,47 @@ export default function ContactPage() {
         </div>
       </Section>
 
+      {/* ================= ✅ BRIEFING FORM (ANCHOR TARGET) ================= */}
+      <Section className="bg-brand-offwhite">
+        <div className="mx-auto max-w-7xl px-6 py-28">
+          <div id="briefing" className="scroll-mt-28">
+            <div className="grid gap-14 lg:grid-cols-2 lg:items-start">
+              {/* Left intro copy */}
+              <div className="max-w-xl">
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-muted">
+                  Request form
+                </p>
+
+                <h2 className="mt-6 text-3xl font-semibold tracking-tight text-brand-slate">
+                  Executive briefing intake
+                  <span className="block text-brand-slate/80">details for scheduling</span>
+                </h2>
+
+                <p className="mt-6 text-base leading-relaxed text-brand-muted">
+                  Provide the essentials so we can respond with the right next steps and
+                  scheduling options. This is reviewed directly.
+                </p>
+
+                {/* ✅ Restored "What happens next" block */}
+                <div className="mt-10 rounded-2xl border border-brand-border bg-white px-8 py-7">
+                  <p className="text-sm font-semibold text-brand-slate">What happens next</p>
+                  <ul className="mt-4 space-y-3 text-sm text-brand-muted">
+                    <li>We review your request (no automated sales sequences)</li>
+                    <li>We reply with scheduling options and a short agenda</li>
+                    <li>We run a structured 30-minute decision briefing</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Right: actual form */}
+              <div>
+                <ExecutiveBriefingForm />
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
       {/* ================= FINAL CTA ================= */}
       <Section
         className="relative overflow-hidden"
@@ -223,6 +269,7 @@ export default function ContactPage() {
 
         <div className="relative mx-auto max-w-7xl px-6 py-36">
           <div className="mx-auto max-w-3xl rounded-[30px] border border-white/15 bg-white/10 backdrop-blur-xl px-12 py-14 text-center shadow-[0_60px_160px_-55px_rgba(0,0,0,0.85)]">
+            {/* ✅ Restored icon block */}
             <div className="mx-auto mb-10 flex h-16 w-16 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/20 shadow-[0_0_40px_rgba(255,255,255,0.25)]">
               <svg className="h-7 w-7 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path d="M12 3l8 4v6c0 5-3.5 9.7-8 10-4.5-.3-8-5-8-10V7l8-4z" />
@@ -241,11 +288,12 @@ export default function ContactPage() {
             </p>
 
             <div className="mt-12 flex justify-center">
-              <ButtonLink href="#" variant="primary" className="px-12 py-4 text-base">
+              <ButtonLink href="#briefing" variant="primary" className="px-12 py-4 text-base">
                 Schedule a 30-Minute Executive Briefing
               </ButtonLink>
             </div>
 
+            {/* ✅ Restored bottom copy */}
             <p className="mt-8 mx-auto max-w-xl text-sm leading-relaxed text-white/55">
               Briefings are confidential and structured for executive, board, and risk leadership audiences.
             </p>

@@ -11,28 +11,28 @@ import Link from "next/link";
 export default function HomePage() {
   useRevealOnScroll();
 
-  // ✅ Keep ONCE (you had it duplicated)
+  // ✅ Redirect all outcome cards to the form section
   const executiveProofItems = [
     {
       title: "From pilots to governed platforms",
       img: "/img444.jpg",
       desc:
         "Move from isolated AI experiments to enterprise platforms with clear ownership, cadence, and executive control.",
-      href: "/contact",
+      href: "/contact#briefing",
     },
     {
       title: "Measurable value realization",
       img: "/img555.jpg",
       desc:
         "Establish defensible metrics tied to cost reduction, productivity gains, and strategic outcomes executives can defend.",
-      href: "/contact",
+      href: "/contact#briefing",
     },
     {
       title: "Confidence in governance and risk",
       img: "/img666.jpg",
       desc:
         "Withstand audit, compliance, and board scrutiny because controls are embedded, not retrofitted.",
-      href: "/contact",
+      href: "/contact#briefing",
     },
   ] as const;
 
@@ -62,9 +62,11 @@ export default function HomePage() {
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
-              <ButtonLink href="/contact" variant="primary">
+              {/* ✅ Redirect to the form section */}
+              <ButtonLink href="/contact#briefing" variant="primary">
                 Book a 30-min Executive Briefing
               </ButtonLink>
+
               <ButtonLink href="/arisex" variant="secondary">
                 Explore A.R.I.S.E.X™
               </ButtonLink>
@@ -352,7 +354,8 @@ export default function HomePage() {
             </p>
 
             <div className="mt-8">
-              <ButtonLink href="/contact" variant="primary">
+              {/* ✅ Redirect to the form section */}
+              <ButtonLink href="/contact#briefing" variant="primary">
                 Book an Executive Briefing
               </ButtonLink>
             </div>

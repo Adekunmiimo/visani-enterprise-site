@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Section } from "@/components/section";
 import { ButtonLink } from "@/components/button";
 import { Target, Layers, Plug, Users, ShieldCheck, BarChart3 } from "lucide-react";
@@ -46,7 +47,7 @@ export default function ArisexPage() {
               </p>
 
               <div className="mt-12 flex flex-wrap gap-5">
-                <ButtonLink href="/contact" variant="primary">
+                <ButtonLink href="/contact#briefing" variant="primary">
                   Discuss an A.R.I.S.E.X™ Engagement
                 </ButtonLink>
                 <ButtonLink href="/services" variant="secondary">
@@ -148,45 +149,45 @@ export default function ArisexPage() {
           <div className="mt-24 grid gap-14 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
+                slug: "alignment",
                 title: "Alignment",
                 desc: "Leadership intent, outcomes, and decision rights clearly defined before execution begins.",
-                href: "/services/alignment",
                 Icon: Target,
               },
               {
+                slug: "readiness",
                 title: "Readiness",
                 desc: "Data, workflows, teams, and controls prepared before scale introduces friction.",
-                href: "/services/readiness",
                 Icon: Layers,
               },
               {
+                slug: "integration",
                 title: "Integration",
                 desc: "AI embedded directly into operating workflows, not layered on as a side capability.",
-                href: "/services/integration",
                 Icon: Plug,
               },
               {
+                slug: "adoption",
                 title: "Adoption",
                 desc: "Routines, enablement, and incentives engineered for sustained usage at scale.",
-                href: "/services/adoption",
                 Icon: Users,
               },
               {
+                slug: "governance",
                 title: "Governance",
                 desc: "Risk, compliance, and accountability designed in from day one.",
-                href: "/services/governance",
                 Icon: ShieldCheck,
               },
               {
+                slug: "measurement",
                 title: "Measurement",
                 desc: "Value continuously measured with metrics executives can trust and defend.",
-                href: "/services/measurement",
                 Icon: BarChart3,
               },
-            ].map(({ title, desc, href, Icon }) => (
-              <a
-                key={title}
-                href={href}
+            ].map(({ slug, title, desc, Icon }) => (
+              <Link
+                key={slug}
+                href={`/arisex/${slug}`}
                 className="group relative flex flex-col items-center rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md px-14 py-20 text-center transition-all duration-300 hover:-translate-y-2 hover:bg-white/10 hover:shadow-[0_40px_120px_-30px_rgba(0,0,0,0.8)]"
               >
                 <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/0 transition group-hover:ring-white/20" />
@@ -202,7 +203,7 @@ export default function ArisexPage() {
                 <span className="mt-10 text-xs font-semibold uppercase tracking-widest text-white/50 opacity-0 transition-opacity group-hover:opacity-100">
                   Explore pillar →
                 </span>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -381,7 +382,7 @@ export default function ArisexPage() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <ButtonLink href="/contact" variant="primary" className="px-9 py-3.5 text-sm">
+              <ButtonLink href="/contact#briefing" variant="primary" className="px-9 py-3.5 text-sm">
                 Book an Executive Briefing
               </ButtonLink>
 
