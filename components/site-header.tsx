@@ -1,3 +1,5 @@
+// ✅ REPLACE ENTIRE FILE — components/site-header.tsx
+
 "use client";
 
 import Link from "next/link";
@@ -7,15 +9,11 @@ import { Container } from "components/container";
 import { ButtonLink } from "components/button";
 import { site } from "@/lib/site";
 
-const navigation = [
-  { label: "Services", href: "/services" },
-  { label: "A.R.I.S.E.X™", href: "/arisex" },
-  { label: "Insights", href: "/insights" },
-  { label: "Proof", href: "/proof" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-];
-
+/**
+ * ✅ Uses nav + CTAs from lib/site.ts (single source of truth)
+ * ✅ Keeps A.R.I.S.E.X hidden (already removed from site.nav.main)
+ * ✅ Closes mobile menu on route change
+ */
 export function SiteHeader() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -27,6 +25,8 @@ export function SiteHeader() {
       setMobileOpen(false);
     });
   }, [pathname]);
+
+  const navigation = site.nav.main;
 
   return (
     <header className="sticky top-0 z-50 border-b border-brand-border bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/70">
@@ -41,7 +41,7 @@ export function SiteHeader() {
           </Link>
 
           {/* DESKTOP: Navigation + CTA */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden items-center gap-8 md:flex">
             <nav className="flex items-center gap-6">
               {navigation.map((item) => {
                 const isActive =
@@ -64,20 +64,20 @@ export function SiteHeader() {
               })}
             </nav>
 
-            <ButtonLink href="/contact" variant="primary">
-              Book Executive Briefing
+            {/* ✅ Primary CTA from site config */}
+            <ButtonLink href={site.cta.primary.href} variant="primary">
+              {site.cta.primary.label}
             </ButtonLink>
           </div>
 
           {/* MOBILE: Hamburger */}
           <button
             type="button"
-            className="md:hidden inline-flex items-center justify-center rounded-md border border-brand-border bg-white/70 px-3 py-2 text-brand-slate shadow-sm transition hover:bg-white"
+            className="inline-flex items-center justify-center rounded-md border border-brand-border bg-white/70 px-3 py-2 text-brand-slate shadow-sm transition hover:bg-white md:hidden"
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
           >
-            {/* Icon */}
             <svg
               className="h-5 w-5"
               viewBox="0 0 24 24"
@@ -133,9 +133,23 @@ export function SiteHeader() {
               })}
             </nav>
 
-            <div className="mt-4">
-              <ButtonLink href="/contact" variant="primary" className="w-full justify-center">
-                Book Executive Briefing
+            <div className="mt-4 grid gap-3">
+              {/* ✅ Primary CTA */}
+              <ButtonLink
+                href={site.cta.primary.href}
+                variant="primary"
+                className="w-full justify-center"
+              >
+                {site.cta.primary.label}
+              </ButtonLink>
+
+              {/* ✅ Secondary CTA (use configured PDF route) */}
+              <ButtonLink
+                href={site.links.boardBriefPdf}
+                variant="secondary"
+                className="w-full justify-center"
+              >
+                Download Board Brief (PDF)
               </ButtonLink>
             </div>
           </div>

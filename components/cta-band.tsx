@@ -10,7 +10,7 @@ type CTABandProps = {
 export function CTABand({
   headline = "Ready to move from pilot to governed AI scale?",
   body =
-    "Book an executive briefing to align on outcomes, assess readiness, and define a path your organization can execute with confidence, control, and measurable impact."
+    "Book an executive briefing to align on outcomes, assess readiness, and define a path your organization can execute with confidence, control, and measurable impact.",
 }: CTABandProps) {
   return (
     <section
@@ -39,8 +39,7 @@ export function CTABand({
       <Container>
         <div className="relative py-28">
           <div className="grid gap-14 lg:grid-cols-[1fr_auto] lg:items-center">
-
-            {/* LEFT   EXECUTIVE MESSAGE */}
+            {/* LEFT — EXECUTIVE MESSAGE */}
             <div className="max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
                 Strategic next step
@@ -64,32 +63,31 @@ export function CTABand({
 
               {/* Predictive framing */}
               <p className="mt-6 text-sm text-white/65">
-                In 30–45 minutes, you’ll leave with clarity on what to do next   and what to stop doing.
+                In 30–45 minutes, you’ll leave with clarity on what to do next — and what to stop doing.
               </p>
             </div>
 
-            {/* RIGHT   ACTION ZONE */}
+            {/* RIGHT — ACTION ZONE */}
             <div className="relative flex flex-col gap-5 sm:flex-row lg:flex-col">
-
               {/* PRIMARY CTA */}
               <div className="relative">
                 <span className="pointer-events-none absolute -inset-1 rounded-lg bg-white/20 blur-md animate-pulse motion-reduce:animate-none" />
                 <ButtonLink
-                  href={site.primaryCta.href}
+                  href={site.cta.primary.href}
                   variant="primary"
                   className="relative px-10 py-4 text-base"
                 >
-                  {site.primaryCta.label}
+                  {site.cta.primary.label}
                 </ButtonLink>
               </div>
 
               {/* SECONDARY CTA */}
               <ButtonLink
-                href={site.secondaryCta.href}
+                href={site.cta.secondary.href}
                 variant="secondary"
                 className="px-10 py-4 text-base"
               >
-                {site.secondaryCta.label}
+                {site.cta.secondary.label}
               </ButtonLink>
 
               {/* Trust footnote */}
@@ -97,7 +95,6 @@ export function CTABand({
                 No sales deck. No vendor bias. Just execution clarity.
               </p>
             </div>
-
           </div>
         </div>
       </Container>

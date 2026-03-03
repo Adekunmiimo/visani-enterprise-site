@@ -20,18 +20,37 @@ type ButtonLinkProps = CommonProps & {
 };
 
 function getButtonClasses(variant: ButtonVariant, disabled?: boolean) {
+  // ✅ Premium base styles (consistent height, spacing, focus ring, motion, depth)
   const common =
-    "inline-flex items-center justify-center rounded-lg font-semibold transition " +
-    "focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25 " +
-    "active:translate-y-[1px]";
+    "relative inline-flex items-center justify-center gap-2 " +
+    "rounded-xl px-5 py-3 text-sm font-semibold " +
+    "transition-all duration-200 ease-out " +
+    "focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-primary/25 " +
+    "active:translate-y-[1px] select-none " +
+    "shadow-[0_12px_40px_-28px_rgba(2,6,23,0.35)]";
 
+  // ✅ Variant styles
   const variants: Record<ButtonVariant, string> = {
-    primary: "bg-brand-navy text-white hover:bg-brand-navy/90",
-    secondary: "border border-white/20 bg-white/10 text-white hover:bg-white/15",
+    // Primary: brand blue, glossy shine, strong shadow
+    primary:
+      "text-white bg-brand-primary " +
+      "ring-1 ring-white/10 " +
+      "shadow-[0_18px_60px_-30px_rgba(96,165,250,0.85)] " +
+      "hover:-translate-y-[1px] hover:brightness-[1.06] " +
+      "hover:shadow-[0_26px_80px_-36px_rgba(96,165,250,0.95)]",
+
+    // Secondary: clean glass button (works on light + dark backgrounds)
+    secondary:
+      "text-brand-slate bg-white/80 backdrop-blur-md " +
+      "ring-1 ring-black/10 " +
+      "shadow-[0_16px_55px_-34px_rgba(2,6,23,0.32)] " +
+      "hover:-translate-y-[1px] hover:bg-white/90 " +
+      "hover:shadow-[0_22px_70px_-38px_rgba(2,6,23,0.40)]",
   };
 
   const disabledStyles = disabled
-    ? "opacity-60 cursor-not-allowed pointer-events-none active:translate-y-0"
+    ? "opacity-60 cursor-not-allowed pointer-events-none active:translate-y-0 " +
+      "hover:translate-y-0 hover:shadow-[0_12px_40px_-28px_rgba(2,6,23,0.20)]"
     : "";
 
   return `${common} ${variants[variant]} ${disabledStyles}`.trim();
@@ -84,6 +103,24 @@ export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
       }
     };
 
+    // ✅ Shared inner content: adds a subtle “shine” overlay for premium look
+    const Content = (
+      <>
+        <span
+          aria-hidden="true"
+          className={
+            "pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-200 " +
+            (disabled
+              ? ""
+              : variant === "primary"
+              ? "opacity-100 bg-[radial-gradient(1200px_220px_at_20%_0%,rgba(255,255,255,0.35),transparent_55%)]"
+              : "opacity-100 bg-[radial-gradient(1000px_220px_at_20%_0%,rgba(96,165,250,0.14),transparent_55%)]")
+          }
+        />
+        <span className="relative">{children}</span>
+      </>
+    );
+
     // ✅ Hash links: always render <a>
     if (href.startsWith("#")) {
       return (
@@ -94,7 +131,7 @@ export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
           onClick={handleHashScroll}
           aria-disabled={disabled ? true : undefined}
         >
-          {children}
+          {Content}
         </a>
       );
     }
@@ -123,12 +160,12 @@ export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
           }}
           aria-disabled={disabled ? true : undefined}
         >
-          {children}
+          {Content}
         </a>
       );
     }
 
-    // ✅ Internal routes: Next Link (NO deprecated props)
+    // ✅ Internal routes: Next Link
     return (
       <Link
         ref={ref}
@@ -143,7 +180,7 @@ export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
         }}
         aria-disabled={disabled ? true : undefined}
       >
-        {children}
+        {Content}
       </Link>
     );
   }
