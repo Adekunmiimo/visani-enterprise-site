@@ -1,3 +1,5 @@
+// ✅ REPLACE ENTIRE FILE — app/page.tsx (HomePage)
+
 "use client";
 
 import { useMemo } from "react";
@@ -105,10 +107,8 @@ export default function HomePage() {
     "shadow-[0_14px_44px_-28px_rgba(2,6,23,0.40)] ring-1 ring-black/10";
 
   /**
-   * ✅ ICON UPGRADE (your request)
-   * - Adds "premium" icon treatment: gradient halo, ring, subtle shine,
-   *   better stroke styling, hover animation.
-   * - Still lightweight: pure SVG + Tailwind utilities, no extra deps.
+   * ✅ ICON UPGRADE
+   * - Premium icon treatment: gradient halo, ring, subtle shine, hover lift.
    */
   const iconWrap =
     "relative grid h-12 w-12 place-items-center rounded-2xl bg-white/85 ring-1 ring-black/10 shadow-[0_18px_52px_-34px_rgba(2,6,23,0.42)]";
@@ -119,8 +119,11 @@ export default function HomePage() {
   const iconSvg =
     "h-6 w-6 text-brand-slate drop-shadow-[0_10px_18px_rgba(2,6,23,0.12)]";
 
-  const OutcomeIcon = ({ kind }: { kind: (typeof representativeOutcomes)[number]["icon"] }) => {
-    // different gentle glow per icon type
+  const OutcomeIcon = ({
+    kind,
+  }: {
+    kind: (typeof representativeOutcomes)[number]["icon"];
+  }) => {
     const glow =
       kind === "speed"
         ? "bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.38),transparent_60%)]"
@@ -133,8 +136,9 @@ export default function HomePage() {
     return (
       <div className="group relative">
         <div className={`${iconGlow} ${glow}`} />
-        <div className={`${iconWrap} transition-transform duration-300 group-hover:-translate-y-0.5`}>
-          {/* subtle shine */}
+        <div
+          className={`${iconWrap} transition-transform duration-300 group-hover:-translate-y-0.5`}
+        >
           <div
             className={iconShine}
             style={{
@@ -142,11 +146,8 @@ export default function HomePage() {
                 "linear-gradient(135deg, rgba(255,255,255,0.55), transparent 45%)",
             }}
           />
-
-          {/* inner ring */}
           <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/50" />
 
-          {/* SVG */}
           {kind === "speed" && (
             <svg
               viewBox="0 0 24 24"
@@ -218,7 +219,11 @@ export default function HomePage() {
     );
   };
 
-  const EcosystemIcon = ({ kind }: { kind: (typeof ecosystemBullets)[number]["icon"] }) => {
+  const EcosystemIcon = ({
+    kind,
+  }: {
+    kind: (typeof ecosystemBullets)[number]["icon"];
+  }) => {
     const glow =
       kind === "id"
         ? "bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.34),transparent_60%)]"
@@ -233,7 +238,9 @@ export default function HomePage() {
     return (
       <div className="group relative">
         <div className={`${iconGlow} ${glow}`} />
-        <div className={`${iconWrap} transition-transform duration-300 group-hover:-translate-y-0.5`}>
+        <div
+          className={`${iconWrap} transition-transform duration-300 group-hover:-translate-y-0.5`}
+        >
           <div
             className={iconShine}
             style={{
@@ -334,9 +341,12 @@ export default function HomePage() {
   return (
     <>
       {/* HERO (cinematic) */}
-      <CinematicSection backgroundImage="/richheroimg.png" overlay="dark" reveal={false}>
+      <CinematicSection
+        backgroundImage="/richheroimg.png"
+        overlay="dark"
+        reveal={false}
+      >
         <div className="relative mx-auto max-w-7xl px-6 py-28 sm:py-32">
-          {/* ✅ FIX: responsive width so it never causes horizontal overflow */}
           <div
             className="pointer-events-none absolute -top-12 left-1/2 h-56 w-[min(720px,92vw)] -translate-x-1/2 opacity-35 blur-3xl"
             style={{
@@ -355,37 +365,38 @@ export default function HomePage() {
             </h1>
 
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/85">
-              Visani America helps executives scale AI with an execution operating model, a
-              permissioned control plane, and measurable outcomes—without losing governance
-              or clarity.
+              Visani America helps executives scale AI with an execution operating
+              model, a permissioned control plane, and measurable outcomes—without
+              losing governance or clarity.
             </p>
 
-            {/* Badges */}
             <div className="mt-6 flex flex-wrap gap-2">
-              {["Execution Control", "Runtime Governance", "Board Metrics"].map((b) => (
-                <span
-                  key={b}
-                  className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/85 backdrop-blur"
-                >
-                  {b}
-                </span>
-              ))}
+              {["Execution Control", "Runtime Governance", "Board Metrics"].map(
+                (b) => (
+                  <span
+                    key={b}
+                    className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/85 backdrop-blur"
+                  >
+                    {b}
+                  </span>
+                )
+              )}
             </div>
 
+            {/* ✅ REDUCED CTA: keep ONE primary action on hero */}
             <div className="mt-10 flex flex-wrap gap-4">
               <ButtonLink href="/contact#briefing" variant="primary">
                 Book Executive Briefing
-              </ButtonLink>
-
-              <ButtonLink href="/downloads/board-brief.pdf" variant="secondary">
-                Download Board Brief (PDF)
               </ButtonLink>
             </div>
 
             {/* Value strip */}
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
               {[
-                { k: "Permissioned execution", v: "AI acts only within defined authority." },
+                {
+                  k: "Permissioned execution",
+                  v: "AI acts only within defined authority.",
+                },
                 { k: "Runtime evidence", v: "Telemetry and logs leaders can defend." },
                 { k: "Outcome ledger", v: "Value and risk tracked on cadence." },
               ].map((x) => (
@@ -393,7 +404,9 @@ export default function HomePage() {
                   <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
                     {x.k}
                   </p>
-                  <p className="mt-2 text-sm leading-relaxed text-white/85">{x.v}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-white/85">
+                    {x.v}
+                  </p>
                 </div>
               ))}
             </div>
@@ -420,8 +433,8 @@ export default function HomePage() {
                   Executive-ready delivery
                 </p>
                 <p className="mt-3 text-base leading-relaxed text-brand-muted">
-                  Board oversight, operational risk review, and measurable outcomes—without hype
-                  or ambiguity.
+                  Board oversight, operational risk review, and measurable outcomes—without
+                  hype or ambiguity.
                 </p>
               </div>
 
@@ -438,6 +451,8 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+
+            {/* ✅ REDUCED CTA: none here (trust strip should not sell) */}
           </div>
         </div>
       </Section>
@@ -497,13 +512,13 @@ export default function HomePage() {
                   ))}
                 </div>
 
+                {/* ✅ REDUCED CTA: keep ONE relevant secondary action */}
                 <div className="mt-10 flex flex-wrap gap-4">
-                  <ButtonLink href="/downloads/control-plane-checklist.pdf" variant="primary">
+                  <ButtonLink
+                    href="/downloads/control-plane-checklist.pdf"
+                    variant="secondary"
+                  >
                     Download Control Plane Checklist
-                  </ButtonLink>
-
-                  <ButtonLink href="/contact#briefing" variant="secondary">
-                    Book Executive Briefing
                   </ButtonLink>
                 </div>
               </div>
@@ -547,7 +562,7 @@ export default function HomePage() {
           style={{
             background:
               "radial-gradient(closest-side, rgba(74,222,128,0.18), transparent 70%)",
-            }}
+          }}
         />
 
         <div className="relative mx-auto max-w-7xl px-6 py-20">
@@ -585,12 +600,10 @@ export default function HomePage() {
                   ))}
                 </div>
 
+                {/* ✅ REDUCED CTA: make it informational, point to Proof */}
                 <div className="mt-10 flex flex-wrap gap-4">
-                  <ButtonLink href="/proof" variant="primary">
-                    Request Proof Review
-                  </ButtonLink>
-                  <ButtonLink href="/contact#briefing" variant="secondary">
-                    Book Executive Briefing
+                  <ButtonLink href="/proof" variant="secondary">
+                    View Proof (Redacted)
                   </ButtonLink>
                 </div>
               </div>
@@ -657,6 +670,8 @@ export default function HomePage() {
                   <p>• Value is hard to defend under scrutiny</p>
                 </div>
               </div>
+
+              {/* ✅ REDUCED CTA: none here (this is a problem narrative section) */}
             </div>
           </div>
         </div>
@@ -726,12 +741,10 @@ export default function HomePage() {
                 ))}
               </div>
 
+              {/* ✅ REDUCED CTA: ONE clear next step */}
               <div className="mt-10 flex flex-wrap gap-4">
-                <ButtonLink href="/contact#briefing" variant="primary">
-                  Book Executive Briefing
-                </ButtonLink>
-                <ButtonLink href="/downloads/board-brief.pdf" variant="secondary">
-                  Download Board Brief (PDF)
+                <ButtonLink href="/services" variant="primary">
+                  View Services
                 </ButtonLink>
               </div>
             </div>
@@ -774,12 +787,10 @@ export default function HomePage() {
                 </p>
               </div>
 
+              {/* ✅ REDUCED CTA: keep ONE, aligned with outcomes → proof */}
               <div className="mt-8 flex flex-wrap gap-4">
-                <ButtonLink href="/proof" variant="primary">
-                  Request Proof Review
-                </ButtonLink>
-                <ButtonLink href="/contact#briefing" variant="secondary">
-                  Book Executive Briefing
+                <ButtonLink href="/proof" variant="secondary">
+                  See Evidence Patterns
                 </ButtonLink>
               </div>
             </div>
@@ -800,7 +811,6 @@ export default function HomePage() {
                     />
 
                     <div className="relative z-10 flex items-start gap-4">
-                      {/* ✅ UPGRADED ICON */}
                       <OutcomeIcon kind={o.icon} />
 
                       <div className="min-w-0">
@@ -894,15 +904,7 @@ export default function HomePage() {
                   ))}
                 </div>
 
-                <div className="mt-8 flex flex-wrap gap-4">
-                  <ButtonLink href="#control-plane" variant="primary">
-                    View Control Plane
-                  </ButtonLink>
-
-                  <ButtonLink href="/contact#briefing" variant="secondary">
-                    Book Executive Briefing
-                  </ButtonLink>
-                </div>
+                {/* ✅ REDUCED CTA: none here (this block already provides direction) */}
               </div>
             </div>
 
@@ -921,7 +923,6 @@ export default function HomePage() {
                 {ecosystemBullets.map((b) => (
                   <div key={b.title} className={`${cardBase} ${cardHover} group p-7`}>
                     <div className="flex items-start gap-3">
-                      {/* ✅ UPGRADED ICON */}
                       <EcosystemIcon kind={b.icon} />
 
                       <div className="min-w-0">
@@ -931,6 +932,13 @@ export default function HomePage() {
                     </div>
                   </div>
                 ))}
+              </div>
+
+              {/* ✅ REDUCED CTA: one subtle nudge after the ecosystem grid */}
+              <div className="mt-10 flex flex-wrap gap-4">
+                <ButtonLink href="/contact#briefing" variant="secondary">
+                  Talk to Us
+                </ButtonLink>
               </div>
             </div>
           </div>
@@ -999,17 +1007,10 @@ export default function HomePage() {
                   </li>
                 </ul>
 
+                {/* ✅ REDUCED CTA: ONE (leadership section shouldn’t have 3) */}
                 <div className="mt-8 flex flex-wrap gap-4">
-                  <ButtonLink href="/downloads/board-brief.pdf" variant="primary">
-                    Download Board Brief (PDF)
-                  </ButtonLink>
-
                   <ButtonLink href="/proof/library" variant="secondary">
                     View Proof Library (Redacted)
-                  </ButtonLink>
-
-                  <ButtonLink href="/contact#briefing" variant="secondary">
-                    Book Executive Briefing
                   </ButtonLink>
                 </div>
               </div>
@@ -1068,29 +1069,21 @@ export default function HomePage() {
             ))}
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-4">
-            <ButtonLink href="/contact#briefing" variant="primary">
-              Book Executive Briefing
-            </ButtonLink>
-            <ButtonLink href="/downloads/control-plane-checklist.pdf" variant="secondary">
-              Download Control Plane Checklist
-            </ButtonLink>
-          </div>
+          {/* ✅ REDUCED CTA: none here (CTABand handles global conversion) */}
         </div>
       </CinematicSection>
 
+      {/* ✅ Keep ONE global conversion module at the end */}
       <CTABand />
 
       {/* ✅ reveal styles must exist so useRevealOnScroll can work */}
       <style jsx global>{`
-        /* ✅ FIX: prevents any stray absolute element from extending the viewport */
         html,
         body {
           width: 100%;
           overflow-x: hidden;
         }
 
-        /* ✅ tiny upgrade: smoother type rendering */
         body {
           text-rendering: optimizeLegibility;
           -webkit-font-smoothing: antialiased;
