@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
+import { ReactNode, CSSProperties } from "react";
 
 interface SectionProps {
   children: ReactNode;
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }
 
 export function Section({

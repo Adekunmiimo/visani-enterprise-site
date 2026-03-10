@@ -60,6 +60,30 @@ export default function ServicesPage() {
   const tileShadow =
     "shadow-[0_14px_44px_-28px_rgba(2,6,23,0.40)] ring-1 ring-black/10";
 
+  // ✅ TYPOGRAPHY: exactly aligned to finished HomePage pattern
+  const heroLabel =
+    "text-[2rem] font-bold tracking-[-0.035em] leading-[1] text-white sm:text-[2.5rem] lg:text-[3rem]";
+  const sectionLabelLight =
+    "text-2xl font-bold tracking-[-0.03em] leading-[1.02] text-brand-slate sm:text-[2rem]";
+  const sectionLabelDark =
+    "text-2xl font-bold tracking-[-0.03em] leading-[1.02] text-white sm:text-[2rem]";
+
+  const heroMainHeading =
+    "mt-4 text-[2.8rem] font-semibold tracking-[-0.045em] leading-[0.94] text-white sm:text-[3.5rem] lg:text-[4.2rem]";
+  const sectionMainHeading =
+    "mt-5 text-[2.25rem] font-semibold tracking-[-0.04em] leading-[1.02] text-brand-slate sm:text-[2.9rem]";
+  const sectionMainHeadingDark =
+    "mt-5 text-[2.25rem] font-semibold tracking-[-0.04em] leading-[1.02] text-white sm:text-[2.9rem]";
+
+  const bigChipText =
+    "text-white text-base font-bold tracking-[-0.01em] sm:text-[1.05rem]";
+  const cardTitleLight =
+    "text-[1.3rem] font-bold tracking-[-0.03em] leading-[1.08] text-brand-slate sm:text-[1.5rem]";
+  const cardTitleDark =
+    "text-[1.24rem] font-bold tracking-[-0.03em] leading-[1.08] text-white sm:text-[1.42rem]";
+  const subLabelLight =
+    "text-[1.02rem] font-bold tracking-[-0.02em] leading-[1.08] text-brand-slate sm:text-[1.12rem]";
+
   /**
    * ✅ IMPORTANT FIX
    * Your images are directly under /public (no /public/services folder)
@@ -460,27 +484,25 @@ export default function ServicesPage() {
         <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:py-28">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/65">
-                Services
-              </p>
+              <p className={heroLabel}>Services</p>
 
-              <h1 className="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              <h1 className={heroMainHeading}>
                 AI Execution
                 <span className="block text-white/85">Advisory &amp; Delivery</span>
               </h1>
 
-              <p className="mt-8 text-lg leading-relaxed text-white/80 sm:text-xl">
+              <p className="mt-8 text-lg leading-relaxed text-white sm:text-xl">
                 We help enterprise leaders move from isolated pilots to governed,
-                scalable execution—without losing control, trust, or accountability.
+                scalable execution without losing control, trust, or accountability.
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-2">
+              <div className="mt-6 flex flex-wrap gap-3">
                 {["Execution Control", "Runtime Governance", "Board Metrics"].map((b) => (
                   <span
                     key={b}
-                    className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/85 backdrop-blur"
+                    className="inline-flex items-center rounded-full bg-white/14 px-5 py-3 backdrop-blur text-white ring-1 ring-white/12"
                   >
-                    {b}
+                    <span className={bigChipText}>{b}</span>
                   </span>
                 ))}
               </div>
@@ -508,11 +530,6 @@ export default function ServicesPage() {
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                   <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
                 </div>
-
-                <p className="mt-4 text-sm leading-relaxed text-white/60">
-                  Designed to integrate AI into real enterprise operating models
-                  with clear governance and defensible outcomes.
-                </p>
               </div>
             </div>
           </div>
@@ -533,17 +550,15 @@ export default function ServicesPage() {
         <div className="relative mx-auto max-w-7xl px-6 py-20 sm:py-24">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="max-w-xl">
-              <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                Execution Reality
-              </p>
+              <p className={sectionLabelLight}>Execution Reality</p>
 
-              <h2 className="mt-5 text-3xl font-semibold tracking-tight text-brand-slate sm:text-4xl">
+              <h2 className={sectionMainHeading}>
                 Designed for enterprise execution
                 <span className="block">not experimentation</span>
               </h2>
 
               <p className="mt-6 text-base leading-relaxed text-brand-muted">
-                Most AI initiatives stall after early success—not because the technology fails,
+                Most AI initiatives stall after early success not because the technology fails,
                 but because execution lacks structure, governance, and ownership.
               </p>
 
@@ -553,11 +568,9 @@ export default function ServicesPage() {
               </p>
 
               <div className={`${cardSoft} mt-8 p-6`}>
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                  What we eliminate
-                </p>
+                <p className={subLabelLight}>What we eliminate</p>
                 <p className="mt-3 text-sm leading-relaxed text-brand-muted">
-                  Ambiguity in ownership, decision rights, and accountability—before scale turns it into risk.
+                  Ambiguity in ownership, decision rights, and accountability before scale turns it into risk.
                 </p>
               </div>
             </div>
@@ -573,7 +586,7 @@ export default function ServicesPage() {
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
                 </div>
                 <div className="p-6">
-                  <p className="text-sm font-semibold text-brand-slate">
+                  <p className={subLabelLight}>
                     AI proves value in pilots. Execution breaks at scale.
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-brand-muted">
@@ -589,7 +602,7 @@ export default function ServicesPage() {
                 },
                 {
                   title: "Embedded execution",
-                  desc: "AI integrated into operational workflows—not isolated pilots.",
+                  desc: "AI integrated into operational workflows not isolated pilots.",
                 },
                 {
                   title: "Defensible measurement",
@@ -597,7 +610,7 @@ export default function ServicesPage() {
                 },
               ].map((item) => (
                 <div key={item.title} className={`${cardBase} ${cardHover} p-7`}>
-                  <p className="text-sm font-semibold text-brand-slate">{item.title}</p>
+                  <p className={subLabelLight}>{item.title}</p>
                   <p className="mt-3 text-sm leading-relaxed text-brand-muted">{item.desc}</p>
                 </div>
               ))}
@@ -619,14 +632,12 @@ export default function ServicesPage() {
 
         <div className="relative mx-auto max-w-7xl px-6 py-20 sm:py-24">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-              Core Services
-            </p>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight text-brand-slate">
-              Execution-first services leaders can run
+            <p className={sectionLabelLight}>Core Services</p>
+            <h2 className={sectionMainHeading}>
+              Execution first services leaders can run
             </h2>
             <p className="mt-5 text-base leading-relaxed text-brand-muted">
-              These services convert AI ambition into a governed execution system—operated with clear decision rights,
+              These services convert AI ambition into a governed execution system operated with clear decision rights,
               permissioned controls, and measurable outcomes.
             </p>
           </div>
@@ -644,9 +655,9 @@ export default function ServicesPage() {
                     alt={item.title}
                     sizes="(min-width: 1024px) 420px, 100vw"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/22 to-transparent" />
 
-                  <div className="absolute left-4 top-4 flex flex-wrap gap-2">
+                  <div className="absolute inset-x-4 bottom-3 flex flex-wrap gap-2 sm:bottom-4">
                     {item.chips.map((c) => (
                       <span
                         key={c}
@@ -667,15 +678,13 @@ export default function ServicesPage() {
                     </div>
 
                     <div className="min-w-0">
-                      <p className="text-base font-semibold text-brand-slate">{item.title}</p>
+                      <p className={cardTitleLight}>{item.title}</p>
                       <p className="mt-3 text-sm leading-relaxed text-brand-muted">{item.desc}</p>
                     </div>
                   </div>
 
                   <div className={`${cardSoft} mt-6 p-5`}>
-                    <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                      Typical deliverables
-                    </p>
+                    <p className={subLabelLight}>Typical deliverables</p>
                     <ul className="mt-3 space-y-2 text-sm text-brand-muted">
                       {item.deliverables.map((d) => (
                         <li key={d} className="flex items-start gap-2">
@@ -713,12 +722,12 @@ export default function ServicesPage() {
                   alt="Engagement cadence"
                   sizes="(min-width: 1024px) 560px, 100vw"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-                <div className="absolute left-6 bottom-6">
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/16 to-transparent" />
+                <div className="absolute inset-x-6 bottom-3 sm:bottom-4">
                   <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
                     Engagement Model
                   </p>
-                  <p className="mt-2 text-lg font-semibold text-white">
+                  <p className={`${cardTitleDark} mt-2`}>
                     A clear path from clarity to scale
                   </p>
                 </div>
@@ -749,10 +758,8 @@ export default function ServicesPage() {
             </div>
 
             <div className={`${cardBase} px-8 py-12 sm:px-10 sm:py-16`}>
-              <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                Typical steps
-              </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-brand-slate">
+              <p className={sectionLabelLight}>Typical steps</p>
+              <h2 className={sectionMainHeading}>
                 How engagements typically work
               </h2>
               <p className="mt-6 text-base leading-relaxed text-brand-muted">
@@ -814,13 +821,13 @@ export default function ServicesPage() {
                   alt="Ecosystem ready and vendor neutral"
                   sizes="(min-width: 1024px) 560px, 100vw"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-                <div className="absolute left-6 bottom-6">
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/16 to-transparent" />
+                <div className="absolute inset-x-6 bottom-3 sm:bottom-4">
                   <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
                     Ecosystem
                   </p>
-                  <p className="mt-2 text-lg font-semibold text-white">
-                    Vendor-neutral by default
+                  <p className={`${cardTitleDark} mt-2`}>
+                    Vendor neutral by default
                   </p>
                 </div>
               </div>
@@ -832,9 +839,7 @@ export default function ServicesPage() {
                 </p>
 
                 <div className={`${cardSoft} mt-6 p-6`}>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                    How we work
-                  </p>
+                  <p className={subLabelLight}>How we work</p>
                   <div className="mt-4 grid gap-3 text-sm text-brand-muted">
                     <p>• Align decision rights and governance boundaries</p>
                     <p>• Implement permissioned execution + monitoring</p>
@@ -861,7 +866,7 @@ export default function ServicesPage() {
                       <EcosystemIconMark name={b.icon} />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-sm font-semibold text-brand-slate">{b.title}</p>
+                      <p className={subLabelLight}>{b.title}</p>
                       <p className="mt-2 text-sm leading-relaxed text-brand-muted">{b.desc}</p>
                     </div>
                   </div>
@@ -869,7 +874,7 @@ export default function ServicesPage() {
               ))}
 
               <div className={`${cardBase} ${cardHover} p-7 sm:col-span-2`}>
-                <p className="text-sm font-semibold text-brand-slate">Prefer a redacted proof review?</p>
+                <p className={subLabelLight}>Prefer a redacted proof review?</p>
                 <p className="mt-2 text-sm leading-relaxed text-brand-muted">
                   We can walk through sample artifacts, evidence patterns, and outcome ledgers leaders can defend.
                 </p>
@@ -900,12 +905,12 @@ export default function ServicesPage() {
                   alt="Representative outcomes"
                   sizes="(min-width: 1024px) 420px, 100vw"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-                <div className="absolute left-6 bottom-6">
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/16 to-transparent" />
+                <div className="absolute inset-x-6 bottom-3 sm:bottom-4">
                   <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
                     Representative Outcomes
                   </p>
-                  <p className="mt-2 text-lg font-semibold text-white">
+                  <p className={`${cardTitleDark} mt-2`}>
                     Defensible impact ranges
                   </p>
                 </div>
@@ -917,7 +922,7 @@ export default function ServicesPage() {
                 </p>
 
                 <div className={`${cardSoft} mt-6 p-6`}>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">Note</p>
+                  <p className={subLabelLight}>Note</p>
                   <p className="mt-3 text-sm leading-relaxed text-brand-muted">
                     Ranges are anonymized and reflect typical outcomes from enterprise execution programs.
                   </p>
@@ -949,7 +954,7 @@ export default function ServicesPage() {
                       }}
                     />
 
-                    <p className="relative z-10 text-sm font-semibold text-brand-slate">
+                    <p className={`${cardTitleLight} relative z-10`}>
                       {o.title}
                     </p>
                     <p className="relative z-10 mt-3 text-sm leading-relaxed text-brand-muted">
@@ -957,9 +962,7 @@ export default function ServicesPage() {
                     </p>
 
                     <div className={`${cardSoft} relative z-10 mt-5 p-4`}>
-                      <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                        Evidence
-                      </p>
+                      <p className={subLabelLight}>Evidence</p>
                       <p className="mt-2 text-sm leading-relaxed text-brand-muted">
                         {o.evidence}
                       </p>
@@ -984,12 +987,12 @@ export default function ServicesPage() {
                 alt="Positioning"
                 sizes="(min-width: 1024px) 1120px, 100vw"
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-              <div className="absolute left-8 bottom-6">
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/16 to-transparent" />
+              <div className="absolute inset-x-8 bottom-3 sm:bottom-4">
                 <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
                   Our Position
                 </p>
-                <p className="mt-2 text-2xl font-semibold text-white">
+                <p className={`${cardTitleDark} mt-2`}>
                   Built for leaders accountable for real outcomes
                 </p>
               </div>
@@ -998,18 +1001,18 @@ export default function ServicesPage() {
             <div className="p-8 sm:p-10">
               <p className="max-w-3xl text-base leading-relaxed text-brand-muted">
                 Most AI initiatives fail after early success because execution is treated as a technical problem.
-                We approach AI as an enterprise operating challenge—governed, measured, and led with explicit decision rights.
+                We approach AI as an enterprise operating challenge governed, measured, and led with explicit decision rights.
               </p>
 
               <div className="mt-10 grid gap-8 lg:grid-cols-2">
                 <div className={`${cardSoft} p-8`}>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
+                  <p className={subLabelLight}>
                     Typical Market Approach
                   </p>
 
                   <ul className="mt-6 space-y-4">
                     {[
-                      "Tool-first recommendations",
+                      "Tool first recommendations",
                       "Disconnected pilots and experiments",
                       "Governance added after deployment",
                       "Success measured by demos, not outcomes",
@@ -1033,13 +1036,11 @@ export default function ServicesPage() {
                         "linear-gradient(90deg, rgba(96,165,250,0.85), rgba(74,222,128,0.75))",
                     }}
                   />
-                  <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                    Our Approach
-                  </p>
+                  <p className={subLabelLight}>Our Approach</p>
 
                   <ul className="mt-6 space-y-4">
                     {[
-                      "Leadership-aligned outcomes first",
+                      "Leadership aligned outcomes first",
                       "AI embedded into real operating workflows",
                       "Governance and risk designed in from day one",
                       "Value measured on an executive cadence",
@@ -1056,7 +1057,7 @@ export default function ServicesPage() {
 
                   <div className={`${cardSoft} mt-8 p-6`}>
                     <p className="text-sm leading-relaxed text-brand-muted">
-                      This is why our work holds up in boardrooms, audits, and operational reality—not just innovation labs.
+                      This is why our work holds up in boardrooms, audits, and operational reality not just innovation labs.
                     </p>
                   </div>
                 </div>
@@ -1089,24 +1090,24 @@ export default function ServicesPage() {
                   sizes="(min-width: 1024px) 560px, 100vw"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
-                <div className="absolute left-8 top-8 max-w-sm">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-white/70">Next Step</p>
-                  <p className="mt-2 text-2xl font-semibold text-white">
+                <div className="absolute left-8 right-8 bottom-4 max-w-sm">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
+                    Next Step
+                  </p>
+                  <p className={`${cardTitleDark} mt-2`}>
                     Move from AI proof to enterprise control
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-white/80">
-                    Designed for leaders accountable to boards, regulators, and real-world outcomes.
+                    Designed for leaders accountable to boards, regulators, and real world outcomes.
                   </p>
                 </div>
               </div>
             </div>
 
             <div className={`${cardBase} px-8 py-12 sm:px-10 sm:py-16`}>
-              <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                Ready to talk?
-              </p>
+              <p className={sectionLabelLight}>Ready to talk?</p>
 
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-brand-slate sm:text-4xl">
+              <h2 className={sectionMainHeading}>
                 Book a briefing built for executives
               </h2>
 
@@ -1125,9 +1126,7 @@ export default function ServicesPage() {
               </div>
 
               <div className={`${cardSoft} mt-8 p-6`}>
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                  What to expect
-                </p>
+                <p className={subLabelLight}>What to expect</p>
                 <div className="mt-3 grid gap-2 text-sm text-brand-muted">
                   <p>• 30 minutes focused on decision rights, controls, and measurable outcomes</p>
                   <p>• Clear next steps and recommended engagement path</p>
@@ -1145,6 +1144,11 @@ export default function ServicesPage() {
         body {
           width: 100%;
           overflow-x: hidden;
+        }
+        body {
+          text-rendering: optimizeLegibility;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
         }
         .reveal {
           opacity: 0;

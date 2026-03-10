@@ -1,7 +1,6 @@
-// ✅ REPLACE ENTIRE FILE — components/site-header.tsx
-
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
@@ -9,38 +8,34 @@ import { Container } from "components/container";
 import { ButtonLink } from "components/button";
 import { site } from "@/lib/site";
 
-/**
- * ✅ Uses nav + CTAs from lib/site.ts (single source of truth)
- * ✅ Keeps A.R.I.S.E.X hidden (already removed from site.nav.main)
- * ✅ Closes mobile menu on route change
- */
 export function SiteHeader() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [, startTransition] = useTransition();
 
-  // ✅ Close mobile menu whenever route changes
   useEffect(() => {
     startTransition(() => {
       setMobileOpen(false);
     });
-  }, [pathname]);
+  }, [pathname, startTransition]);
 
   const navigation = site.nav.main;
 
   return (
     <header className="sticky top-0 z-50 border-b border-brand-border bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/70">
       <Container>
-        <div className="flex h-16 items-center justify-between">
-          {/* LEFT: Brand */}
-          <Link href="/" className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-md bg-brand-navy" />
-            <span className="text-sm font-semibold tracking-tight text-brand-slate">
-              {site.name}
-            </span>
+        <div className="flex h-20 items-center justify-between">
+          <Link href="/" className="flex items-center" aria-label="Visani America home">
+            <Image
+              src="/visani-logo.png"
+              alt="Visani America"
+              width={240}
+              height={70}
+              priority
+              className="h-auto w-[180px] sm:w-[220px]"
+            />
           </Link>
 
-          {/* DESKTOP: Navigation + CTA */}
           <div className="hidden items-center gap-8 md:flex">
             <nav className="flex items-center gap-6">
               {navigation.map((item) => {
@@ -64,13 +59,11 @@ export function SiteHeader() {
               })}
             </nav>
 
-            {/* ✅ Primary CTA from site config */}
             <ButtonLink href={site.cta.primary.href} variant="primary">
               {site.cta.primary.label}
             </ButtonLink>
           </div>
 
-          {/* MOBILE: Hamburger */}
           <button
             type="button"
             className="inline-flex items-center justify-center rounded-md border border-brand-border bg-white/70 px-3 py-2 text-brand-slate shadow-sm transition hover:bg-white md:hidden"
@@ -103,10 +96,9 @@ export function SiteHeader() {
           </button>
         </div>
 
-        {/* MOBILE MENU PANEL */}
         <div
           className={[
-            "md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-out",
+            "overflow-hidden transition-[max-height,opacity] duration-300 ease-out md:hidden",
             mobileOpen ? "max-h-[520px] opacity-100" : "max-h-0 opacity-0",
           ].join(" ")}
         >
@@ -134,7 +126,6 @@ export function SiteHeader() {
             </nav>
 
             <div className="mt-4 grid gap-3">
-              {/* ✅ Primary CTA */}
               <ButtonLink
                 href={site.cta.primary.href}
                 variant="primary"
@@ -143,7 +134,6 @@ export function SiteHeader() {
                 {site.cta.primary.label}
               </ButtonLink>
 
-              {/* ✅ Secondary CTA (use configured PDF route) */}
               <ButtonLink
                 href={site.links.boardBriefPdf}
                 variant="secondary"

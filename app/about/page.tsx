@@ -177,14 +177,63 @@ export default function AboutPage() {
 
   const lifecycle = useMemo(
     () => [
-      { n: "01", t: "Strategic authorization", d: "Leadership authorizes scope, accountability, and constraints." },
-      { n: "02", t: "Operational ownership", d: "Named owners are accountable for outcomes and risk exposure." },
-      { n: "03", t: "Control architecture", d: "Approval gates, boundaries, and policies are designed before scale." },
-      { n: "04", t: "Runtime enforcement", d: "Execution is permissioned, logged, and reviewable under scrutiny." },
-      { n: "05", t: "Outcome cadence", d: "Value + risk are reviewed and defended on executive cadence." },
+      {
+        n: "01",
+        t: "Strategic authorization",
+        d: "Leadership authorizes scope, accountability, and constraints.",
+      },
+      {
+        n: "02",
+        t: "Operational ownership",
+        d: "Named owners are accountable for outcomes and risk exposure.",
+      },
+      {
+        n: "03",
+        t: "Control architecture",
+        d: "Approval gates, boundaries, and policies are designed before scale.",
+      },
+      {
+        n: "04",
+        t: "Runtime enforcement",
+        d: "Execution is permissioned, logged, and reviewable under scrutiny.",
+      },
+      {
+        n: "05",
+        t: "Outcome cadence",
+        d: "Value + risk are reviewed and defended on executive cadence.",
+      },
     ],
     []
   );
+
+  // ✅ Shared stronger typography system
+  const heroLabel =
+    "text-[2rem] font-bold tracking-[-0.035em] leading-[1] text-white sm:text-[2.45rem] lg:text-[2.9rem]";
+  const heroMainHeading =
+    "mt-4 text-[2.8rem] font-semibold tracking-[-0.045em] leading-[0.94] text-white sm:text-[3.5rem] lg:text-[4.15rem]";
+
+  const sectionLabelLight =
+    "text-2xl font-bold tracking-[-0.03em] leading-[1.02] text-brand-slate sm:text-[2rem]";
+  const sectionLabelDark =
+    "text-2xl font-bold tracking-[-0.03em] leading-[1.02] text-white sm:text-[2rem]";
+
+  const sectionMainHeading =
+    "mt-5 text-[2.2rem] font-semibold tracking-[-0.04em] leading-[1.01] text-brand-slate sm:text-[2.85rem]";
+  const sectionMainHeadingDark =
+    "mt-5 text-[2.2rem] font-semibold tracking-[-0.04em] leading-[1.01] text-white sm:text-[2.85rem]";
+
+  const cardTitleLight =
+    "text-[1.3rem] font-bold tracking-[-0.03em] leading-[1.08] text-brand-slate sm:text-[1.5rem]";
+  const cardTitleDark =
+    "text-[1.3rem] font-bold tracking-[-0.03em] leading-[1.08] text-white sm:text-[1.5rem]";
+
+  const subLabelLight =
+    "text-[1.02rem] font-bold tracking-[-0.02em] leading-[1.08] text-brand-slate sm:text-[1.12rem]";
+  const subLabelDark =
+    "text-[1.02rem] font-bold tracking-[-0.02em] leading-[1.08] text-white sm:text-[1.12rem]";
+
+  const bigChipText =
+    "text-white text-base font-bold tracking-[-0.01em] sm:text-[1.05rem]";
 
   return (
     <>
@@ -193,16 +242,16 @@ export default function AboutPage() {
         <div className="absolute inset-0">
           <Image
             src={img.hero}
-            alt="About Visani America — executive AI execution advisory"
+            alt="About Visani America executive AI execution advisory"
             fill
             priority
-            className="object-cover"
+            className="object-cover object-[72%_center]"
             sizes="100vw"
           />
         </div>
 
         <div className="absolute inset-0 bg-black/45" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/35 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/42 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/35" />
         <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
 
@@ -216,33 +265,29 @@ export default function AboutPage() {
 
         <div className="relative mx-auto max-w-7xl px-6 py-24 sm:py-28 lg:py-32">
           <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
-            <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/70">
-                About
-              </p>
+            <div className="max-w-2xl lg:max-w-[42rem] lg:pr-8">
+              <p className={heroLabel}>About</p>
 
-              <h1 className="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+              <h1 className={heroMainHeading}>
                 Visani America
-                <span className="block text-white/85">
-                  Enterprise AI Execution Advisory
-                </span>
+                <span className="block text-white">Enterprise AI Execution Advisory</span>
               </h1>
 
-              <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/80">
+              <p className="mt-7 max-w-xl text-lg leading-relaxed text-white">
                 Visani America helps enterprises move beyond AI experimentation by transforming proven capabilities into governed, controllable, and accountable operating systems.
               </p>
 
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-white/65">
-                Our work begins after pilots succeed — when leadership must ensure AI can operate reliably under board oversight, regulatory scrutiny, operational risk, and real business pressure.
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-white">
+                Our work begins after pilots succeed, when leadership must ensure AI can operate reliably under board oversight, regulatory scrutiny, operational risk, and real business pressure.
               </p>
 
-              <div className="mt-7 flex flex-wrap gap-2">
+              <div className="mt-7 flex flex-wrap gap-3">
                 {["Executive Control", "Governance Clarity", "Defensible Outcomes"].map((b) => (
                   <span
                     key={b}
-                    className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/85 backdrop-blur"
+                    className="inline-flex items-center rounded-full bg-white/14 px-5 py-3 text-white backdrop-blur ring-1 ring-white/12"
                   >
-                    {b}
+                    <span className={bigChipText}>{b}</span>
                   </span>
                 ))}
               </div>
@@ -265,15 +310,15 @@ export default function AboutPage() {
                   fill
                   priority
                   sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="object-cover"
+                  className="object-cover object-[72%_center]"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
                 <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
               </div>
 
-              <p className="mt-4 max-w-sm text-xs leading-relaxed text-white/60">
+              {/* <p className="mt-4 max-w-sm text-xs leading-relaxed text-white/75">
                 Execution discipline, governance clarity, and enterprise accountability.
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
@@ -286,13 +331,11 @@ export default function AboutPage() {
         <div className="relative mx-auto max-w-7xl px-6 py-20 sm:py-24">
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
             <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-muted">
-                The scale problem
-              </p>
+              <p className={sectionLabelLight}>The scale problem</p>
 
-              <h2 className="mt-6 text-3xl font-semibold tracking-tight text-brand-slate sm:text-4xl">
+              <h2 className={sectionMainHeading}>
                 AI proves value in pilots.
-                <span className="block text-brand-slate/85">Execution breaks at scale.</span>
+                <span className="block text-brand-slate/90">Execution breaks at scale.</span>
               </h2>
 
               <p className="mt-6 text-base leading-relaxed text-brand-muted">
@@ -317,15 +360,13 @@ export default function AboutPage() {
                   alt="Disciplined enterprise execution systems"
                   fill
                   sizes="(min-width: 1024px) 45vw, 100vw"
-                  className="object-cover"
+                  className="object-cover object-[68%_center]"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
               </div>
 
               <div className="p-8 sm:p-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-muted">
-                  What we reinforce
-                </p>
+                <p className={subLabelLight}>What we reinforce</p>
 
                 <ul className="mt-6 space-y-4">
                   {[
@@ -359,7 +400,7 @@ export default function AboutPage() {
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {focusPillars.map((p) => (
               <div key={p.title} className={`${cardBase} ${cardHover} p-7`}>
-                <p className="text-sm font-semibold text-brand-slate">{p.title}</p>
+                <p className={cardTitleLight}>{p.title}</p>
                 <p className="mt-3 text-sm leading-relaxed text-brand-muted">{p.desc}</p>
               </div>
             ))}
@@ -369,11 +410,9 @@ export default function AboutPage() {
           <div className="mt-14">
             <div className={`${cardBase} p-8 sm:p-10`}>
               <div className="mx-auto max-w-4xl text-center">
-                <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-muted">
-                  Enterprise mandate
-                </p>
+                <p className={sectionLabelLight}>Enterprise mandate</p>
 
-                <h3 className="mt-6 text-3xl font-semibold text-brand-slate sm:text-4xl">
+                <h3 className={sectionMainHeading}>
                   AI is no longer experimental infrastructure
                 </h3>
 
@@ -392,7 +431,7 @@ export default function AboutPage() {
                     key={x.title}
                     className="rounded-3xl border border-black/10 bg-white/80 p-8 shadow-[0_18px_55px_-40px_rgba(0,0,0,0.35)]"
                   >
-                    <p className="text-sm font-semibold text-brand-slate">{x.title}</p>
+                    <p className={cardTitleLight}>{x.title}</p>
                     <p className="mt-3 text-sm leading-relaxed text-brand-muted">{x.desc}</p>
                   </div>
                 ))}
@@ -403,13 +442,9 @@ export default function AboutPage() {
           {/* ================= EXECUTION LIFECYCLE (NEW) ================= */}
           <div className="mt-12">
             <div className={`${cardBase} p-8 sm:p-10`}>
-              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-muted">
-                Execution lifecycle
-              </p>
+              <p className={sectionLabelLight}>Execution lifecycle</p>
 
-              <h3 className="mt-4 text-2xl font-semibold tracking-tight text-brand-slate">
-                The AI governance stack
-              </h3>
+              <h3 className={sectionMainHeading}>The AI governance stack</h3>
 
               <p className="mt-4 max-w-3xl text-sm leading-relaxed text-brand-muted">
                 Every scalable AI capability must pass through five enforcement layers. This is how pilots become governable enterprise operating systems.
@@ -420,7 +455,7 @@ export default function AboutPage() {
                   <div key={s.t} className="flex gap-6 items-start">
                     <div className="text-2xl font-semibold text-brand-slate">{s.n}</div>
                     <div>
-                      <p className="text-base font-semibold text-brand-slate">{s.t}</p>
+                      <p className={subLabelLight}>{s.t}</p>
                       <p className="mt-2 text-sm leading-relaxed text-brand-muted">{s.d}</p>
                     </div>
                   </div>
@@ -437,7 +472,6 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-
         </div>
       </Section>
 
@@ -448,37 +482,36 @@ export default function AboutPage() {
             src={img.position}
             alt="Our position background"
             fill
-            className="object-cover"
+            className="object-cover object-[72%_center]"
             sizes="100vw"
           />
         </div>
 
         <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/72 via-black/50 to-black/28" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/70 to-black/85" />
         <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
 
         <div className="relative mx-auto max-w-7xl px-6 py-20 sm:py-24">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
-            <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/65">
-                Our position
-              </p>
+            <div className="max-w-2xl lg:max-w-[42rem] lg:pr-8">
+              <p className={sectionLabelDark}>Our position</p>
 
-              <h2 className="mt-6 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              <h2 className={sectionMainHeadingDark}>
                 Clear by design.
-                <span className="block text-white/85">Deliberate by intent.</span>
+                <span className="block text-white">Deliberate by intent.</span>
               </h2>
 
-              <p className="mt-6 text-base leading-relaxed text-white/80">
+              <p className="mt-6 text-base leading-relaxed text-white">
                 Visani America occupies a deliberately narrow position in the AI ecosystem. We do not compete with vendors, platforms, or integrators. We are not an experimentation arm.
               </p>
 
-              <p className="mt-5 text-base leading-relaxed text-white/75">
-                We step in when leadership must ensure AI can operate inside the enterprise with control, accountability, and measurable outcomes — under scrutiny.
+              <p className="mt-5 text-base leading-relaxed text-white">
+                We step in when leadership must ensure AI can operate inside the enterprise with control, accountability, and measurable outcomes under scrutiny.
               </p>
 
-              <p className="mt-6 text-base leading-relaxed text-white/85 font-medium">
-                Our role is to reinforce executive control — not dilute it.
+              <p className="mt-6 text-base leading-relaxed text-white font-medium">
+                Our role is to reinforce executive control, not dilute it.
               </p>
 
               <div className="mt-10 flex flex-wrap gap-4">
@@ -514,8 +547,8 @@ export default function AboutPage() {
                   key={x.t}
                   className="rounded-[28px] border border-white/15 bg-white/10 px-8 py-9 backdrop-blur-md shadow-[0_45px_130px_-40px_rgba(0,0,0,0.7)]"
                 >
-                  <p className="text-sm font-semibold text-white">{x.t}</p>
-                  <p className="mt-3 text-sm leading-relaxed text-white/75">{x.d}</p>
+                  <p className={cardTitleDark}>{x.t}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-white">{x.d}</p>
                 </div>
               ))}
             </div>
@@ -536,13 +569,9 @@ export default function AboutPage() {
 
         <div className="relative mx-auto max-w-7xl px-6 py-20 sm:py-24">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-muted">
-              How we think
-            </p>
+            <p className={sectionLabelLight}>How we think</p>
 
-            <h2 className="mt-6 text-3xl font-semibold tracking-tight text-brand-slate sm:text-4xl">
-              Execution before optimism
-            </h2>
+            <h2 className={sectionMainHeading}>Execution before optimism</h2>
 
             <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-brand-muted">
               We evaluate AI using the same standards executives apply to any material operating capability:
@@ -550,7 +579,7 @@ export default function AboutPage() {
             </p>
 
             <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-brand-muted">
-              If AI cannot be governed, explained, and defended under pressure, it is not ready to scale —
+              If AI cannot be governed, explained, and defended under pressure, it is not ready to scale,
               regardless of technical performance.
             </p>
           </div>
@@ -582,7 +611,9 @@ export default function AboutPage() {
                 <div className="mx-auto grid h-11 w-11 place-items-center rounded-xl bg-black/5 ring-1 ring-inset ring-black/10 text-black/70">
                   <MiniIcon kind={x.icon} className="text-black/70" />
                 </div>
-                <p className="mt-5 text-sm font-semibold text-brand-slate">{x.title}</p>
+                <p className="mt-5 text-[1.18rem] font-bold tracking-[-0.025em] leading-[1.08] text-brand-slate">
+                  {x.title}
+                </p>
                 <p className="mt-3 text-sm leading-relaxed text-brand-muted">{x.desc}</p>
               </div>
             ))}
@@ -597,26 +628,23 @@ export default function AboutPage() {
             src={img.principles}
             alt="Execution principles background"
             fill
-            className="object-cover"
+            className="object-cover object-[70%_center]"
             sizes="100vw"
           />
         </div>
 
         <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/68 via-black/50 to-black/28" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/70 to-black/90" />
         <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
 
         <div className="relative mx-auto max-w-7xl px-6 py-20 sm:py-24">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/65">
-              How we operate
-            </p>
+            <p className={sectionLabelDark}>How we operate</p>
 
-            <h2 className="mt-6 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Execution principles
-            </h2>
+            <h2 className={sectionMainHeadingDark}>Execution principles</h2>
 
-            <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white/80">
+            <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white">
               Every engagement is governed by principles designed to preserve executive authority,
               organizational trust, and operational integrity under real enterprise conditions.
             </p>
@@ -628,8 +656,10 @@ export default function AboutPage() {
                 key={p.title}
                 className="group rounded-[28px] border border-white/15 bg-white/10 px-8 py-10 text-center backdrop-blur-md shadow-[0_45px_130px_-40px_rgba(0,0,0,0.7)] transition-all duration-300 hover:-translate-y-1 hover:bg-white/15"
               >
-                <p className="text-base font-semibold text-white">{p.title}</p>
-                <p className="mt-3 text-sm leading-relaxed text-white/70">
+                <p className="text-[1.18rem] font-bold tracking-[-0.025em] leading-[1.08] text-white">
+                  {p.title}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-white">
                   Built to survive scale, scrutiny, and executive accountability.
                 </p>
               </div>

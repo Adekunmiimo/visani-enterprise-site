@@ -20,13 +20,14 @@ type ButtonLinkProps = CommonProps & {
 };
 
 function getButtonClasses(variant: ButtonVariant, disabled?: boolean) {
-  // ✅ Premium base styles (consistent height, spacing, focus ring, motion, depth)
+  // ✅ Premium base styles aligned with stronger site typography
   const common =
     "relative inline-flex items-center justify-center gap-2 " +
-    "rounded-xl px-5 py-3 text-sm font-semibold " +
+    "rounded-xl px-5 py-3 " +
+    "text-sm font-bold tracking-[-0.02em] leading-[1] " +
     "transition-all duration-200 ease-out " +
     "focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-primary/25 " +
-    "active:translate-y-[1px] select-none " +
+    "active:translate-y-[1px] select-none whitespace-nowrap " +
     "shadow-[0_12px_40px_-28px_rgba(2,6,23,0.35)]";
 
   // ✅ Variant styles
@@ -103,21 +104,23 @@ export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
       }
     };
 
-    // ✅ Shared inner content: adds a subtle “shine” overlay for premium look
+    // ✅ Shared inner content: subtle premium shine overlay
     const Content = (
       <>
         <span
           aria-hidden="true"
           className={
-            "pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-200 " +
+            "pointer-events-none absolute inset-0 rounded-xl transition-opacity duration-200 " +
             (disabled
-              ? ""
+              ? "opacity-0"
               : variant === "primary"
               ? "opacity-100 bg-[radial-gradient(1200px_220px_at_20%_0%,rgba(255,255,255,0.35),transparent_55%)]"
               : "opacity-100 bg-[radial-gradient(1000px_220px_at_20%_0%,rgba(96,165,250,0.14),transparent_55%)]")
           }
         />
-        <span className="relative">{children}</span>
+        <span className="relative inline-flex items-center justify-center">
+          {children}
+        </span>
       </>
     );
 

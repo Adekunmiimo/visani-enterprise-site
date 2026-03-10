@@ -1,5 +1,6 @@
-// ✅ REPLACE ENTIRE FILE — components/site-footer.tsx
+// ✅ REPLACE ENTIRE FILE components/site-footer.tsx
 
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "components/container";
 import { site } from "@/lib/site";
@@ -14,9 +15,21 @@ export function SiteFooter() {
       <Container>
         <div className="grid gap-10 py-12 md:grid-cols-4">
           {/* Brand */}
-          <div className="space-y-3">
-            <div className="text-sm font-semibold text-brand-slate">{site.name}</div>
-            <p className="text-sm leading-relaxed text-brand-muted">{site.tagline}</p>
+          <div className="space-y-4">
+            <Link href="/" className="inline-flex items-center">
+              <Image
+                src="/visani-logo.png"
+                alt="Visani America logo"
+                width={220}
+                height={70}
+                className="h-auto w-[200px] sm:w-[220px]"
+                priority
+              />
+            </Link>
+
+            <p className="text-sm leading-relaxed text-brand-muted">
+              {site.tagline}
+            </p>
           </div>
 
           {/* Company */}
@@ -51,7 +64,6 @@ export function SiteFooter() {
           <div>
             <h4 className="text-sm font-semibold text-brand-slate">Connect</h4>
             <ul className="mt-3 space-y-2 text-sm">
-              {/* ✅ Only show LinkedIn if set */}
               {site.links.linkedin ? (
                 <li>
                   <a
@@ -66,7 +78,6 @@ export function SiteFooter() {
               ) : null}
             </ul>
 
-            {/* Proof links */}
             <div className="mt-6">
               <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
                 Proof links

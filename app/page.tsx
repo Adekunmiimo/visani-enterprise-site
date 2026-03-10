@@ -1,4 +1,4 @@
-// ✅ REPLACE ENTIRE FILE — app/page.tsx (HomePage)
+// ✅ REPLACE ENTIRE FILE app/page.tsx (HomePage)
 
 "use client";
 
@@ -13,14 +13,14 @@ import { ButtonLink } from "@/components/button";
 export default function HomePage() {
   useRevealOnScroll();
 
-  // ✅ Representative Outcomes (Anonymized Ranges) — stakeholder copy
+  // ✅ Representative Outcomes (Anonymized Ranges) stakeholder copy
   const representativeOutcomes = useMemo(
     () =>
       [
         {
-          title: "AI-to-Value Cycle Time",
+          title: "AI to Value Cycle Time",
           metric:
-            "Typical improvement: 30–60% faster from approved use case → production value signal",
+            "Typical improvement: 30 to 60% faster from approved use case to production value signal",
           evidence:
             "Evidence produced: decision log, rollout cadence, value ledger entries",
           icon: "speed",
@@ -28,15 +28,15 @@ export default function HomePage() {
         {
           title: "Operational Efficiency & Capacity Redeployment",
           metric:
-            "Typical outcome: 8–20% capacity redeployed in targeted functions (IT, Ops, Customer, Shared Services)",
+            "Typical outcome: 8 to 20% capacity redeployed in targeted functions (IT, Ops, Customer, Shared Services)",
           evidence:
-            "Evidence produced: before/after workload baseline, adoption telemetry, policy-controlled automation logs",
+            "Evidence produced: before/after workload baseline, adoption telemetry, policy controlled automation logs",
           icon: "capacity",
         },
         {
           title: "Risk Reduction & Audit Readiness",
           metric:
-            "Typical outcome: 40–70% reduction in “uncontrolled AI activity” (shadow agents, unapproved workflows, untracked data usage)",
+            'Typical outcome: 40 to 70% reduction in "uncontrolled AI activity" (shadow agents, unapproved workflows, untracked data usage)',
           evidence:
             "Evidence produced: agent registry, permissioned execution policies, audit trail coverage map",
           icon: "shield",
@@ -44,7 +44,7 @@ export default function HomePage() {
         {
           title: "Adoption & Behavior Change",
           metric:
-            "Typical outcome: 25–55% increase in sustained adoption within priority user groups",
+            "Typical outcome: 25 to 55% increase in sustained adoption within priority user groups",
           evidence:
             "Evidence produced: usage telemetry, enablement completion, workflow compliance signals",
           icon: "adoption",
@@ -53,13 +53,13 @@ export default function HomePage() {
     []
   );
 
-  // ✅ Ecosystem bullets — stakeholder copy
+  // ✅ Ecosystem bullets stakeholder copy
   const ecosystemBullets = useMemo(
     () =>
       [
         {
           title: "Identity & Access",
-          desc: "SSO/IAM alignment, role-based controls, least-privilege execution",
+          desc: "SSO/IAM alignment, role based controls, least privilege execution",
           icon: "id",
         },
         {
@@ -86,7 +86,7 @@ export default function HomePage() {
     []
   );
 
-  // Light blue-gray section backgrounds (consistent, executive)
+  // Light blue gray section backgrounds (consistent, executive)
   const sectionDark =
     "bg-gradient-to-b from-[#F3F6FA] via-[#EEF2F7] to-[#E6ECF4]";
   const sectionDarkAlt =
@@ -102,13 +102,41 @@ export default function HomePage() {
   const cardHover =
     "transition-transform duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_26px_80px_-38px_rgba(2,6,23,0.55)]";
 
-  // Small chips/tiles (make them pop too)
+  // Small chips/tiles
   const tileShadow =
     "shadow-[0_14px_44px_-28px_rgba(2,6,23,0.40)] ring-1 ring-black/10";
 
+  // ✅ TYPOGRAPHY: intentionally stronger than conventional because that is the requested direction
+  const heroLabel =
+    "text-[2rem] font-bold tracking-[-0.035em] leading-[1] text-white sm:text-[2.5rem] lg:text-[3rem]";
+  const sectionLabelLight =
+    "text-2xl font-bold tracking-[-0.03em] leading-[1.02] text-brand-slate sm:text-[2rem]";
+  const sectionLabelDark =
+    "text-2xl font-bold tracking-[-0.03em] leading-[1.02] text-white sm:text-[2rem]";
+
+  const heroMainHeading =
+    "mt-4 text-[2.8rem] font-semibold tracking-[-0.045em] leading-[0.94] text-white sm:text-[3.5rem] lg:text-[4.2rem]";
+  const sectionMainHeading =
+    "mt-5 text-[2.25rem] font-semibold tracking-[-0.04em] leading-[1.02] text-brand-slate sm:text-[2.9rem]";
+  const sectionMainHeadingDark =
+    "mt-5 text-[2.25rem] font-semibold tracking-[-0.04em] leading-[1.02] text-white sm:text-[2.9rem]";
+
+  const bigChipText =
+    "text-white text-base font-bold tracking-[-0.01em] sm:text-[1.05rem]";
+  const tileHeading =
+    "text-lg font-bold tracking-[-0.02em] leading-[1.05] text-brand-slate sm:text-[1.22rem]";
+  const cardTitleLight =
+    "text-[1.3rem] font-bold tracking-[-0.03em] leading-[1.08] text-brand-slate sm:text-[1.5rem]";
+  const cardTitleDark =
+    "text-[1.24rem] font-bold tracking-[-0.03em] leading-[1.08] text-white sm:text-[1.42rem]";
+  const subLabelLight =
+    "text-[1.02rem] font-bold tracking-[-0.02em] leading-[1.08] text-brand-slate sm:text-[1.12rem]";
+  const subLabelDark =
+    "text-[1.02rem] font-bold tracking-[-0.02em] leading-[1.08] text-white sm:text-[1.12rem]";
+
   /**
    * ✅ ICON UPGRADE
-   * - Premium icon treatment: gradient halo, ring, subtle shine, hover lift.
+   * Premium icon treatment: gradient halo, ring, subtle shine, hover lift.
    */
   const iconWrap =
     "relative grid h-12 w-12 place-items-center rounded-2xl bg-white/85 ring-1 ring-black/10 shadow-[0_18px_52px_-34px_rgba(2,6,23,0.42)]";
@@ -347,6 +375,9 @@ export default function HomePage() {
         reveal={false}
       >
         <div className="relative mx-auto max-w-7xl px-6 py-28 sm:py-32">
+          {/* Readability layer: keeps text clear on the left and protects the face on the right */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/62 via-black/38 to-transparent" />
+
           <div
             className="pointer-events-none absolute -top-12 left-1/2 h-56 w-[min(720px,92vw)] -translate-x-1/2 opacity-35 blur-3xl"
             style={{
@@ -355,29 +386,26 @@ export default function HomePage() {
             }}
           />
 
-          <div className="relative max-w-4xl">
-            <p className="text-sm font-semibold uppercase tracking-wide text-white/80">
-              Enterprise AI Execution Advisory
-            </p>
+          <div className="relative max-w-3xl lg:max-w-[44rem] lg:pr-10">
+            <p className={heroLabel}>Enterprise AI Execution Advisory</p>
 
-            <h1 className="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-              AI Strategy Is Easy. AI Execution Is the Differentiator.
+            <h1 className={heroMainHeading}>
+              AI Strategy Is Easy.
+              <span className="block">Execution Is Harder.</span>
             </h1>
 
-            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/85">
-              Visani America helps executives scale AI with an execution operating
-              model, a permissioned control plane, and measurable outcomes—without
-              losing governance or clarity.
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white">
+              Visani America helps enterprises move beyond AI experimentation by transforming proven capabilities into governed, controllable, and accountable operating systems.
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-2">
+            <div className="mt-8 flex flex-wrap gap-3">
               {["Execution Control", "Runtime Governance", "Board Metrics"].map(
                 (b) => (
                   <span
                     key={b}
-                    className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/85 backdrop-blur"
+                    className="inline-flex items-center rounded-full bg-white/14 px-5 py-3 backdrop-blur text-white ring-1 ring-white/12"
                   >
-                    {b}
+                    <span className={bigChipText}>{b}</span>
                   </span>
                 )
               )}
@@ -400,11 +428,9 @@ export default function HomePage() {
                 { k: "Runtime evidence", v: "Telemetry and logs leaders can defend." },
                 { k: "Outcome ledger", v: "Value and risk tracked on cadence." },
               ].map((x) => (
-                <div key={x.k} className={`${cardDark} p-5`}>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
-                    {x.k}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-white/85">
+                <div key={x.k} className={`${cardDark} p-6`}>
+                  <p className={cardTitleDark}>{x.k}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-white">
                     {x.v}
                   </p>
                 </div>
@@ -429,11 +455,9 @@ export default function HomePage() {
           <div className={`${cardBase} px-8 py-10`}>
             <div className="grid items-center gap-8 lg:grid-cols-3">
               <div className="lg:col-span-1">
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                  Executive-ready delivery
-                </p>
-                <p className="mt-3 text-base leading-relaxed text-brand-muted">
-                  Board oversight, operational risk review, and measurable outcomes—without
+                <p className={sectionLabelLight}>Executive ready delivery</p>
+                <p className="mt-4 text-base leading-relaxed text-brand-muted">
+                  Board oversight, operational risk review, and measurable outcomes without
                   hype or ambiguity.
                 </p>
               </div>
@@ -443,9 +467,9 @@ export default function HomePage() {
                   {["AI Governance", "Security", "Data", "Ops"].map((label) => (
                     <div
                       key={label}
-                      className={`flex h-14 items-center justify-center rounded-xl bg-white/75 text-xs font-semibold tracking-wide text-brand-slate ${tileShadow}`}
+                      className={`flex h-20 items-center justify-center rounded-xl bg-white/75 ${tileShadow}`}
                     >
-                      {label}
+                      <span className={tileHeading}>{label}</span>
                     </div>
                   ))}
                 </div>
@@ -476,17 +500,15 @@ export default function HomePage() {
             <div className="grid items-center gap-14 lg:grid-cols-2">
               {/* TEXT */}
               <div className="max-w-xl">
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                  Control Plane
-                </p>
+                <p className={sectionLabelLight}>Control Plane</p>
 
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-brand-slate">
+                <h2 className={sectionMainHeading}>
                   The AI Execution Control Plane
                 </h2>
 
                 <p className="mt-5 text-base leading-relaxed text-brand-muted">
                   Inventory agents and automations, enforce permissioned execution, monitor runtime
-                  behavior, and produce audit-ready evidence—so AI can operate safely at enterprise
+                  behavior, and produce audit ready evidence so AI can operate safely at enterprise
                   scale.
                 </p>
 
@@ -505,9 +527,9 @@ export default function HomePage() {
                       d: "Observe performance, drift, and policy compliance.",
                     },
                   ].map((x) => (
-                    <div key={x.t} className={`${cardSoft} p-5`}>
-                      <p className="text-sm font-semibold text-brand-slate">{x.t}</p>
-                      <p className="mt-2 text-sm leading-relaxed text-brand-muted">{x.d}</p>
+                    <div key={x.t} className={`${cardSoft} p-6`}>
+                      <p className={cardTitleLight}>{x.t}</p>
+                      <p className="mt-3 text-sm leading-relaxed text-brand-muted">{x.d}</p>
                     </div>
                   ))}
                 </div>
@@ -537,14 +559,12 @@ export default function HomePage() {
 
                 <div className="mt-5 grid gap-4 sm:grid-cols-2">
                   {[
-                    { k: "Evidence", v: "Audit-ready logs with decision traceability." },
-                    { k: "Controls", v: "Least-privilege execution with policy gates." },
+                    { k: "Evidence", v: "Audit ready logs with decision traceability." },
+                    { k: "Controls", v: "Least privilege execution with policy gates." },
                   ].map((x) => (
                     <div key={x.k} className={`${cardBase} p-5`}>
-                      <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                        {x.k}
-                      </p>
-                      <p className="mt-2 text-sm leading-relaxed text-brand-slate">{x.v}</p>
+                      <p className={subLabelLight}>{x.k}</p>
+                      <p className="mt-3 text-sm leading-relaxed text-brand-slate">{x.v}</p>
                     </div>
                   ))}
                 </div>
@@ -570,17 +590,15 @@ export default function HomePage() {
             <div className="grid items-center gap-14 lg:grid-cols-2">
               {/* TEXT */}
               <div className="relative max-w-xl">
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                  Built for Enterprise Execution
-                </p>
+                <p className={sectionLabelLight}>Built for Enterprise Execution</p>
 
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-brand-slate">
+                <h2 className={sectionMainHeading}>
                   Not experimentation.
                   <span className="block">A system leaders can run.</span>
                 </h2>
 
                 <p className="mt-6 text-base leading-relaxed text-brand-muted">
-                  Decision rights, controls, and measurement are built in—so scale does not create risk.
+                  Decision rights, controls, and measurement are built in so scale does not create risk.
                 </p>
 
                 <div className="mt-8 grid gap-3">
@@ -619,7 +637,7 @@ export default function HomePage() {
                   />
                 </div>
 
-                <div className="pointer-events-none absolute bottom-4 left-4 rounded-full bg-black/45 px-4 py-2 text-xs font-semibold text-white/85 backdrop-blur shadow-[0_22px_70px_-40px_rgba(0,0,0,0.70)] ring-1 ring-white/10">
+                <div className="pointer-events-none absolute bottom-4 left-4 rounded-full bg-black/45 px-4 py-2 text-xs font-semibold text-white backdrop-blur shadow-[0_22px_70px_-40px_rgba(0,0,0,0.70)] ring-1 ring-white/10">
                   Operating model + control plane + metrics
                 </div>
               </div>
@@ -647,23 +665,21 @@ export default function HomePage() {
 
             {/* RIGHT */}
             <div className="max-w-xl">
-              <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
-                The Execution Gap
-              </p>
+              <p className={sectionLabelDark}>The Execution Gap</p>
 
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white">
+              <h2 className={sectionMainHeadingDark}>
                 Why AI programs stall
-                <span className="block text-white/90">after the pilot</span>
+                <span className="block text-white">after the pilot</span>
               </h2>
 
-              <p className="mt-6 text-base leading-relaxed text-white/80">
+              <p className="mt-6 text-base leading-relaxed text-white">
                 AI doesn’t fail because it can’t generate answers. It fails because organizations
                 lack ownership, controls, integration, and measurement.
               </p>
 
               <div className={`${cardDark} mt-8 p-6`}>
-                <p className="text-sm font-semibold text-white">What breaks at scale:</p>
-                <div className="mt-4 grid gap-2 text-sm text-white/75">
+                <p className={cardTitleDark}>What breaks at scale:</p>
+                <div className="mt-4 grid gap-2 text-sm text-white/80">
                   <p>• Ownership and accountability blur</p>
                   <p>• Shadow agents and untracked automations appear</p>
                   <p>• Governance becomes reactive</p>
@@ -703,10 +719,8 @@ export default function HomePage() {
               </div>
 
               <div className={`${cardBase} mt-5 p-6`}>
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                  Executive outcome
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-brand-slate">
+                <p className={subLabelLight}>Executive outcome</p>
+                <p className="mt-3 text-sm leading-relaxed text-brand-slate">
                   AI scales quickly without breaking governance, trust, or accountability.
                 </p>
               </div>
@@ -714,11 +728,9 @@ export default function HomePage() {
 
             {/* TEXT */}
             <div className="order-1 max-w-xl lg:order-2">
-              <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                The Solution
-              </p>
+              <p className={sectionLabelLight}>The Solution</p>
 
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-brand-slate">
+              <h2 className={sectionMainHeading}>
                 A governed system
                 <span className="block">for scaling AI</span>
               </h2>
@@ -735,8 +747,8 @@ export default function HomePage() {
                   { t: "Measurement", d: "Value and risk ledgers that stand up to scrutiny." },
                 ].map((x) => (
                   <div key={x.t} className={`${cardBase} ${cardHover} p-6`}>
-                    <p className="text-sm font-semibold text-brand-slate">{x.t}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-brand-muted">{x.d}</p>
+                    <p className={cardTitleLight}>{x.t}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-brand-muted">{x.d}</p>
                   </div>
                 ))}
               </div>
@@ -766,11 +778,9 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-7xl px-6 py-20">
           <div className="grid items-start gap-12 lg:grid-cols-3">
             <div className="lg:col-span-1">
-              <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                Representative Outcomes
-              </p>
+              <p className={sectionLabelLight}>Representative Outcomes</p>
 
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-brand-slate">
+              <h2 className={sectionMainHeading}>
                 Outcomes leaders can defend
               </h2>
 
@@ -779,9 +789,7 @@ export default function HomePage() {
               </p>
 
               <div className={`${cardSoft} mt-8 p-6`}>
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                  Note
-                </p>
+                <p className={subLabelLight}>Note</p>
                 <p className="mt-3 text-sm leading-relaxed text-brand-muted">
                   A baseline assessment determines the expected band for your organization.
                 </p>
@@ -814,14 +822,14 @@ export default function HomePage() {
                       <OutcomeIcon kind={o.icon} />
 
                       <div className="min-w-0">
-                        <p className="text-sm font-semibold text-brand-slate">{o.title}</p>
+                        <p className={cardTitleLight}>{o.title}</p>
                         <p className="mt-3 text-sm leading-relaxed text-brand-muted">{o.metric}</p>
 
                         <div className={`${cardSoft} mt-5 p-4`}>
-                          <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                            Evidence
+                          <p className={subLabelLight}>Evidence</p>
+                          <p className="mt-2 text-sm leading-relaxed text-brand-muted">
+                            {o.evidence}
                           </p>
-                          <p className="mt-2 text-sm leading-relaxed text-brand-muted">{o.evidence}</p>
                         </div>
                       </div>
                     </div>
@@ -840,15 +848,13 @@ export default function HomePage() {
                 </div>
 
                 <div className={`${cardBase} p-8`}>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                    What leaders receive
-                  </p>
+                  <p className={subLabelLight}>What leaders receive</p>
                   <p className="mt-4 text-sm leading-relaxed text-brand-muted">
-                    Board-ready artifacts, decision traceability, and measurable adoption signals.
+                    Board ready artifacts, decision traceability, and measurable adoption signals.
                   </p>
                   <div className="mt-6 grid gap-3 text-sm text-brand-muted">
                     <p>• Value ledger entries</p>
-                    <p>• Policy-controlled execution logs</p>
+                    <p>• Policy controlled execution logs</p>
                     <p>• Audit trail coverage map</p>
                   </div>
                 </div>
@@ -873,12 +879,10 @@ export default function HomePage() {
           <div className="grid items-start gap-12 lg:grid-cols-2">
             {/* LEFT */}
             <div className="max-w-xl">
-              <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                Ecosystem
-              </p>
+              <p className={sectionLabelLight}>Ecosystem</p>
 
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-brand-slate">
-                Vendor-neutral execution that fits your stack
+              <h2 className={sectionMainHeading}>
+                Vendor neutral execution that fits your stack
               </h2>
 
               <p className="mt-5 text-base leading-relaxed text-brand-muted">
@@ -887,7 +891,7 @@ export default function HomePage() {
               </p>
 
               <div className={`${cardBase} mt-10 p-8`}>
-                <p className="text-sm font-semibold text-brand-slate">How we work</p>
+                <p className={cardTitleLight}>How we work</p>
 
                 <div className="mt-6 grid gap-4">
                   {[
@@ -926,8 +930,8 @@ export default function HomePage() {
                       <EcosystemIcon kind={b.icon} />
 
                       <div className="min-w-0">
-                        <p className="text-sm font-semibold text-brand-slate">{b.title}</p>
-                        <p className="mt-2 text-sm leading-relaxed text-brand-muted">{b.desc}</p>
+                        <p className={cardTitleLight}>{b.title}</p>
+                        <p className="mt-3 text-sm leading-relaxed text-brand-muted">{b.desc}</p>
                       </div>
                     </div>
                   </div>
@@ -959,14 +963,12 @@ export default function HomePage() {
 
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {[
-                  { k: "Board-ready", v: "Artifacts designed to survive scrutiny." },
+                  { k: "Board ready", v: "Artifacts designed to survive scrutiny." },
                   { k: "Execution control", v: "Permissioned operation with measurable outcomes." },
                 ].map((x) => (
                   <div key={x.k} className={`${cardBase} p-6`}>
-                    <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                      {x.k}
-                    </p>
-                    <p className="mt-2 text-sm leading-relaxed text-brand-slate">{x.v}</p>
+                    <p className={subLabelLight}>{x.k}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-brand-slate">{x.v}</p>
                   </div>
                 ))}
               </div>
@@ -974,16 +976,14 @@ export default function HomePage() {
 
             {/* TEXT */}
             <div className="order-1 lg:order-2">
-              <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                Leadership
-              </p>
+              <p className={sectionLabelLight}>Leadership</p>
 
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-brand-slate">
+              <h2 className={sectionMainHeading}>
                 Leadership built for enterprise scale
               </h2>
 
               <div className={`${cardBase} mt-8 p-8`}>
-                <p className="text-sm font-semibold text-brand-slate">
+                <p className={cardTitleLight}>
                   Visani America is led by Richie Adetimehin
                 </p>
 
@@ -999,10 +999,10 @@ export default function HomePage() {
                   </li>
                   <li>
                     <span className="font-semibold text-brand-slate">Controls:</span>{" "}
-                    permissioned execution, audit-ready evidence
+                    permissioned execution, audit ready evidence
                   </li>
                   <li>
-                    <span className="font-semibold text-brand-slate">Cross-functional alignment:</span>{" "}
+                    <span className="font-semibold text-brand-slate">Cross functional alignment:</span>{" "}
                     AI, security, data, operations, business
                   </li>
                 </ul>
@@ -1023,16 +1023,14 @@ export default function HomePage() {
       <CinematicSection backgroundImage="/img777.jpg" overlay="dark">
         <div className="mx-auto max-w-7xl px-6 py-28 sm:py-32">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
-              How It Works
-            </p>
+            <p className={sectionLabelDark}>How It Works</p>
 
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            <h2 className={sectionMainHeadingDark}>
               A clear path from clarity to scale
             </h2>
 
             <p className="mt-6 text-lg leading-relaxed text-white/85">
-              Scaling AI is a controlled progression—designed, governed, and measured at each stage.
+              Scaling AI is a controlled progression, designed, governed, and measured at each stage.
             </p>
           </div>
 
@@ -1040,7 +1038,7 @@ export default function HomePage() {
             {[
               { step: "01", title: "Executive Briefing", desc: "Align outcomes, constraints, and decision rights." },
               { step: "02", title: "Readiness Assessment", desc: "Identify gaps before scale exposes them." },
-              { step: "03", title: "Pilot-to-Scale Roadmap", desc: "Define sequencing, dependencies, and measurement." },
+              { step: "03", title: "Pilot to Scale Roadmap", desc: "Define sequencing, dependencies, and measurement." },
               { step: "04", title: "Delivery and Adoption Sprints", desc: "Embed workflows, govern expansion, and prove value." },
             ].map((item) => (
               <div
@@ -1054,15 +1052,15 @@ export default function HomePage() {
                       "radial-gradient(900px 260px at 15% 0%, rgba(255,255,255,0.12), transparent 55%)",
                   }}
                 />
-                <span className="relative text-xs font-semibold tracking-widest text-white/60">
+                <span className="relative text-sm font-bold tracking-wide text-white">
                   {item.step}
                 </span>
 
-                <h3 className="relative mt-4 text-sm font-semibold text-white">
+                <h3 className="relative mt-4 text-[1.35rem] font-bold tracking-[-0.03em] leading-[1.08] text-white">
                   {item.title}
                 </h3>
 
-                <p className="relative mt-4 text-sm leading-relaxed text-white/80">
+                <p className="relative mt-4 text-sm leading-relaxed text-white/85">
                   {item.desc}
                 </p>
               </div>
@@ -1096,10 +1094,12 @@ export default function HomePage() {
           transition: opacity 0.6s ease, transform 0.6s ease;
           will-change: opacity, transform;
         }
+
         .reveal-visible {
           opacity: 1;
           transform: translateY(0);
         }
+
         @media (prefers-reduced-motion: reduce) {
           .reveal {
             transition: none;

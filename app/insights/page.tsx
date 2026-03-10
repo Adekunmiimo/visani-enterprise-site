@@ -14,19 +14,27 @@ type InsightPost = {
   label: "Executive Brief" | "Field Note" | "Board Brief";
   title: string;
   excerpt: string;
-  meta: string; // e.g. "8 min read • Governance"
+  meta: string;
   category: PostCategory;
-  cover: string; // /public image
+  cover: string;
   featured?: boolean;
 };
 
 function MiniIcon({ kind }: { kind: "memo" | "shield" | "flow" | "chart" }) {
-  const base = "h-5 w-5 text-white/85";
+  const base = "h-5 w-5 text-white";
   const stroke = 1.9;
 
   if (kind === "memo") {
     return (
-      <svg viewBox="0 0 24 24" className={base} fill="none" stroke="currentColor" strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        viewBox="0 0 24 24"
+        className={base}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={stroke}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <path d="M7 3h7l3 3v15H7V3z" />
         <path d="M14 3v4h4" />
         <path d="M9 11h6" />
@@ -37,7 +45,15 @@ function MiniIcon({ kind }: { kind: "memo" | "shield" | "flow" | "chart" }) {
 
   if (kind === "shield") {
     return (
-      <svg viewBox="0 0 24 24" className={base} fill="none" stroke="currentColor" strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        viewBox="0 0 24 24"
+        className={base}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={stroke}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <path d="M12 3l8 4v6c0 5-3.5 8-8 8s-8-3-8-8V7l8-4z" />
         <path d="M9 12l2 2 4-5" />
       </svg>
@@ -46,7 +62,15 @@ function MiniIcon({ kind }: { kind: "memo" | "shield" | "flow" | "chart" }) {
 
   if (kind === "flow") {
     return (
-      <svg viewBox="0 0 24 24" className={base} fill="none" stroke="currentColor" strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        viewBox="0 0 24 24"
+        className={base}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={stroke}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <path d="M7 7h6v6H7z" />
         <path d="M13 10h4a3 3 0 013 3v1" />
         <path d="M10 13v4a3 3 0 003 3h1" />
@@ -55,7 +79,15 @@ function MiniIcon({ kind }: { kind: "memo" | "shield" | "flow" | "chart" }) {
   }
 
   return (
-    <svg viewBox="0 0 24 24" className={base} fill="none" stroke="currentColor" strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      viewBox="0 0 24 24"
+      className={base}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={stroke}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M4 19V5" />
       <path d="M8 19V9" />
       <path d="M12 19V7" />
@@ -80,8 +112,30 @@ export default function InsightsPage() {
     "rounded-2xl bg-white/88 ring-1 ring-black/8 shadow-[0_16px_52px_-32px_rgba(2,6,23,0.40)] backdrop-blur-[2px]";
   const cardHover =
     "transition-transform duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_26px_80px_-38px_rgba(2,6,23,0.55)]";
-  const tileShadow =
-    "shadow-[0_14px_44px_-28px_rgba(2,6,23,0.40)] ring-1 ring-black/10";
+
+  // ✅ TYPOGRAPHY: exactly aligned to finished HomePage pattern
+  const heroLabel =
+    "text-[2rem] font-bold tracking-[-0.035em] leading-[1] text-white sm:text-[2.5rem] lg:text-[3rem]";
+  const sectionLabelLight =
+    "text-2xl font-bold tracking-[-0.03em] leading-[1.02] text-brand-slate sm:text-[2rem]";
+  const sectionLabelDark =
+    "text-2xl font-bold tracking-[-0.03em] leading-[1.02] text-white sm:text-[2rem]";
+
+  const heroMainHeading =
+    "mt-4 text-[2.8rem] font-semibold tracking-[-0.045em] leading-[0.94] text-white sm:text-[3.5rem] lg:text-[4.2rem]";
+  const sectionMainHeading =
+    "mt-5 text-[2.25rem] font-semibold tracking-[-0.04em] leading-[1.02] text-brand-slate sm:text-[2.9rem]";
+  const sectionMainHeadingDark =
+    "mt-5 text-[2.25rem] font-semibold tracking-[-0.04em] leading-[1.02] text-white sm:text-[2.9rem]";
+
+  const bigChipText =
+    "text-white text-base font-bold tracking-[-0.01em] sm:text-[1.05rem]";
+  const cardTitleDark =
+    "text-[1.24rem] font-bold tracking-[-0.03em] leading-[1.08] text-white sm:text-[1.42rem]";
+  const subLabelLight =
+    "text-[1.02rem] font-bold tracking-[-0.02em] leading-[1.08] text-brand-slate sm:text-[1.12rem]";
+  const subLabelDark =
+    "text-[1.02rem] font-bold tracking-[-0.02em] leading-[1.08] text-white sm:text-[1.12rem]";
 
   // ✅ Use your real images (in /public). Replace any filenames if yours differ.
   const img = useMemo(
@@ -90,7 +144,7 @@ export default function InsightsPage() {
       heroSide: "/insights-feed-bg.jpg",
       feedBg: "/insights-feed-bg.jpg",
       controlPlane: "/governance.jpg",
-      featured: "/positioning.jpg", // if you have it; otherwise keep any existing image name
+      featured: "/positioning.jpg",
     }),
     []
   );
@@ -175,13 +229,13 @@ export default function InsightsPage() {
 
   return (
     <>
-      {/* ================= INSIGHTS HERO (EXECUTIVE — IMPRESSIVE, CONTROLLED) ================= */}
+      {/* ================= INSIGHTS HERO (EXECUTIVE IMPRESSIVE, CONTROLLED) ================= */}
       <Section className="relative overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
           <Image
             src={img.hero}
-            alt="Insights — governed AI execution"
+            alt="Insights governed AI execution"
             fill
             priority
             className="object-cover"
@@ -215,33 +269,31 @@ export default function InsightsPage() {
           <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
             {/* LEFT */}
             <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/75">
-                Insights
-              </p>
+              <p className={heroLabel}>Insights</p>
 
-              <h1 className="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              <h1 className={heroMainHeading}>
                 Executive briefs on
-                <span className="block text-white/85">governed AI execution</span>
+                <span className="block text-white">governed AI execution</span>
               </h1>
 
-              <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/85">
-                Decision-grade perspectives for leaders scaling AI with control, accountability,
-                and defensible outcomes — beyond pilots, hype, and isolated experimentation.
+              <p className="mt-7 max-w-xl text-lg leading-relaxed text-white">
+                Decision grade perspectives for leaders scaling AI with control, accountability,
+                and defensible outcomes beyond pilots, hype, and isolated experimentation.
               </p>
 
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-white/65">
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-white">
                 Built for boardrooms, risk reviews, operating committees, and regulatory conversations
                 where evidence matters.
               </p>
 
               {/* Badges */}
-              <div className="mt-7 flex flex-wrap gap-2">
+              <div className="mt-7 flex flex-wrap gap-3">
                 {["Execution Control", "Runtime Governance", "Board Metrics"].map((b) => (
                   <span
                     key={b}
-                    className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/85 backdrop-blur ring-1 ring-inset ring-white/10"
+                    className="inline-flex items-center rounded-full bg-white/14 px-5 py-3 backdrop-blur text-white ring-1 ring-white/12"
                   >
-                    {b}
+                    <span className={bigChipText}>{b}</span>
                   </span>
                 ))}
               </div>
@@ -260,23 +312,21 @@ export default function InsightsPage() {
               <div className="mt-10 grid gap-3 sm:grid-cols-3">
                 {[
                   { k: "Control", v: "Decision rights and policy gates." },
-                  { k: "Evidence", v: "Telemetry and audit-ready logs." },
+                  { k: "Evidence", v: "Telemetry and audit ready logs." },
                   { k: "Outcomes", v: "Value and risk ledgers on cadence." },
                 ].map((x) => (
                   <div
                     key={x.k}
                     className="rounded-2xl bg-black/35 px-5 py-4 ring-1 ring-inset ring-white/10 backdrop-blur"
                   >
-                    <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
-                      {x.k}
-                    </p>
-                    <p className="mt-1 text-sm leading-relaxed text-white/85">{x.v}</p>
+                    <p className={subLabelDark}>{x.k}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-white">{x.v}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* RIGHT — premium featured panel */}
+            {/* RIGHT premium featured panel */}
             <div className="relative lg:flex lg:justify-end">
               <div className="w-full max-w-lg">
                 <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-black shadow-[0_70px_150px_-55px_rgba(0,0,0,0.85)]">
@@ -288,39 +338,37 @@ export default function InsightsPage() {
                       className="object-cover"
                       sizes="(min-width: 1024px) 40vw, 100vw"
                     />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/18 to-transparent" />
                     <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
                   </div>
 
                   {/* Featured snippet */}
-                  <div className="p-7">
-                    <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60">
-                      Featured brief
-                    </p>
-                    <p className="mt-3 text-lg font-semibold text-white">
-                      {featured.title}
-                    </p>
-                    <p className="mt-3 text-sm leading-relaxed text-white/75">
-                      {featured.excerpt}
-                    </p>
+                  <div className="absolute inset-x-6 bottom-4 sm:bottom-5">
+                    <div className="rounded-2xl bg-black/42 p-5 backdrop-blur-md ring-1 ring-white/10">
+                      <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white">
+                        Featured brief
+                      </p>
+                      <p className={`${cardTitleDark} mt-3`}>
+                        {featured.title}
+                      </p>
+                      <p className="mt-3 text-sm leading-relaxed text-white">
+                        {featured.excerpt}
+                      </p>
 
-                    <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
-                      <span className="text-xs font-semibold uppercase tracking-widest text-white/55">
-                        {featured.meta}
-                      </span>
-                      <Link
-                        href={featured.href}
-                        className="text-sm font-semibold text-white/85 transition hover:text-white"
-                      >
-                        Read brief →
-                      </Link>
+                      <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
+                        <span className="text-xs font-semibold uppercase tracking-widest text-white">
+                          {featured.meta}
+                        </span>
+                        <Link
+                          href={featured.href}
+                          className="text-sm font-semibold text-white transition hover:text-white"
+                        >
+                          Read brief →
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                <p className="mt-4 max-w-sm text-xs leading-relaxed text-white/60">
-                  Built to support executive judgment with clarity, defensibility, and operating discipline.
-                </p>
               </div>
             </div>
           </div>
@@ -336,8 +384,8 @@ export default function InsightsPage() {
                   <MiniIcon kind={c.icon} />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-sm font-semibold text-white/90">{c.label}</p>
-                  <p className="text-xs text-white/60">Executive-ready analysis</p>
+                  <p className={subLabelDark}>{c.label}</p>
+                  <p className="text-xs text-white">Executive ready analysis</p>
                 </div>
               </div>
             ))}
@@ -354,18 +402,16 @@ export default function InsightsPage() {
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
             {/* LEFT */}
             <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-muted">
-                Perspective
-              </p>
+              <p className={sectionLabelLight}>Perspective</p>
 
-              <h2 className="mt-6 text-3xl font-semibold tracking-tight text-brand-slate sm:text-4xl">
+              <h2 className={sectionMainHeading}>
                 Built for leaders
                 <span className="block text-brand-slate/85">accountable for outcomes</span>
               </h2>
 
               <p className="mt-6 text-base leading-relaxed text-brand-muted">
                 These briefs are disciplined examinations of how AI behaves inside complex enterprises
-                once pilots meet operating reality. No trend-chasing. No vendor theatre.
+                once pilots meet operating reality. No trend chasing. No vendor theatre.
               </p>
 
               <p className="mt-5 text-base leading-relaxed text-brand-muted">
@@ -374,16 +420,14 @@ export default function InsightsPage() {
               </p>
 
               <div className={`${cardSoft} mt-8 p-6`}>
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                  What we eliminate
-                </p>
+                <p className={subLabelLight}>What we eliminate</p>
                 <p className="mt-3 text-sm leading-relaxed text-brand-muted">
-                  Ambiguity in ownership, decision rights, and accountability — before scale turns it into risk.
+                  Ambiguity in ownership, decision rights, and accountability before scale turns it into risk.
                 </p>
               </div>
             </div>
 
-            {/* RIGHT — signal panel */}
+            {/* RIGHT signal panel */}
             <div className={`${cardBase} relative p-8 sm:p-10`}>
               <div
                 className="pointer-events-none absolute inset-x-0 top-0 h-1 rounded-t-2xl"
@@ -392,9 +436,7 @@ export default function InsightsPage() {
                     "linear-gradient(90deg, rgba(96,165,250,0.85), rgba(74,222,128,0.75))",
                 }}
               />
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
-                What these briefs focus on
-              </p>
+              <p className={subLabelLight}>What these briefs focus on</p>
 
               <ul className="mt-6 space-y-4">
                 {[
@@ -414,11 +456,9 @@ export default function InsightsPage() {
               </ul>
 
               <div className={`${cardSoft} mt-8 p-6`}>
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                  Format
-                </p>
+                <p className={subLabelLight}>Format</p>
                 <p className="mt-3 text-sm leading-relaxed text-brand-muted">
-                  Executive briefs. Field notes. Board-ready summaries — written to be used, not skimmed.
+                  Executive briefs. Field notes. Board ready summaries written to be used, not skimmed.
                 </p>
               </div>
             </div>
@@ -440,17 +480,15 @@ export default function InsightsPage() {
         <div className="relative mx-auto max-w-7xl px-6 py-20 sm:py-24">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
             <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-muted">
-                Control Plane
-              </p>
+              <p className={sectionLabelLight}>Control Plane</p>
 
-              <h2 className="mt-5 text-3xl font-semibold tracking-tight text-brand-slate sm:text-4xl">
+              <h2 className={sectionMainHeading}>
                 The AI Execution Control Plane
               </h2>
 
               <p className="mt-6 text-base leading-relaxed text-brand-muted">
                 Inventory every agent and automation, enforce permissioned execution, monitor runtime behavior,
-                and produce audit-ready evidence — so AI can operate safely at enterprise scale.
+                and produce audit ready evidence so AI can operate safely at enterprise scale.
               </p>
 
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -461,7 +499,7 @@ export default function InsightsPage() {
                   { t: "Outcome ledger", d: "Value and risk tracked on cadence." },
                 ].map((x) => (
                   <div key={x.t} className={`${cardSoft} p-5`}>
-                    <p className="text-sm font-semibold text-brand-slate">{x.t}</p>
+                    <p className={subLabelLight}>{x.t}</p>
                     <p className="mt-2 text-sm leading-relaxed text-brand-muted">{x.d}</p>
                   </div>
                 ))}
@@ -489,20 +527,18 @@ export default function InsightsPage() {
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
 
                 {/* Label pill */}
-                <div className="absolute bottom-4 left-4 rounded-full bg-black/45 px-4 py-2 text-xs font-semibold text-white/85 backdrop-blur ring-1 ring-white/10 shadow-[0_22px_70px_-40px_rgba(0,0,0,0.70)]">
+                <div className="absolute bottom-4 left-4 rounded-full bg-black/45 px-4 py-2 text-xs font-semibold text-white backdrop-blur ring-1 ring-white/10 shadow-[0_22px_70px_-40px_rgba(0,0,0,0.70)]">
                   Permissioned execution • Telemetry • Evidence
                 </div>
               </div>
 
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
                 {[
-                  { k: "Audit-ready", v: "Decision traceability and evidence artifacts." },
+                  { k: "Audit ready", v: "Decision traceability and evidence artifacts." },
                   { k: "Executive cadence", v: "Value and risk review rhythm leaders can run." },
                 ].map((x) => (
                   <div key={x.k} className={`${cardBase} p-5`}>
-                    <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
-                      {x.k}
-                    </p>
+                    <p className={subLabelLight}>{x.k}</p>
                     <p className="mt-2 text-sm leading-relaxed text-brand-slate">{x.v}</p>
                   </div>
                 ))}
@@ -533,22 +569,24 @@ export default function InsightsPage() {
         <div className="relative mx-auto max-w-7xl px-6 py-20 sm:py-24">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-end">
             <div className="max-w-3xl">
-              <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              <p className={sectionLabelDark}>Recent briefs</p>
+
+              <h2 className={sectionMainHeadingDark}>
                 Recent executive briefs
               </h2>
 
-              <p className="mt-6 text-base leading-relaxed text-white/80">
-                Governance, operating model design, adoption discipline, and measurement — written for leaders
-                accountable for real-world outcomes.
+              <p className="mt-6 text-base leading-relaxed text-white">
+                Governance, operating model design, adoption discipline, and measurement written for leaders
+                accountable for real world outcomes.
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-2">
+              <div className="mt-8 flex flex-wrap gap-3">
                 {(["Governance", "Operating Model", "Control Plane", "Measurement"] as const).map((t) => (
                   <span
                     key={t}
-                    className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/80 ring-1 ring-inset ring-white/10"
+                    className="inline-flex items-center rounded-full bg-white/14 px-5 py-3 backdrop-blur text-white ring-1 ring-white/12"
                   >
-                    {t}
+                    <span className={bigChipText}>{t}</span>
                   </span>
                 ))}
               </div>
@@ -580,32 +618,32 @@ export default function InsightsPage() {
                     className="object-cover"
                     sizes="(min-width: 1024px) 420px, 100vw"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/76 via-black/22 to-transparent" />
 
-                  <div className="absolute left-4 top-4 flex flex-wrap gap-2">
-                    <span className="rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold text-white/90 backdrop-blur">
+                  <div className="absolute inset-x-4 bottom-3 flex flex-wrap gap-2 sm:bottom-4">
+                    <span className="rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold text-white backdrop-blur">
                       {post.label}
                     </span>
-                    <span className="rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold text-white/90 backdrop-blur">
+                    <span className="rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold text-white backdrop-blur">
                       {post.category}
                     </span>
                   </div>
                 </div>
 
                 <div className="p-8">
-                  <h3 className="text-lg font-semibold leading-snug text-white">
+                  <h3 className={cardTitleDark}>
                     {post.title}
                   </h3>
 
-                  <p className="mt-4 text-sm leading-relaxed text-white/80">
+                  <p className="mt-4 text-sm leading-relaxed text-white">
                     {post.excerpt}
                   </p>
 
                   <div className="mt-7 flex items-center justify-between gap-4">
-                    <span className="text-xs font-semibold uppercase tracking-widest text-white/55">
+                    <span className="text-xs font-semibold uppercase tracking-widest text-white">
                       {post.meta}
                     </span>
-                    <span className="text-sm font-semibold text-white/85 transition group-hover:text-white">
+                    <span className="text-sm font-semibold text-white transition group-hover:text-white">
                       Read brief →
                     </span>
                   </div>
@@ -618,10 +656,8 @@ export default function InsightsPage() {
           <div className={`mt-14 ${cardBase} p-8 sm:p-10`}>
             <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
               <div className="max-w-2xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-muted">
-                  Ready to talk?
-                </p>
-                <p className="mt-3 text-base leading-relaxed text-brand-muted">
+                <p className={sectionLabelDark}>Ready to talk?</p>
+                <p className="mt-3 text-base text-white leading-relaxed">
                   If your organization has proven AI can work, the next step is making it governable, scalable,
                   and defensible under executive oversight.
                 </p>

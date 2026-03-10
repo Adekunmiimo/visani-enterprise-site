@@ -21,20 +21,27 @@ export function HashScroll() {
       const hash = window.location.hash;
       if (!hash) return;
 
-      // wait for DOM + client components
+      // ✅ wait for DOM paint + client components before scrolling
       requestAnimationFrame(() => {
-        setTimeout(() => scrollToHash(hash), 80);
+        window.setTimeout(() => {
+          scrollToHash(hash);
+        }, 80);
       });
     };
 
-    // On initial load (e.g. /contact#briefing)
+    // ✅ on initial load, e.g. /contact#briefing
     doScroll();
 
-    // If hash changes while staying on the same page
-    const onHashChange = () => doScroll();
+    // ✅ if hash changes while staying on the same page
+    const onHashChange = () => {
+      doScroll();
+    };
+
     window.addEventListener("hashchange", onHashChange);
 
-    return () => window.removeEventListener("hashchange", onHashChange);
+    return () => {
+      window.removeEventListener("hashchange", onHashChange);
+    };
   }, [pathname]);
 
   return null;

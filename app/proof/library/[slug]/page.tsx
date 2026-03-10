@@ -1,4 +1,4 @@
-// ✅ REPLACE ENTIRE FILE — app/proof/library/[slug]/page.tsx
+// ✅ REPLACE ENTIRE FILE app/proof/library/[slug]/page.tsx
 
 "use client";
 
@@ -33,6 +33,20 @@ export default function ProofLibrarySlugPage({
   const cardBase =
     "rounded-2xl bg-white/92 ring-1 ring-black/10 shadow-[0_18px_60px_-34px_rgba(2,6,23,0.45)] backdrop-blur-[2px]";
 
+  // ✅ TYPOGRAPHY: aligned to finished HomePage pattern
+  const heroLabel =
+    "text-[2rem] font-bold tracking-[-0.035em] leading-[1] text-white sm:text-[2.5rem] lg:text-[3rem]";
+  const sectionLabelLight =
+    "text-2xl font-bold tracking-[-0.03em] leading-[1.02] text-brand-slate sm:text-[2rem]";
+  const heroMainHeading =
+    "mt-4 text-[2.8rem] font-semibold tracking-[-0.045em] leading-[0.94] text-white sm:text-[3.5rem] lg:text-[4.2rem]";
+  const sectionMainHeading =
+    "mt-5 text-[2.25rem] font-semibold tracking-[-0.04em] leading-[1.02] text-brand-slate sm:text-[2.9rem]";
+  const subLabelLight =
+    "text-[1.02rem] font-bold tracking-[-0.02em] leading-[1.08] text-brand-slate sm:text-[1.12rem]";
+  const bigChipText =
+    "text-white text-base font-bold tracking-[-0.01em] sm:text-[1.05rem]";
+
   // ✅ IMPORTANT: These MUST match the hrefs you use on /proof page
   const docs: LibraryDoc[] = useMemo(
     () => [
@@ -54,7 +68,7 @@ export default function ProofLibrarySlugPage({
         meta: "Ownership • Accountability",
         title: "Operational ownership is explicit",
         summary:
-          "Named executives are accountable for outcomes across workflows — ownership is never informal or implied.",
+          "Named executives are accountable for outcomes across workflows. Ownership is never informal or implied.",
         bullets: [
           "Named ownership exists per workflow and domain",
           "Accountability survives real operations, not pilots",
@@ -72,7 +86,7 @@ export default function ProofLibrarySlugPage({
           "Outcome metrics reviewed on cadence",
           "Variance narrative exists and is explainable",
           "Value is tied to business performance",
-          "Exec reporting is board-ready, not vanity metrics",
+          "Exec reporting is board ready, not vanity metrics",
         ],
       },
       {
@@ -83,7 +97,7 @@ export default function ProofLibrarySlugPage({
           "AI is allowed to act only within defined boundaries. Unapproved agents, workflows, and data access are blocked by policy.",
         bullets: [
           "Clear permission scopes exist by workflow",
-          "Out-of-policy actions are blocked",
+          "Out of policy actions are blocked",
           "Safe fallbacks exist when uncertain",
           "Escalation triggers preserve human control",
         ],
@@ -93,9 +107,9 @@ export default function ProofLibrarySlugPage({
         meta: "Evidence • Audit trail",
         title: "Runtime evidence is produced, not assumed",
         summary:
-          "Telemetry, logs, and decision records provide audit-ready traceability for what ran, who approved it, what changed, and why.",
+          "Telemetry, logs, and decision records provide audit ready traceability for what ran, who approved it, what changed, and why.",
         bullets: [
-          "Audit-ready telemetry exists",
+          "Audit ready telemetry exists",
           "Decision records explain what happened and why",
           "Approvals link to runtime actions",
           "Change history is visible and attributable",
@@ -106,7 +120,7 @@ export default function ProofLibrarySlugPage({
         meta: "Adoption • Operating discipline",
         title: "Adoption survives real operations",
         summary:
-          "Usage durability is measured with compliance and behavior signals — not vanity metrics or initial launch spikes.",
+          "Usage durability is measured with compliance and behavior signals, not vanity metrics or initial launch spikes.",
         bullets: [
           "Durable adoption is measured over time",
           "Behavior signals are used, not vanity metrics",
@@ -142,15 +156,11 @@ export default function ProofLibrarySlugPage({
         <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
 
         <div className="relative mx-auto max-w-7xl px-6 py-20 sm:py-24">
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/65">
-            {doc.meta}
-          </p>
+          <p className={heroLabel}>{doc.meta}</p>
 
-          <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-            {doc.title}
-          </h1>
+          <h1 className={heroMainHeading}>{doc.title}</h1>
 
-          <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/80">
+          <p className={`${bigChipText} mt-6 max-w-3xl leading-relaxed text-white`}>
             {doc.summary}
           </p>
 
@@ -166,19 +176,19 @@ export default function ProofLibrarySlugPage({
           <div className="mt-8 flex flex-wrap items-center gap-2 text-xs">
             <Link
               href="/proof"
-              className="font-semibold text-white/70 hover:text-white"
+              className="font-semibold text-white hover:text-white"
             >
               Proof
             </Link>
-            <span className="text-white/40">/</span>
+            <span className="text-white">/</span>
             <Link
               href="/proof/library"
-              className="font-semibold text-white/70 hover:text-white"
+              className="font-semibold text-white hover:text-white"
             >
               Library
             </Link>
-            <span className="text-white/40">/</span>
-            <span className="font-semibold text-white/85">{doc.slug}</span>
+            <span className="text-white">/</span>
+            <span className="font-semibold text-white">{doc.slug}</span>
           </div>
         </div>
       </Section>
@@ -189,11 +199,19 @@ export default function ProofLibrarySlugPage({
 
         <div className="relative mx-auto max-w-7xl px-6 py-16 sm:py-20">
           <div className={`${cardBase} p-8 sm:p-10`}>
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-muted">
-              What this evidence package includes
+            <p className={sectionLabelLight}>What this evidence package includes</p>
+
+            <h2 className={sectionMainHeading}>
+              Evidence leaders can
+              <span className="block text-brand-slate/85">review with confidence</span>
+            </h2>
+
+            <p className="mt-5 max-w-3xl text-base leading-relaxed text-brand-muted">
+              This package highlights the core execution signals, controls, and operating patterns
+              associated with this proof area.
             </p>
 
-            <ul className="mt-6 space-y-4">
+            <ul className="mt-8 space-y-4">
               {doc.bullets.map((b) => (
                 <li
                   key={b}
@@ -204,6 +222,14 @@ export default function ProofLibrarySlugPage({
                 </li>
               ))}
             </ul>
+
+            <div className="mt-10 rounded-2xl bg-white/88 p-6 ring-1 ring-black/8 shadow-[0_16px_52px_-32px_rgba(2,6,23,0.40)] backdrop-blur-[2px]">
+              <p className={subLabelLight}>Review focus</p>
+              <p className="mt-3 text-sm leading-relaxed text-brand-muted">
+                Executives typically assess whether ownership is clear, boundaries are enforced,
+                evidence is traceable, and outcomes are defensible under real operating conditions.
+              </p>
+            </div>
 
             <div className="mt-10 flex flex-wrap gap-4">
               <ButtonLink href="/contact#proof-review" variant="primary">
@@ -216,6 +242,41 @@ export default function ProofLibrarySlugPage({
           </div>
         </div>
       </Section>
+
+      {/* GLOBAL REVEAL STYLES */}
+      <style jsx global>{`
+        html,
+        body {
+          width: 100%;
+          overflow-x: hidden;
+        }
+
+        body {
+          text-rendering: optimizeLegibility;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+        .reveal {
+          opacity: 0;
+          transform: translateY(16px);
+          transition: opacity 0.6s ease, transform 0.6s ease;
+          will-change: opacity, transform;
+        }
+
+        .reveal-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .reveal {
+            transition: none;
+            transform: none;
+            opacity: 1;
+          }
+        }
+      `}</style>
     </>
   );
 }

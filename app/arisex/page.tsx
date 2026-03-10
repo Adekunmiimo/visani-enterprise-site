@@ -24,7 +24,7 @@ export default function ArisexPage() {
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 py-36">
           <div className="grid items-center gap-20 lg:grid-cols-2">
-            {/* LEFT — EXECUTIVE MESSAGE */}
+            {/* LEFT EXECUTIVE MESSAGE */}
             <div className="max-w-4xl">
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/55">
                 Enterprise Execution System
@@ -60,7 +60,7 @@ export default function ArisexPage() {
               </p>
             </div>
 
-            {/* RIGHT — SYSTEM VISUAL */}
+            {/* RIGHT SYSTEM VISUAL */}
             <div className="relative">
               <div className="group relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/15 bg-black/40 backdrop-blur-sm shadow-[0_60px_140px_-40px_rgba(0,0,0,0.8)]">
                 <Image
@@ -141,7 +141,7 @@ export default function ArisexPage() {
             </h2>
 
             <p className="mt-6 text-lg leading-relaxed text-white/70">
-              These pillars define the non-negotiable execution conditions required
+              These pillars define the non negotiable execution conditions required
               for AI to scale safely, credibly, and sustainably inside the enterprise.
             </p>
           </div>
@@ -223,7 +223,7 @@ export default function ArisexPage() {
               </h2>
 
               <p className="mt-8 text-lg leading-relaxed text-brand-muted">
-                A.R.I.S.E.X™ is not a one-time initiative or transformation program.
+                A.R.I.S.E.X™ is not a one time initiative or transformation program.
                 It functions as an operating cadence leaders actively govern as AI
                 becomes embedded into core business functions.
               </p>
@@ -244,7 +244,7 @@ export default function ArisexPage() {
                   <span className="mt-1 h-2.5 w-2.5 rounded-full bg-brand-slate/60" />
                   <p className="text-base leading-relaxed text-brand-muted">
                     <span className="font-semibold text-brand-slate">Executive checkpoints</span>{" "}
-                    to confirm priorities, resolve trade-offs, and remove blockers before scale
+                    to confirm priorities, resolve trade offs, and remove blockers before scale
                     introduces friction.
                   </p>
                 </li>
@@ -334,7 +334,7 @@ export default function ArisexPage() {
                   <span className="mt-2 h-2.5 w-2.5 rounded-full bg-brand-slate/60" />
                   <p className="text-base leading-relaxed text-brand-muted">
                     <span className="font-semibold text-brand-slate">
-                      A one-off transformation program
+                      A one off transformation program
                     </span>{" "}
                     that peaks at launch and degrades once attention shifts.
                   </p>

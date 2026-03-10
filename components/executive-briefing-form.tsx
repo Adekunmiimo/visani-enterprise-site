@@ -65,14 +65,33 @@ export function ExecutiveBriefingForm() {
     }
   }
 
+  // ✅ TYPOGRAPHY: aligned to finished HomePage pattern
+  const sectionLabelLight =
+    "text-2xl font-bold tracking-[-0.03em] leading-[1.02] text-brand-slate sm:text-[2rem]";
+  const sectionMainHeading =
+    "mt-5 text-[2.25rem] font-semibold tracking-[-0.04em] leading-[1.02] text-brand-slate sm:text-[2.9rem]";
+  const subLabelLight =
+    "text-[1.02rem] font-bold tracking-[-0.02em] leading-[1.08] text-brand-slate sm:text-[1.12rem]";
+
+  const inputClass =
+    "w-full rounded-xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-slate outline-none transition focus:ring-2 focus:ring-brand-navy/20";
+
+  const primaryButtonClass = [
+    "mt-2 inline-flex items-center justify-center rounded-xl px-6 py-3",
+    "text-sm font-bold tracking-[-0.02em] leading-[1]",
+    "transition-all duration-200 ease-out",
+    canSubmit
+      ? "bg-brand-navy text-white hover:-translate-y-[1px] hover:bg-brand-navy/90 shadow-[0_18px_60px_-30px_rgba(2,6,23,0.45)]"
+      : "cursor-not-allowed bg-brand-border text-brand-muted",
+  ].join(" ");
+
   return (
     <div className="rounded-[28px] border border-brand-border bg-white px-8 py-10 shadow-[0_40px_100px_-35px_rgba(0,0,0,0.14)] sm:px-10 sm:py-12 lg:px-12">
-      <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-muted">
-        Executive briefing intake
-      </p>
+      <p className={sectionLabelLight}>Executive briefing intake</p>
 
-      <h2 className="mt-5 text-2xl font-semibold tracking-tight text-brand-slate sm:text-3xl">
-        Request a 30-minute decision briefing
+      <h2 className={sectionMainHeading}>
+        Request a 30 minute
+        <span className="block text-brand-slate/85">decision briefing</span>
       </h2>
 
       <p className="mt-4 max-w-2xl text-sm leading-relaxed text-brand-muted">
@@ -98,7 +117,7 @@ export function ExecutiveBriefingForm() {
             <input
               value={form.fullName}
               onChange={(e) => setForm({ ...form, fullName: e.target.value })}
-              className="w-full rounded-lg border border-brand-border bg-white px-4 py-3 text-sm text-brand-slate outline-none focus:ring-2 focus:ring-brand-navy/20"
+              className={inputClass}
               placeholder="e.g., Maya Johnson"
               autoComplete="name"
             />
@@ -108,7 +127,7 @@ export function ExecutiveBriefingForm() {
             <input
               value={form.workEmail}
               onChange={(e) => setForm({ ...form, workEmail: e.target.value })}
-              className="w-full rounded-lg border border-brand-border bg-white px-4 py-3 text-sm text-brand-slate outline-none focus:ring-2 focus:ring-brand-navy/20"
+              className={inputClass}
               placeholder="e.g., maya@company.com"
               autoComplete="email"
               inputMode="email"
@@ -121,7 +140,7 @@ export function ExecutiveBriefingForm() {
             <input
               value={form.company}
               onChange={(e) => setForm({ ...form, company: e.target.value })}
-              className="w-full rounded-lg border border-brand-border bg-white px-4 py-3 text-sm text-brand-slate outline-none focus:ring-2 focus:ring-brand-navy/20"
+              className={inputClass}
               placeholder="e.g., Northbridge Holdings"
             />
           </Field>
@@ -130,7 +149,7 @@ export function ExecutiveBriefingForm() {
             <input
               value={form.title}
               onChange={(e) => setForm({ ...form, title: e.target.value })}
-              className="w-full rounded-lg border border-brand-border bg-white px-4 py-3 text-sm text-brand-slate outline-none focus:ring-2 focus:ring-brand-navy/20"
+              className={inputClass}
               placeholder="e.g., VP Data & AI"
             />
           </Field>
@@ -141,7 +160,7 @@ export function ExecutiveBriefingForm() {
             <input
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              className="w-full rounded-lg border border-brand-border bg-white px-4 py-3 text-sm text-brand-slate outline-none focus:ring-2 focus:ring-brand-navy/20"
+              className={inputClass}
               placeholder="e.g., +1 555 0101"
               inputMode="tel"
               autoComplete="tel"
@@ -152,7 +171,7 @@ export function ExecutiveBriefingForm() {
             <select
               value={form.aiStage}
               onChange={(e) => setForm({ ...form, aiStage: e.target.value })}
-              className="w-full rounded-lg border border-brand-border bg-white px-4 py-3 text-sm text-brand-slate outline-none focus:ring-2 focus:ring-brand-navy/20"
+              className={inputClass}
             >
               <option>Pilots proven, preparing to scale</option>
               <option>Scaling is underway, governance gaps showing</option>
@@ -166,7 +185,7 @@ export function ExecutiveBriefingForm() {
           <select
             value={form.urgency}
             onChange={(e) => setForm({ ...form, urgency: e.target.value })}
-            className="w-full rounded-lg border border-brand-border bg-white px-4 py-3 text-sm text-brand-slate outline-none focus:ring-2 focus:ring-brand-navy/20"
+            className={inputClass}
           >
             <option>This month</option>
             <option>This quarter</option>
@@ -180,7 +199,7 @@ export function ExecutiveBriefingForm() {
             value={form.message}
             onChange={(e) => setForm({ ...form, message: e.target.value })}
             rows={5}
-            className="w-full resize-none rounded-lg border border-brand-border bg-white px-4 py-3 text-sm text-brand-slate outline-none focus:ring-2 focus:ring-brand-navy/20"
+            className={`${inputClass} resize-none`}
             placeholder="Brief context: where pilots are, what’s blocking scale, governance concerns, metrics, deadlines, stakeholders…"
           />
         </Field>
@@ -200,19 +219,17 @@ export function ExecutiveBriefingForm() {
         <button
           type="submit"
           disabled={!canSubmit}
-          className={[
-            "mt-2 inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition",
-            canSubmit
-              ? "bg-brand-navy text-white hover:bg-brand-navy/90"
-              : "cursor-not-allowed bg-brand-border text-brand-muted",
-          ].join(" ")}
+          className={primaryButtonClass}
         >
           {state === "submitting" ? "Submitting..." : "Request briefing"}
         </button>
 
-        <p className="text-xs text-brand-muted">
-          Expected response time: typically within 1 business day.
-        </p>
+        <div className="rounded-2xl bg-black/[0.03] px-5 py-4 ring-1 ring-inset ring-black/8">
+          <p className={subLabelLight}>Response expectation</p>
+          <p className="mt-2 text-xs leading-relaxed text-brand-muted">
+            Expected response time: typically within 1 business day.
+          </p>
+        </div>
       </form>
     </div>
   );
@@ -227,9 +244,12 @@ function Field({
   required?: boolean;
   children: React.ReactNode;
 }) {
+  const subLabelLight =
+    "text-[1.02rem] font-bold tracking-[-0.02em] leading-[1.08] text-brand-slate sm:text-[1.12rem]";
+
   return (
     <div>
-      <p className="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-brand-muted">
+      <p className={`${subLabelLight} mb-2`}>
         {label} {required ? <span className="text-brand-slate">*</span> : null}
       </p>
       {children}

@@ -12,11 +12,21 @@ export function CTABand({
   body =
     "Book an executive briefing to align on outcomes, assess readiness, and define a path your organization can execute with confidence, control, and measurable impact.",
 }: CTABandProps) {
+  // ✅ TYPOGRAPHY: aligned to finished HomePage pattern
+  const sectionLabelDark =
+    "text-2xl font-bold tracking-[-0.03em] leading-[1.02] text-white sm:text-[2rem]";
+  const sectionMainHeadingDark =
+    "mt-5 text-[2.25rem] font-semibold tracking-[-0.04em] leading-[1.02] text-white sm:text-[2.9rem]";
+  const subLabelDark =
+    "text-[1.02rem] font-bold tracking-[-0.02em] leading-[1.08] text-white sm:text-[1.12rem]";
+  const bigChipText =
+    "text-white text-base font-bold tracking-[-0.01em] sm:text-[1.05rem]";
+
   return (
     <section
       className="relative overflow-hidden"
       style={{
-        backgroundImage: "url('/')", // 🔹 enterprise AI / systems image
+        backgroundImage: "url('/')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -41,30 +51,35 @@ export function CTABand({
           <div className="grid gap-14 lg:grid-cols-[1fr_auto] lg:items-center">
             {/* LEFT — EXECUTIVE MESSAGE */}
             <div className="max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
-                Strategic next step
-              </p>
+              <p className={sectionLabelDark}>Strategic next step</p>
 
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                {headline}
-              </h2>
+              <h2 className={sectionMainHeadingDark}>{headline}</h2>
 
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/80">
                 {body}
               </p>
 
               {/* Execution signals */}
-              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/70">
-                <span>• Governance-first</span>
-                <span>• Outcome-aligned</span>
-                <span>• Audit-ready</span>
-                <span>• Board-safe</span>
+              <div className="mt-8 flex flex-wrap gap-3">
+                {["Governance first", "Outcome aligned", "Audit ready", "Board safe"].map(
+                  (item) => (
+                    <span
+                      key={item}
+                      className="inline-flex items-center rounded-full bg-white/14 px-5 py-3 backdrop-blur text-white ring-1 ring-white/12"
+                    >
+                      <span className={bigChipText}>{item}</span>
+                    </span>
+                  )
+                )}
               </div>
 
               {/* Predictive framing */}
-              <p className="mt-6 text-sm text-white/65">
-                In 30–45 minutes, you’ll leave with clarity on what to do next — and what to stop doing.
-              </p>
+              <div className="mt-6">
+                <p className={subLabelDark}>What you leave with</p>
+                <p className="mt-3 text-sm leading-relaxed text-white/65">
+                  In 30 to 45 minutes, you’ll leave with clarity on what to do next and what to stop doing.
+                </p>
+              </div>
             </div>
 
             {/* RIGHT — ACTION ZONE */}
@@ -91,7 +106,7 @@ export function CTABand({
               </ButtonLink>
 
               {/* Trust footnote */}
-              <p className="max-w-[280px] text-xs text-white/60">
+              <p className="max-w-[280px] text-xs leading-relaxed text-white/60">
                 No sales deck. No vendor bias. Just execution clarity.
               </p>
             </div>

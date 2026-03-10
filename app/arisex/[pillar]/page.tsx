@@ -68,7 +68,7 @@ export default async function ArisexPillarPage({
           </div>
 
           <p className="mt-6 text-sm text-white/50">
-            Built for executive decision-making, governance posture, and defensible
+            Built for executive decision making, governance posture, and defensible
             outcomes.
           </p>
         </div>
@@ -101,7 +101,7 @@ export default async function ArisexPillarPage({
               Execution cadence
             </p>
             <h2 className="mt-5 text-3xl font-semibold tracking-tight text-brand-slate">
-              A 30 / 60 / 90-day operating trajectory
+              A 30 / 60 / 90 day operating trajectory
             </h2>
             <p className="mt-6 text-base leading-relaxed text-brand-muted">
               This is the practical cadence leaders can run to make the pillar real in
