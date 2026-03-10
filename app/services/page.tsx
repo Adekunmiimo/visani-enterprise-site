@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useMemo } from "react";
 import { Section } from "@/components/section";
 import { ButtonLink } from "@/components/button";
+import { DownloadGateModal } from "@/components/download-gate-modal";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
 type CoreIcon =
@@ -45,7 +46,6 @@ function FillImage({
 export default function ServicesPage() {
   useRevealOnScroll();
 
-  // ✅ Theme tokens aligned with Home
   const sectionDark =
     "bg-gradient-to-b from-[#F3F6FA] via-[#EEF2F7] to-[#E6ECF4]";
   const sectionDarkAlt =
@@ -60,7 +60,6 @@ export default function ServicesPage() {
   const tileShadow =
     "shadow-[0_14px_44px_-28px_rgba(2,6,23,0.40)] ring-1 ring-black/10";
 
-  // ✅ TYPOGRAPHY: exactly aligned to finished HomePage pattern
   const heroLabel =
     "text-[2rem] font-bold tracking-[-0.035em] leading-[1] text-white sm:text-[2.5rem] lg:text-[3rem]";
   const sectionLabelLight =
@@ -84,11 +83,15 @@ export default function ServicesPage() {
   const subLabelLight =
     "text-[1.02rem] font-bold tracking-[-0.02em] leading-[1.08] text-brand-slate sm:text-[1.12rem]";
 
-  /**
-   * ✅ IMPORTANT FIX
-   * Your images are directly under /public (no /public/services folder)
-   * So paths must be "/filename.jpg" not "/services/filename.jpg"
-   */
+  const heroSecondaryButtonClass =
+    "inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/16";
+
+  const lightSecondaryButtonClass =
+    "inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-semibold text-brand-slate transition hover:bg-black/[0.03]";
+
+  const lightPrimaryButtonClass =
+    "inline-flex items-center justify-center rounded-full bg-[#4ade80] px-6 py-3 text-sm font-semibold text-[#111827] transition hover:opacity-90";
+
   const img = useMemo(
     () => ({
       hero: "/positioning.jpg",
@@ -245,7 +248,7 @@ export default function ServicesPage() {
         {
           title: "Risk Reduction & Audit Readiness",
           metric:
-            "Typical outcome: 40–70% reduction in “uncontrolled AI activity” (shadow agents, unapproved workflows, untracked data usage)",
+            "Typical outcome: 40–70% reduction in uncontrolled AI activity (shadow agents, unapproved workflows, untracked data usage)",
           evidence:
             "Evidence produced: agent registry, permissioned execution policies, audit trail coverage map",
           icon: "shield" as const,
@@ -463,7 +466,6 @@ export default function ServicesPage() {
 
   return (
     <>
-      {/* HERO */}
       <Section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <FillImage src={img.hero} alt="AI Execution Advisory" priority />
@@ -511,9 +513,16 @@ export default function ServicesPage() {
                 <ButtonLink href="/contact#briefing" variant="primary">
                   Book Executive Briefing
                 </ButtonLink>
-                <ButtonLink href="/downloads/board-brief.pdf" variant="secondary">
-                  Download Board Brief (PDF)
-                </ButtonLink>
+
+                <DownloadGateModal
+                  buttonText="Download Board Brief (PDF)"
+                  fileUrl="/downloads/board-brief.pdf"
+                  fileName="board-brief.pdf"
+                  title="Download board brief"
+                  description="Complete this short form to access the board brief. This helps us understand your current priorities and route the right follow up."
+                  heroImage="/exec-briefing.jpg"
+                  className={heroSecondaryButtonClass}
+                />
               </div>
             </div>
 
@@ -536,7 +545,6 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      {/* EXECUTION REALITY */}
       <Section className={`relative overflow-hidden ${sectionDarkAlt} reveal`}>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#F6F8FC] via-[#F0F4F9] to-[#E8EEF7]" />
         <div
@@ -619,7 +627,6 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      {/* CORE SERVICES */}
       <Section className={`relative overflow-hidden ${sectionDark} reveal`}>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#F3F6FA] via-[#EEF2F7] to-[#E6ECF4]" />
         <div
@@ -710,7 +717,6 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      {/* ENGAGEMENT MODEL */}
       <Section className={`relative overflow-hidden ${sectionDarkAlt} reveal`}>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#F6F8FC] via-[#F0F4F9] to-[#E8EEF7]" />
         <div className="relative mx-auto max-w-7xl px-6 py-20 sm:py-24">
@@ -789,9 +795,16 @@ export default function ServicesPage() {
               </div>
 
               <div className="mt-10 flex flex-wrap gap-4">
-                <ButtonLink href="/downloads/control-plane-checklist.pdf" variant="primary">
-                  Download Control Plane Checklist
-                </ButtonLink>
+                <DownloadGateModal
+                  buttonText="Download Control Plane Checklist"
+                  fileUrl="/downloads/control-plane-checklist.pdf"
+                  fileName="control-plane-checklist.pdf"
+                  title="Download control plane checklist"
+                  description="Complete this short form to access the control plane checklist. This helps us understand where your organization is in its execution journey."
+                  heroImage="/governance.jpg"
+                  className={lightPrimaryButtonClass}
+                />
+
                 <ButtonLink href="/contact#briefing" variant="secondary">
                   Book Executive Briefing
                 </ButtonLink>
@@ -801,7 +814,6 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      {/* ECOSYSTEM */}
       <Section className={`relative overflow-hidden ${sectionDark} reveal`}>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#F3F6FA] via-[#EEF2F7] to-[#E6ECF4]" />
         <div
@@ -892,7 +904,6 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      {/* REPRESENTATIVE OUTCOMES */}
       <Section className={`relative overflow-hidden ${sectionDarkAlt} reveal`}>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#F6F8FC] via-[#F0F4F9] to-[#E8EEF7]" />
 
@@ -975,7 +986,6 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      {/* POSITIONING */}
       <Section className={`relative overflow-hidden ${sectionDark} reveal`}>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#F3F6FA] via-[#EEF2F7] to-[#E6ECF4]" />
 
@@ -1076,7 +1086,6 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      {/* EXECUTIVE CTA */}
       <Section className={`relative overflow-hidden ${sectionDarkAlt} reveal`}>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#F6F8FC] via-[#F0F4F9] to-[#E8EEF7]" />
 
@@ -1138,7 +1147,6 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      {/* global reveal styles */}
       <style jsx global>{`
         html,
         body {

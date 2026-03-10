@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useMemo } from "react";
 import { Section } from "@/components/section";
 import { ButtonLink } from "@/components/button";
+import { DownloadGateModal } from "@/components/download-gate-modal";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
 type PostCategory = "Governance" | "Operating Model" | "Control Plane" | "Measurement";
@@ -100,7 +101,6 @@ function MiniIcon({ kind }: { kind: "memo" | "shield" | "flow" | "chart" }) {
 export default function InsightsPage() {
   useRevealOnScroll();
 
-  // ✅ Tokens aligned with your Home page
   const sectionDark =
     "bg-gradient-to-b from-[#F3F6FA] via-[#EEF2F7] to-[#E6ECF4]";
   const sectionDarkAlt =
@@ -113,7 +113,6 @@ export default function InsightsPage() {
   const cardHover =
     "transition-transform duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_26px_80px_-38px_rgba(2,6,23,0.55)]";
 
-  // ✅ TYPOGRAPHY: exactly aligned to finished HomePage pattern
   const heroLabel =
     "text-[2rem] font-bold tracking-[-0.035em] leading-[1] text-white sm:text-[2.5rem] lg:text-[3rem]";
   const sectionLabelLight =
@@ -137,7 +136,15 @@ export default function InsightsPage() {
   const subLabelDark =
     "text-[1.02rem] font-bold tracking-[-0.02em] leading-[1.08] text-white sm:text-[1.12rem]";
 
-  // ✅ Use your real images (in /public). Replace any filenames if yours differ.
+  const heroSecondaryButtonClass =
+    "inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/16";
+
+  const lightPrimaryButtonClass =
+    "inline-flex items-center justify-center rounded-full bg-[#4ade80] px-6 py-3 text-sm font-semibold text-[#111827] transition hover:opacity-90";
+
+  const lightSecondaryButtonClass =
+    "inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-semibold text-brand-slate transition hover:bg-black/[0.03]";
+
   const img = useMemo(
     () => ({
       hero: "/aboutimg.jpg",
@@ -149,7 +156,6 @@ export default function InsightsPage() {
     []
   );
 
-  // ✅ Posts (static for now, easy to swap later to CMS)
   const posts: InsightPost[] = useMemo(
     () => [
       {
@@ -229,9 +235,7 @@ export default function InsightsPage() {
 
   return (
     <>
-      {/* ================= INSIGHTS HERO (EXECUTIVE IMPRESSIVE, CONTROLLED) ================= */}
       <Section className="relative overflow-hidden">
-        {/* Background image */}
         <div className="absolute inset-0">
           <Image
             src={img.hero}
@@ -243,13 +247,11 @@ export default function InsightsPage() {
           />
         </div>
 
-        {/* Control layers */}
         <div className="absolute inset-0 bg-black/55" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/55" />
         <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
 
-        {/* Executive halo */}
         <div
           className="pointer-events-none absolute -top-24 left-1/2 h-72 w-[min(980px,92vw)] -translate-x-1/2 opacity-70 blur-3xl"
           style={{
@@ -267,7 +269,6 @@ export default function InsightsPage() {
 
         <div className="relative mx-auto max-w-7xl px-6 py-24 sm:py-28 lg:py-32">
           <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
-            {/* LEFT */}
             <div className="max-w-2xl">
               <p className={heroLabel}>Insights</p>
 
@@ -286,7 +287,6 @@ export default function InsightsPage() {
                 where evidence matters.
               </p>
 
-              {/* Badges */}
               <div className="mt-7 flex flex-wrap gap-3">
                 {["Execution Control", "Runtime Governance", "Board Metrics"].map((b) => (
                   <span
@@ -298,17 +298,22 @@ export default function InsightsPage() {
                 ))}
               </div>
 
-              {/* CTAs */}
               <div className="mt-10 flex flex-wrap gap-4">
                 <ButtonLink href="/contact#briefing" variant="primary">
                   Book Executive Briefing
                 </ButtonLink>
-                <ButtonLink href="/downloads/board-brief.pdf" variant="secondary">
-                  Download Board Brief (PDF)
-                </ButtonLink>
+
+                <DownloadGateModal
+                  buttonText="Download Board Brief (PDF)"
+                  fileUrl="/downloads/board-brief.pdf"
+                  fileName="board-brief.pdf"
+                  title="Download board brief"
+                  description="Complete this short form to access the board brief. This helps us understand your current priorities and route the right follow up."
+                  heroImage="/aboutimg.jpg"
+                  className={heroSecondaryButtonClass}
+                />
               </div>
 
-              {/* Micro strip */}
               <div className="mt-10 grid gap-3 sm:grid-cols-3">
                 {[
                   { k: "Control", v: "Decision rights and policy gates." },
@@ -326,7 +331,6 @@ export default function InsightsPage() {
               </div>
             </div>
 
-            {/* RIGHT premium featured panel */}
             <div className="relative lg:flex lg:justify-end">
               <div className="w-full max-w-lg">
                 <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-black shadow-[0_70px_150px_-55px_rgba(0,0,0,0.85)]">
@@ -342,7 +346,6 @@ export default function InsightsPage() {
                     <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
                   </div>
 
-                  {/* Featured snippet */}
                   <div className="absolute inset-x-6 bottom-4 sm:bottom-5">
                     <div className="rounded-2xl bg-black/42 p-5 backdrop-blur-md ring-1 ring-white/10">
                       <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white">
@@ -373,7 +376,6 @@ export default function InsightsPage() {
             </div>
           </div>
 
-          {/* Category chips (icon + label) */}
           <div className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {chips.map((c) => (
               <div
@@ -393,14 +395,12 @@ export default function InsightsPage() {
         </div>
       </Section>
 
-      {/* ================= POSITIONING STATEMENT (CLEANER + MORE EXECUTIVE) ================= */}
       <Section className={`relative overflow-hidden ${sectionDarkAlt} reveal`}>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#F6F8FC] via-[#F0F4F9] to-[#E8EEF7]" />
         <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/5" />
 
         <div className="relative mx-auto max-w-7xl px-6 py-20 sm:py-24">
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-            {/* LEFT */}
             <div className="max-w-2xl">
               <p className={sectionLabelLight}>Perspective</p>
 
@@ -427,7 +427,6 @@ export default function InsightsPage() {
               </div>
             </div>
 
-            {/* RIGHT signal panel */}
             <div className={`${cardBase} relative p-8 sm:p-10`}>
               <div
                 className="pointer-events-none absolute inset-x-0 top-0 h-1 rounded-t-2xl"
@@ -466,7 +465,6 @@ export default function InsightsPage() {
         </div>
       </Section>
 
-      {/* ================= CONTROL PLANE TEASER (STRONGER) ================= */}
       <Section className={`relative overflow-hidden ${sectionDark} reveal`}>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#F3F6FA] via-[#EEF2F7] to-[#E6ECF4]" />
         <div
@@ -506,9 +504,16 @@ export default function InsightsPage() {
               </div>
 
               <div className="mt-10 flex flex-wrap gap-4">
-                <ButtonLink href="/downloads/control-plane-checklist.pdf" variant="primary">
-                  Download Control Plane Checklist
-                </ButtonLink>
+                <DownloadGateModal
+                  buttonText="Download Control Plane Checklist"
+                  fileUrl="/downloads/control-plane-checklist.pdf"
+                  fileName="control-plane-checklist.pdf"
+                  title="Download control plane checklist"
+                  description="Complete this short form to access the control plane checklist. This helps us understand where your organization is in its execution journey."
+                  heroImage="/governance.jpg"
+                  className={lightPrimaryButtonClass}
+                />
+
                 <ButtonLink href="/contact#briefing" variant="secondary">
                   Book Executive Briefing
                 </ButtonLink>
@@ -526,7 +531,6 @@ export default function InsightsPage() {
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
 
-                {/* Label pill */}
                 <div className="absolute bottom-4 left-4 rounded-full bg-black/45 px-4 py-2 text-xs font-semibold text-white backdrop-blur ring-1 ring-white/10 shadow-[0_22px_70px_-40px_rgba(0,0,0,0.70)]">
                   Permissioned execution • Telemetry • Evidence
                 </div>
@@ -548,9 +552,7 @@ export default function InsightsPage() {
         </div>
       </Section>
 
-      {/* ================= INSIGHT FEED (MORE PREMIUM + IMAGE CARDS) ================= */}
       <Section className="relative overflow-hidden reveal">
-        {/* Background image */}
         <div className="absolute inset-0">
           <Image
             src={img.feedBg}
@@ -561,7 +563,6 @@ export default function InsightsPage() {
           />
         </div>
 
-        {/* Overlays */}
         <div className="pointer-events-none absolute inset-0 bg-black/70" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/55 via-black/70 to-black/85" />
         <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
@@ -602,7 +603,6 @@ export default function InsightsPage() {
             </div>
           </div>
 
-          {/* Cards */}
           <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {rest.slice(0, 6).map((post) => (
               <Link
@@ -652,12 +652,11 @@ export default function InsightsPage() {
             ))}
           </div>
 
-          {/* Bottom CTA band */}
-          <div className={`mt-14 ${cardBase} p-8 sm:p-10`}>
+          <div className="mt-14 rounded-2xl border border-white/15 bg-black/35 p-8 shadow-[0_18px_60px_-34px_rgba(2,6,23,0.45)] backdrop-blur-md ring-1 ring-white/10 sm:p-10">
             <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
               <div className="max-w-2xl">
                 <p className={sectionLabelDark}>Ready to talk?</p>
-                <p className="mt-3 text-base text-white leading-relaxed">
+                <p className="mt-3 text-base leading-relaxed text-white">
                   If your organization has proven AI can work, the next step is making it governable, scalable,
                   and defensible under executive oversight.
                 </p>
@@ -667,16 +666,22 @@ export default function InsightsPage() {
                 <ButtonLink href="/contact#briefing" variant="primary">
                   Book Executive Briefing
                 </ButtonLink>
-                <ButtonLink href="/downloads/board-brief.pdf" variant="secondary">
-                  Download Board Brief (PDF)
-                </ButtonLink>
+
+                <DownloadGateModal
+                  buttonText="Download Board Brief (PDF)"
+                  fileUrl="/downloads/board-brief.pdf"
+                  fileName="board-brief.pdf"
+                  title="Download board brief"
+                  description="Complete this short form to access the board brief. This helps us understand your current priorities and route the right follow up."
+                  heroImage="/insights-feed-bg.jpg"
+                  className={heroSecondaryButtonClass}
+                />
               </div>
             </div>
           </div>
         </div>
       </Section>
 
-      {/* ================= GLOBAL REVEAL STYLES ================= */}
       <style jsx global>{`
         html,
         body {
@@ -708,11 +713,6 @@ export default function InsightsPage() {
           }
         }
       `}</style>
-
-      {/* NOTE:
-        If you want these posts to come from a CMS later, keep the "posts" array
-        but replace it with server data; the UI stays the same.
-      */}
     </>
   );
 }

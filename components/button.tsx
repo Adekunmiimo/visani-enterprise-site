@@ -3,7 +3,7 @@
 import Link from "next/link";
 import React, { forwardRef } from "react";
 
-type ButtonVariant = "primary" | "secondary";
+export type ButtonVariant = "primary" | "secondary";
 
 type CommonProps = {
   children: React.ReactNode;
@@ -19,8 +19,7 @@ type ButtonLinkProps = CommonProps & {
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 };
 
-function getButtonClasses(variant: ButtonVariant, disabled?: boolean) {
-  // ✅ Premium base styles aligned with stronger site typography
+export function getButtonClasses(variant: ButtonVariant, disabled?: boolean) {
   const common =
     "relative inline-flex items-center justify-center gap-2 " +
     "rounded-xl px-5 py-3 " +
@@ -30,9 +29,7 @@ function getButtonClasses(variant: ButtonVariant, disabled?: boolean) {
     "active:translate-y-[1px] select-none whitespace-nowrap " +
     "shadow-[0_12px_40px_-28px_rgba(2,6,23,0.35)]";
 
-  // ✅ Variant styles
   const variants: Record<ButtonVariant, string> = {
-    // Primary: brand blue, glossy shine, strong shadow
     primary:
       "text-white bg-brand-primary " +
       "ring-1 ring-white/10 " +
@@ -40,7 +37,6 @@ function getButtonClasses(variant: ButtonVariant, disabled?: boolean) {
       "hover:-translate-y-[1px] hover:brightness-[1.06] " +
       "hover:shadow-[0_26px_80px_-36px_rgba(96,165,250,0.95)]",
 
-    // Secondary: clean glass button (works on light + dark backgrounds)
     secondary:
       "text-brand-slate bg-white/80 backdrop-blur-md " +
       "ring-1 ring-black/10 " +
@@ -58,7 +54,6 @@ function getButtonClasses(variant: ButtonVariant, disabled?: boolean) {
 }
 
 function safeRel(target?: string, rel?: string) {
-  // If opening a new tab, enforce security unless user explicitly sets rel
   if (target === "_blank") {
     const base = rel ?? "";
     const needsNoopener = !base.includes("noopener");
@@ -81,30 +76,25 @@ export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
         return;
       }
 
-      // allow consumer onClick first (but still do hash scroll)
       onClick?.(e);
       if (e.defaultPrevented) return;
 
-      // In-page hash scroll (#briefing)
       if (href.startsWith("#")) {
         e.preventDefault();
 
         const id = href.slice(1);
         const el = document.getElementById(id);
 
-        // update URL hash without default jump
         history.pushState(null, "", href);
 
         if (el) {
           el.scrollIntoView({ behavior: "smooth", block: "start" });
         } else {
-          // fallback: trigger hashchange so HashScroll tries again
           window.dispatchEvent(new HashChangeEvent("hashchange"));
         }
       }
     };
 
-    // ✅ Shared inner content: subtle premium shine overlay
     const Content = (
       <>
         <span
@@ -124,7 +114,6 @@ export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
       </>
     );
 
-    // ✅ Hash links: always render <a>
     if (href.startsWith("#")) {
       return (
         <a
@@ -139,7 +128,6 @@ export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
       );
     }
 
-    // ✅ External links (http, https, mailto, tel): render <a> directly
     const isExternal =
       href.startsWith("http://") ||
       href.startsWith("https://") ||
@@ -168,7 +156,6 @@ export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
       );
     }
 
-    // ✅ Internal routes: Next Link
     return (
       <Link
         ref={ref}

@@ -4,16 +4,53 @@ import { useMemo, useState } from "react";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
+const GENERIC_EMAIL_DOMAINS = new Set([
+  "gmail.com",
+  "googlemail.com",
+  "yahoo.com",
+  "yahoo.co.uk",
+  "ymail.com",
+  "hotmail.com",
+  "outlook.com",
+  "live.com",
+  "msn.com",
+  "aol.com",
+  "icloud.com",
+  "me.com",
+  "mac.com",
+  "proton.me",
+  "protonmail.com",
+  "mail.com",
+  "zoho.com",
+  "gmx.com",
+]);
+
+function isWorkEmail(email: string) {
+  const trimmed = email.trim().toLowerCase();
+  const parts = trimmed.split("@");
+
+  if (parts.length !== 2) return false;
+
+  const domain = parts[1];
+
+  if (!domain || !domain.includes(".")) return false;
+  if (GENERIC_EMAIL_DOMAINS.has(domain)) return false;
+
+  return true;
+}
+
 export function ExecutiveBriefingForm() {
   const [state, setState] = useState<FormState>("idle");
   const [error, setError] = useState<string>("");
+  const [emailError, setEmailError] = useState<string>("");
+
   const [form, setForm] = useState({
     fullName: "",
     workEmail: "",
     company: "",
     title: "",
     phone: "",
-    aiStage: "Pilots proven, preparing to scale",
+    aiStage: "Still exploring AI Initiatives",
     urgency: "This quarter",
     message: "",
     consent: true,
@@ -22,7 +59,7 @@ export function ExecutiveBriefingForm() {
   const canSubmit = useMemo(() => {
     return (
       form.fullName.trim().length >= 2 &&
-      form.workEmail.includes("@") &&
+      isWorkEmail(form.workEmail) &&
       form.company.trim().length >= 2 &&
       form.title.trim().length >= 2 &&
       state !== "submitting"
@@ -32,6 +69,16 @@ export function ExecutiveBriefingForm() {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
+    setEmailError("");
+
+    if (!isWorkEmail(form.workEmail)) {
+      setState("error");
+      setEmailError(
+        "Please use your work email address. Generic email providers are not allowed."
+      );
+      return;
+    }
+
     setState("submitting");
 
     try {
@@ -54,7 +101,7 @@ export function ExecutiveBriefingForm() {
         company: "",
         title: "",
         phone: "",
-        aiStage: "Pilots proven, preparing to scale",
+        aiStage: "Still exploring AI Initiatives",
         urgency: "This quarter",
         message: "",
         consent: true,
@@ -65,7 +112,26 @@ export function ExecutiveBriefingForm() {
     }
   }
 
-  // ✅ TYPOGRAPHY: aligned to finished HomePage pattern
+  function updateField(name: string, value: string | boolean) {
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    if (name === "workEmail" && typeof value === "string") {
+      if (!value.trim()) {
+        setEmailError("");
+      } else if (!isWorkEmail(value)) {
+        setEmailError(
+          "Please use your work email address. Generic email providers are not allowed."
+        );
+      } else {
+        setEmailError("");
+      }
+    }
+  }
+
+  // ✅ TYPOGRAPHY: unchanged
   const sectionLabelLight =
     "text-2xl font-bold tracking-[-0.03em] leading-[1.02] text-brand-slate sm:text-[2rem]";
   const sectionMainHeading =
@@ -74,6 +140,12 @@ export function ExecutiveBriefingForm() {
     "text-[1.02rem] font-bold tracking-[-0.02em] leading-[1.08] text-brand-slate sm:text-[1.12rem]";
 
   const inputClass =
+    "w-full rounded-xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-slate outline-none transition focus:ring-2 focus:ring-brand-navy/20";
+
+  const inputErrorClass =
+    "w-full rounded-xl border border-rose-300 bg-white px-4 py-3 text-sm text-brand-slate outline-none transition focus:ring-2 focus:ring-rose-200";
+
+  const selectClass =
     "w-full rounded-xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-slate outline-none transition focus:ring-2 focus:ring-brand-navy/20";
 
   const primaryButtonClass = [
@@ -105,7 +177,7 @@ export function ExecutiveBriefingForm() {
         </div>
       )}
 
-      {state === "error" && (
+      {state === "error" && error && (
         <div className="mt-8 rounded-xl border border-rose-200 bg-rose-50 px-5 py-4 text-sm text-rose-800">
           {error}
         </div>
@@ -116,7 +188,7 @@ export function ExecutiveBriefingForm() {
           <Field label="Full name" required>
             <input
               value={form.fullName}
-              onChange={(e) => setForm({ ...form, fullName: e.target.value })}
+              onChange={(e) => updateField("fullName", e.target.value)}
               className={inputClass}
               placeholder="e.g., Maya Johnson"
               autoComplete="name"
@@ -126,12 +198,19 @@ export function ExecutiveBriefingForm() {
           <Field label="Work email" required>
             <input
               value={form.workEmail}
-              onChange={(e) => setForm({ ...form, workEmail: e.target.value })}
-              className={inputClass}
+              onChange={(e) => updateField("workEmail", e.target.value)}
+              className={emailError ? inputErrorClass : inputClass}
               placeholder="e.g., maya@company.com"
               autoComplete="email"
               inputMode="email"
             />
+            {emailError ? (
+              <p className="mt-2 text-sm text-rose-700">{emailError}</p>
+            ) : (
+              <p className="mt-2 text-xs leading-relaxed text-brand-muted">
+                Generic email providers are not accepted.
+              </p>
+            )}
           </Field>
         </div>
 
@@ -139,7 +218,7 @@ export function ExecutiveBriefingForm() {
           <Field label="Company" required>
             <input
               value={form.company}
-              onChange={(e) => setForm({ ...form, company: e.target.value })}
+              onChange={(e) => updateField("company", e.target.value)}
               className={inputClass}
               placeholder="e.g., Northbridge Holdings"
             />
@@ -148,7 +227,7 @@ export function ExecutiveBriefingForm() {
           <Field label="Title / role" required>
             <input
               value={form.title}
-              onChange={(e) => setForm({ ...form, title: e.target.value })}
+              onChange={(e) => updateField("title", e.target.value)}
               className={inputClass}
               placeholder="e.g., VP Data & AI"
             />
@@ -159,7 +238,7 @@ export function ExecutiveBriefingForm() {
           <Field label="Phone (optional)">
             <input
               value={form.phone}
-              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              onChange={(e) => updateField("phone", e.target.value)}
               className={inputClass}
               placeholder="e.g., +1 555 0101"
               inputMode="tel"
@@ -167,16 +246,16 @@ export function ExecutiveBriefingForm() {
             />
           </Field>
 
-          <Field label="AI stage">
+          <Field label="AI Stage">
             <select
               value={form.aiStage}
-              onChange={(e) => setForm({ ...form, aiStage: e.target.value })}
-              className={inputClass}
+              onChange={(e) => updateField("aiStage", e.target.value)}
+              className={selectClass}
             >
-              <option>Pilots proven, preparing to scale</option>
-              <option>Scaling is underway, governance gaps showing</option>
-              <option>AI is material, board / audit pressure increasing</option>
-              <option>We need an operating model before rollout</option>
+              <option>Still exploring AI Initiatives</option>
+              <option>We need Strategic AI Advisory</option>
+              <option>We need AI Maturity Assessment</option>
+              <option>We need AI Strategy alignment with Business Strategy</option>
             </select>
           </Field>
         </div>
@@ -184,8 +263,8 @@ export function ExecutiveBriefingForm() {
         <Field label="Urgency">
           <select
             value={form.urgency}
-            onChange={(e) => setForm({ ...form, urgency: e.target.value })}
-            className={inputClass}
+            onChange={(e) => updateField("urgency", e.target.value)}
+            className={selectClass}
           >
             <option>This month</option>
             <option>This quarter</option>
@@ -197,7 +276,7 @@ export function ExecutiveBriefingForm() {
         <Field label="What decision are you trying to make? (optional)">
           <textarea
             value={form.message}
-            onChange={(e) => setForm({ ...form, message: e.target.value })}
+            onChange={(e) => updateField("message", e.target.value)}
             rows={5}
             className={`${inputClass} resize-none`}
             placeholder="Brief context: where pilots are, what’s blocking scale, governance concerns, metrics, deadlines, stakeholders…"
@@ -208,7 +287,7 @@ export function ExecutiveBriefingForm() {
           <input
             type="checkbox"
             checked={form.consent}
-            onChange={(e) => setForm({ ...form, consent: e.target.checked })}
+            onChange={(e) => updateField("consent", e.target.checked)}
             className="mt-1 h-4 w-4 rounded border-brand-border"
           />
           <span>
