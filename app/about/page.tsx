@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useMemo } from "react";
 import { Section } from "@/components/section";
 import { ButtonLink } from "@/components/button";
+import { DownloadGateModal } from "@/components/download-gate-modal";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
 type Pillar = {
@@ -114,6 +115,9 @@ export default function AboutPage() {
   const cardHover =
     "transition-transform duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_26px_80px_-38px_rgba(2,6,23,0.55)]";
 
+  const secondaryButtonClass =
+    "inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/16";
+
   const img = useMemo(
     () => ({
       hero: "/about-hero-bg.jpg",
@@ -206,7 +210,6 @@ export default function AboutPage() {
     []
   );
 
-  // ✅ Shared stronger typography system
   const heroLabel =
     "text-[2rem] font-bold tracking-[-0.035em] leading-[1] text-white sm:text-[2.45rem] lg:text-[2.9rem]";
   const heroMainHeading =
@@ -229,15 +232,12 @@ export default function AboutPage() {
 
   const subLabelLight =
     "text-[1.02rem] font-bold tracking-[-0.02em] leading-[1.08] text-brand-slate sm:text-[1.12rem]";
-  const subLabelDark =
-    "text-[1.02rem] font-bold tracking-[-0.02em] leading-[1.08] text-white sm:text-[1.12rem]";
 
   const bigChipText =
     "text-white text-base font-bold tracking-[-0.01em] sm:text-[1.05rem]";
 
   return (
     <>
-      {/* ================= ABOUT HERO ================= */}
       <Section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image
@@ -274,15 +274,23 @@ export default function AboutPage() {
               </h1>
 
               <p className="mt-7 max-w-xl text-lg leading-relaxed text-white">
-                Visani America helps enterprises move beyond AI experimentation by transforming proven capabilities into governed, controllable, and accountable operating systems.
+                Visani America helps enterprises move beyond AI experimentation by
+                transforming proven capabilities into governed, controllable, and
+                accountable operating systems.
               </p>
 
               <p className="mt-4 max-w-xl text-base leading-relaxed text-white">
-                Our work begins after pilots succeed, when leadership must ensure AI can operate reliably under board oversight, regulatory scrutiny, operational risk, and real business pressure.
+                Our work begins after pilots succeed, when leadership must ensure AI
+                can operate reliably under board oversight, regulatory scrutiny,
+                operational risk, and real business pressure.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">
-                {["Executive Control", "Governance Clarity", "Defensible Outcomes"].map((b) => (
+                {[
+                  "Executive Control",
+                  "Governance Clarity",
+                  "Defensible Outcomes",
+                ].map((b) => (
                   <span
                     key={b}
                     className="inline-flex items-center rounded-full bg-white/14 px-5 py-3 text-white backdrop-blur ring-1 ring-white/12"
@@ -296,9 +304,15 @@ export default function AboutPage() {
                 <ButtonLink href="/contact#briefing" variant="primary">
                   Book Executive Briefing
                 </ButtonLink>
-                <ButtonLink href="/downloads/board-brief.pdf" variant="secondary">
-                  Download Board Brief (PDF)
-                </ButtonLink>
+
+                <DownloadGateModal
+                  buttonText="Download Board Brief (PDF)"
+                  fileUrl="/downloads/board-brief.pdf"
+                  fileName="board-brief.pdf"
+                  title="Download board brief"
+                  description="Complete this short form before downloading the board brief."
+                  className={secondaryButtonClass}
+                />
               </div>
             </div>
 
@@ -315,16 +329,11 @@ export default function AboutPage() {
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
                 <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
               </div>
-
-              {/* <p className="mt-4 max-w-sm text-xs leading-relaxed text-white/75">
-                Execution discipline, governance clarity, and enterprise accountability.
-              </p> */}
             </div>
           </div>
         </div>
       </Section>
 
-      {/* ================= WHY WE EXIST ================= */}
       <Section className={`relative overflow-hidden ${sectionDarkAlt} reveal`}>
         <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/5" />
 
@@ -339,16 +348,22 @@ export default function AboutPage() {
               </h2>
 
               <p className="mt-6 text-base leading-relaxed text-brand-muted">
-                Enterprises rarely fail because AI technology falls short. Failure happens when successful pilots collide with operating reality and expose unresolved questions of ownership, authorization, controls at runtime, risk review, and value defensibility.
+                Enterprises rarely fail because AI technology falls short. Failure
+                happens when successful pilots collide with operating reality and
+                expose unresolved questions of ownership, authorization, controls at
+                runtime, risk review, and value defensibility.
               </p>
 
               <p className="mt-5 text-base leading-relaxed text-brand-muted">
-                As AI becomes embedded in core functions, ambiguity becomes material risk. Confidence erodes, scrutiny rises, and progress stalls.
+                As AI becomes embedded in core functions, ambiguity becomes material
+                risk. Confidence erodes, scrutiny rises, and progress stalls.
               </p>
 
               <div className={`${cardSoft} mt-8 p-6`}>
                 <p className="text-sm leading-relaxed text-brand-muted">
-                  Visani America exists to replace ambiguity with an execution system leaders can operate, review, and sustain under executive, board, and regulatory oversight.
+                  Visani America exists to replace ambiguity with an execution system
+                  leaders can operate, review, and sustain under executive, board,
+                  and regulatory oversight.
                 </p>
               </div>
             </div>
@@ -406,7 +421,6 @@ export default function AboutPage() {
             ))}
           </div>
 
-          {/* ================= ENTERPRISE MANDATE (NEW) ================= */}
           <div className="mt-14">
             <div className={`${cardBase} p-8 sm:p-10`}>
               <div className="mx-auto max-w-4xl text-center">
@@ -417,11 +431,14 @@ export default function AboutPage() {
                 </h3>
 
                 <p className="mt-6 text-base leading-relaxed text-brand-muted">
-                  Once AI begins influencing revenue, operations, compliance, or customer experience, it becomes executive infrastructure.
+                  Once AI begins influencing revenue, operations, compliance, or
+                  customer experience, it becomes executive infrastructure.
                 </p>
 
                 <p className="mt-5 text-base leading-relaxed text-brand-muted">
-                  Infrastructure requires governance architecture. Governance architecture requires ownership clarity. Ownership clarity requires executive discipline.
+                  Infrastructure requires governance architecture. Governance
+                  architecture requires ownership clarity. Ownership clarity requires
+                  executive discipline.
                 </p>
               </div>
 
@@ -439,7 +456,6 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* ================= EXECUTION LIFECYCLE (NEW) ================= */}
           <div className="mt-12">
             <div className={`${cardBase} p-8 sm:p-10`}>
               <p className={sectionLabelLight}>Execution lifecycle</p>
@@ -447,12 +463,14 @@ export default function AboutPage() {
               <h3 className={sectionMainHeading}>The AI governance stack</h3>
 
               <p className="mt-4 max-w-3xl text-sm leading-relaxed text-brand-muted">
-                Every scalable AI capability must pass through five enforcement layers. This is how pilots become governable enterprise operating systems.
+                Every scalable AI capability must pass through five enforcement
+                layers. This is how pilots become governable enterprise operating
+                systems.
               </p>
 
               <div className="mt-10 space-y-8">
                 {lifecycle.map((s) => (
-                  <div key={s.t} className="flex gap-6 items-start">
+                  <div key={s.t} className="flex items-start gap-6">
                     <div className="text-2xl font-semibold text-brand-slate">{s.n}</div>
                     <div>
                       <p className={subLabelLight}>{s.t}</p>
@@ -475,7 +493,6 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* ================= OUR POSITION (DARK IMAGE) ================= */}
       <Section className="relative overflow-hidden reveal">
         <div className="absolute inset-0">
           <Image
@@ -503,14 +520,18 @@ export default function AboutPage() {
               </h2>
 
               <p className="mt-6 text-base leading-relaxed text-white">
-                Visani America occupies a deliberately narrow position in the AI ecosystem. We do not compete with vendors, platforms, or integrators. We are not an experimentation arm.
+                Visani America occupies a deliberately narrow position in the AI
+                ecosystem. We do not compete with vendors, platforms, or integrators.
+                We are not an experimentation arm.
               </p>
 
               <p className="mt-5 text-base leading-relaxed text-white">
-                We step in when leadership must ensure AI can operate inside the enterprise with control, accountability, and measurable outcomes under scrutiny.
+                We step in when leadership must ensure AI can operate inside the
+                enterprise with control, accountability, and measurable outcomes
+                under scrutiny.
               </p>
 
-              <p className="mt-6 text-base leading-relaxed text-white font-medium">
+              <p className="mt-6 text-base font-medium leading-relaxed text-white">
                 Our role is to reinforce executive control, not dilute it.
               </p>
 
@@ -556,7 +577,6 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* ================= HOW WE THINK (LIGHT) ================= */}
       <Section className={`relative overflow-hidden ${sectionDark} reveal`}>
         <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/5" />
         <div
@@ -574,13 +594,14 @@ export default function AboutPage() {
             <h2 className={sectionMainHeading}>Execution before optimism</h2>
 
             <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-brand-muted">
-              We evaluate AI using the same standards executives apply to any material operating capability:
-              ownership, enforceable controls, risk posture, incentive alignment, and sustained outcomes.
+              We evaluate AI using the same standards executives apply to any
+              material operating capability: ownership, enforceable controls, risk
+              posture, incentive alignment, and sustained outcomes.
             </p>
 
             <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-brand-muted">
-              If AI cannot be governed, explained, and defended under pressure, it is not ready to scale,
-              regardless of technical performance.
+              If AI cannot be governed, explained, and defended under pressure, it
+              is not ready to scale, regardless of technical performance.
             </p>
           </div>
 
@@ -621,7 +642,6 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* ================= OPERATING PRINCIPLES (DARK IMAGE) ================= */}
       <Section className="relative overflow-hidden reveal">
         <div className="absolute inset-0">
           <Image
@@ -645,8 +665,9 @@ export default function AboutPage() {
             <h2 className={sectionMainHeadingDark}>Execution principles</h2>
 
             <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white">
-              Every engagement is governed by principles designed to preserve executive authority,
-              organizational trust, and operational integrity under real enterprise conditions.
+              Every engagement is governed by principles designed to preserve
+              executive authority, organizational trust, and operational integrity
+              under real enterprise conditions.
             </p>
           </div>
 
@@ -677,7 +698,6 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* ================= GLOBAL REVEAL STYLES ================= */}
       <style jsx global>{`
         html,
         body {
@@ -697,10 +717,12 @@ export default function AboutPage() {
           transition: opacity 0.6s ease, transform 0.6s ease;
           will-change: opacity, transform;
         }
+
         .reveal-visible {
           opacity: 1;
           transform: translateY(0);
         }
+
         @media (prefers-reduced-motion: reduce) {
           .reveal {
             transition: none;
