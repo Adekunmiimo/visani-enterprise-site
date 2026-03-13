@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const GENERIC_EMAIL_DOMAINS = new Set([
   "gmail.com",
   "googlemail.com",
@@ -39,6 +37,15 @@ function isWorkEmail(email: string) {
 
 export async function POST(req: Request) {
   try {
+    if (!process.env.RESEND_API_KEY) {
+      console.error("Missing RESEND_API_KEY");
+      return NextResponse.json(
+        { error: "Server email key is missing." },
+        { status: 500 }
+      );
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await req.json();
 
     const {
@@ -74,16 +81,9 @@ export async function POST(req: Request) {
       );
     }
 
-    if (!process.env.RESEND_API_KEY) {
-      return NextResponse.json(
-        { error: "RESEND_API_KEY is not configured." },
-        { status: 500 }
-      );
-    }
-
-    const { data, error } = await resend.emails.send({
+    const result = await resend.emails.send({
       from: "Visani America <onboarding@resend.dev>",
-      to: ["cyrussolomon64@gmail.com"],
+      to: ["cyrussolomon63@gmail.com"],
       replyTo: workEmail,
       subject: `New Executive Briefing Request from ${fullName}`,
       html: `
@@ -117,25 +117,28 @@ Consent: ${consent ? "Yes" : "No"}
       `.trim(),
     });
 
-    if (error) {
-      console.error("Resend briefing error:", error);
+    console.log("Resend result:", JSON.stringify(result, null, 2));
+
+    if (result.error) {
+      console.error("Resend returned error:", result.error);
       return NextResponse.json(
-        { error: error.message || "Failed to send email." },
+        { error: result.error.message || "Failed to send email." },
         { status: 500 }
       );
     }
 
-    console.log("Resend briefing success:", data);
-
     return NextResponse.json({
       ok: true,
+      id: result.data?.id ?? null,
       message: "Briefing request sent successfully.",
-      data,
     });
-  } catch (err) {
-    console.error("briefing route error:", err);
+  } catch (error) {
+    console.error("briefing route fatal error:", error);
     return NextResponse.json(
-      { error: "Unable to process request." },
+      {
+        error:
+          error instanceof Error ? error.message : "Unable to process request.",
+      },
       { status: 500 }
     );
   }
