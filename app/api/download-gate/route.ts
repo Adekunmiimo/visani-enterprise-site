@@ -117,7 +117,7 @@ Submitted at: ${submittedAt || "N/A"}
       </div>
     `;
 
-    const result = await resend.emails.send({
+    const adminResult = await resend.emails.send({
       from: "Visani America <onboarding@resend.dev>",
       to: [ownerEmail],
       replyTo: email,
@@ -126,15 +126,61 @@ Submitted at: ${submittedAt || "N/A"}
       html,
     });
 
-    if (result.error) {
-      console.error("Resend download-gate error:", result.error);
+    if (adminResult.error) {
+      console.error("Resend download-gate error:", adminResult.error);
       return NextResponse.json(
-        { error: result.error.message || "Failed to send email." },
+        { error: adminResult.error.message || "Failed to send email." },
         { status: 500 }
       );
     }
 
-    console.log("Download gate email sent:", result.data?.id);
+    const userResult = await resend.emails.send({
+      from: "Visani America <onboarding@resend.dev>",
+      to: [email],
+      subject: `Your request for ${assetRequested || "the requested resource"} has been received`,
+      html: `
+        <div style="font-family: Arial, sans-serif; color: #111827; line-height: 1.6;">
+          <h2>Thanks for your request</h2>
+          <p>Hi ${firstName},</p>
+          <p>
+            We received your request for <strong>${assetRequested || "the requested resource"}</strong>.
+          </p>
+          <p>
+            Your details have been captured successfully and your request is now in process.
+          </p>
+          <p>
+            <strong>Company:</strong> ${company}<br />
+            <strong>Role:</strong> ${role}<br />
+            <strong>Interest:</strong> ${interest}
+          </p>
+          <p>
+            You will be directed to the delivery page after submission.
+          </p>
+          <p>Visani America</p>
+        </div>
+      `,
+      text: `
+Thanks for your request
+
+Hi ${firstName},
+
+We received your request for ${assetRequested || "the requested resource"}.
+
+Your details have been captured successfully and your request is now in process.
+
+Company: ${company}
+Role: ${role}
+Interest: ${interest}
+
+Visani America
+      `.trim(),
+    });
+
+    if (userResult.error) {
+      console.error("Resend user confirmation error:", userResult.error);
+    }
+
+    console.log("Download gate email sent:", adminResult.data?.id);
 
     return NextResponse.json({
       ok: true,

@@ -81,9 +81,11 @@ export async function POST(req: Request) {
       );
     }
 
-    const result = await resend.emails.send({
+    const ownerEmail = "richie.visani@gmail.com";
+
+    const adminResult = await resend.emails.send({
       from: "Visani America <onboarding@resend.dev>",
-      to: ["richie.visani@gmail.com"],
+      to: [ownerEmail],
       replyTo: workEmail,
       subject: `New Executive Briefing Request from ${fullName}`,
       html: `
@@ -117,19 +119,64 @@ Consent: ${consent ? "Yes" : "No"}
       `.trim(),
     });
 
-    console.log("Resend result:", JSON.stringify(result, null, 2));
-
-    if (result.error) {
-      console.error("Resend returned error:", result.error);
+    if (adminResult.error) {
+      console.error("Resend returned error:", adminResult.error);
       return NextResponse.json(
-        { error: result.error.message || "Failed to send email." },
+        { error: adminResult.error.message || "Failed to send email." },
         { status: 500 }
       );
     }
 
+    const firstName = fullName.trim().split(" ")[0] || "there";
+
+    const userResult = await resend.emails.send({
+      from: "Visani America <onboarding@resend.dev>",
+      to: [workEmail],
+      subject: "Your executive briefing request has been received",
+      html: `
+        <div style="font-family: Arial, sans-serif; color: #111827; line-height: 1.6;">
+          <h2>Thanks for your request</h2>
+          <p>Hi ${firstName},</p>
+          <p>
+            We’ve received your executive briefing request and your details have been captured successfully.
+          </p>
+          <p>
+            <strong>Company:</strong> ${company}<br />
+            <strong>Role:</strong> ${title}<br />
+            <strong>AI Stage:</strong> ${aiStage || "N/A"}<br />
+            <strong>Urgency:</strong> ${urgency || "N/A"}
+          </p>
+          <p>
+            Our team will review your request and reach out with next steps and scheduling options.
+          </p>
+          <p>Visani America</p>
+        </div>
+      `,
+      text: `
+Thanks for your request
+
+Hi ${firstName},
+
+We’ve received your executive briefing request and your details have been captured successfully.
+
+Company: ${company}
+Role: ${title}
+AI Stage: ${aiStage || "N/A"}
+Urgency: ${urgency || "N/A"}
+
+Our team will review your request and reach out with next steps and scheduling options.
+
+Visani America
+      `.trim(),
+    });
+
+    if (userResult.error) {
+      console.error("Resend confirmation email error:", userResult.error);
+    }
+
     return NextResponse.json({
       ok: true,
-      id: result.data?.id ?? null,
+      id: adminResult.data?.id ?? null,
       message: "Briefing request sent successfully.",
     });
   } catch (error) {
