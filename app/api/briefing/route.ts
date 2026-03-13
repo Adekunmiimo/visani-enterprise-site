@@ -81,7 +81,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const ownerEmail = "richie.visani@gmail.com";
+    const ownerEmail = "cyrussolomon64@gmail.com";
 
     const adminResult = await resend.emails.send({
       from: "Visani America <onboarding@resend.dev>",
