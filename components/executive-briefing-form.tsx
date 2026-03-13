@@ -39,22 +39,23 @@ function isWorkEmail(email: string) {
   return true;
 }
 
+const initialForm = {
+  fullName: "",
+  workEmail: "",
+  company: "",
+  title: "",
+  phone: "",
+  aiStage: "Still exploring AI Initiatives",
+  urgency: "This quarter",
+  message: "",
+  consent: true,
+};
+
 export function ExecutiveBriefingForm() {
   const [state, setState] = useState<FormState>("idle");
-  const [error, setError] = useState<string>("");
-  const [emailError, setEmailError] = useState<string>("");
-
-  const [form, setForm] = useState({
-    fullName: "",
-    workEmail: "",
-    company: "",
-    title: "",
-    phone: "",
-    aiStage: "Still exploring AI Initiatives",
-    urgency: "This quarter",
-    message: "",
-    consent: true,
-  });
+  const [error, setError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [form, setForm] = useState(initialForm);
 
   const canSubmit = useMemo(() => {
     return (
@@ -62,6 +63,7 @@ export function ExecutiveBriefingForm() {
       isWorkEmail(form.workEmail) &&
       form.company.trim().length >= 2 &&
       form.title.trim().length >= 2 &&
+      form.consent &&
       state !== "submitting"
     );
   }, [form, state]);
@@ -76,6 +78,12 @@ export function ExecutiveBriefingForm() {
       setEmailError(
         "Please use your work email address. Generic email providers are not allowed."
       );
+      return;
+    }
+
+    if (!form.consent) {
+      setState("error");
+      setError("Consent is required before submitting this request.");
       return;
     }
 
@@ -95,17 +103,8 @@ export function ExecutiveBriefingForm() {
       }
 
       setState("success");
-      setForm({
-        fullName: "",
-        workEmail: "",
-        company: "",
-        title: "",
-        phone: "",
-        aiStage: "Still exploring AI Initiatives",
-        urgency: "This quarter",
-        message: "",
-        consent: true,
-      });
+      setForm(initialForm);
+      setEmailError("");
     } catch (err) {
       setState("error");
       setError(err instanceof Error ? err.message : "Something went wrong.");
@@ -131,7 +130,6 @@ export function ExecutiveBriefingForm() {
     }
   }
 
-  // ✅ TYPOGRAPHY: unchanged
   const sectionLabelLight =
     "text-2xl font-bold tracking-[-0.03em] leading-[1.02] text-brand-slate sm:text-[2rem]";
   const sectionMainHeading =
@@ -187,6 +185,7 @@ export function ExecutiveBriefingForm() {
         <div className="grid gap-6 sm:grid-cols-2">
           <Field label="Full name" required>
             <input
+              name="fullName"
               value={form.fullName}
               onChange={(e) => updateField("fullName", e.target.value)}
               className={inputClass}
@@ -197,6 +196,8 @@ export function ExecutiveBriefingForm() {
 
           <Field label="Work email" required>
             <input
+              name="workEmail"
+              type="email"
               value={form.workEmail}
               onChange={(e) => updateField("workEmail", e.target.value)}
               className={emailError ? inputErrorClass : inputClass}
@@ -217,6 +218,7 @@ export function ExecutiveBriefingForm() {
         <div className="grid gap-6 sm:grid-cols-2">
           <Field label="Company" required>
             <input
+              name="company"
               value={form.company}
               onChange={(e) => updateField("company", e.target.value)}
               className={inputClass}
@@ -226,6 +228,7 @@ export function ExecutiveBriefingForm() {
 
           <Field label="Title / role" required>
             <input
+              name="title"
               value={form.title}
               onChange={(e) => updateField("title", e.target.value)}
               className={inputClass}
@@ -237,6 +240,7 @@ export function ExecutiveBriefingForm() {
         <div className="grid gap-6 sm:grid-cols-2">
           <Field label="Phone (optional)">
             <input
+              name="phone"
               value={form.phone}
               onChange={(e) => updateField("phone", e.target.value)}
               className={inputClass}
@@ -248,33 +252,44 @@ export function ExecutiveBriefingForm() {
 
           <Field label="AI Stage">
             <select
+              name="aiStage"
               value={form.aiStage}
               onChange={(e) => updateField("aiStage", e.target.value)}
               className={selectClass}
             >
-              <option>Still exploring AI Initiatives</option>
-              <option>We need Strategic AI Advisory</option>
-              <option>We need AI Maturity Assessment</option>
-              <option>We need AI Strategy alignment with Business Strategy</option>
+              <option value="Still exploring AI Initiatives">
+                Still exploring AI Initiatives
+              </option>
+              <option value="We need Strategic AI Advisory">
+                We need Strategic AI Advisory
+              </option>
+              <option value="We need AI Maturity Assessment">
+                We need AI Maturity Assessment
+              </option>
+              <option value="We need AI Strategy alignment with Business Strategy">
+                We need AI Strategy alignment with Business Strategy
+              </option>
             </select>
           </Field>
         </div>
 
         <Field label="Urgency">
           <select
+            name="urgency"
             value={form.urgency}
             onChange={(e) => updateField("urgency", e.target.value)}
             className={selectClass}
           >
-            <option>This month</option>
-            <option>This quarter</option>
-            <option>Next quarter</option>
-            <option>Exploratory</option>
+            <option value="This month">This month</option>
+            <option value="This quarter">This quarter</option>
+            <option value="Next quarter">Next quarter</option>
+            <option value="Exploratory">Exploratory</option>
           </select>
         </Field>
 
         <Field label="What decision are you trying to make? (optional)">
           <textarea
+            name="message"
             value={form.message}
             onChange={(e) => updateField("message", e.target.value)}
             rows={5}
