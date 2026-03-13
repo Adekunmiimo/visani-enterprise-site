@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const GENERIC_EMAIL_DOMAINS = new Set([
   "gmail.com",
@@ -67,33 +69,15 @@ export async function POST(req: Request) {
       );
     }
 
-    if (
-      !process.env.SMTP_HOST ||
-      !process.env.SMTP_PORT ||
-      !process.env.SMTP_USER ||
-      !process.env.SMTP_PASS
-    ) {
-      console.error("SMTP environment variables are missing.");
+    if (!process.env.RESEND_API_KEY) {
+      console.error("RESEND_API_KEY is missing.");
       return NextResponse.json(
         { error: "Email service is not configured." },
         { status: 500 }
       );
     }
 
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || "",
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: String(process.env.SMTP_SECURE) === "true",
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
-
-    await transporter.verify();
-
     const ownerEmail = "cyrussolomon64@gmail.com";
-
     const subject = `New download request: ${assetRequested || "Resource request"}`;
 
     const text = `
@@ -133,16 +117,24 @@ Submitted at: ${submittedAt || "N/A"}
       </div>
     `;
 
-    const result = await transporter.sendMail({
-      from: process.env.SMTP_FROM || process.env.SMTP_USER,
-      to: ownerEmail,
+    const result = await resend.emails.send({
+      from: "Visani America <onboarding@resend.dev>",
+      to: [ownerEmail],
       replyTo: email,
       subject,
       text,
       html,
     });
 
-    console.log("Download gate email sent:", result.messageId);
+    if (result.error) {
+      console.error("Resend download-gate error:", result.error);
+      return NextResponse.json(
+        { error: result.error.message || "Failed to send email." },
+        { status: 500 }
+      );
+    }
+
+    console.log("Download gate email sent:", result.data?.id);
 
     return NextResponse.json({
       ok: true,
@@ -152,7 +144,10 @@ Submitted at: ${submittedAt || "N/A"}
     console.error("download-gate route error:", error);
 
     return NextResponse.json(
-      { error: "Unable to process request." },
+      {
+        error:
+          error instanceof Error ? error.message : "Unable to process request.",
+      },
       { status: 500 }
     );
   }
