@@ -77,7 +77,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const ownerEmail = "cyrussolomon64@gmail.com";
+    const ownerEmail = "richie.visani@gmail.com";
     const subject = `New download request: ${assetRequested || "Resource request"}`;
 
     const text = `
