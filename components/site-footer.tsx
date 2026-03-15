@@ -1,5 +1,3 @@
-// ✅ REPLACE ENTIRE FILE components/site-footer.tsx
-
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "components/container";
@@ -8,7 +6,14 @@ import { site } from "@/lib/site";
 export function SiteFooter() {
   const companyLinks = site.nav.footerCompany;
   const offeringLinks = site.nav.footerOfferings;
-  const legalLinks = site.nav.footerLegal;
+
+  const legalLinks =
+    site.nav.footerLegal?.length
+      ? site.nav.footerLegal
+      : [
+          { label: "Privacy Policy", href: "/privacy" },
+          { label: "Terms of Use", href: "/terms" },
+        ];
 
   return (
     <footer className="border-t border-brand-border bg-white">
@@ -38,7 +43,10 @@ export function SiteFooter() {
             <ul className="mt-3 space-y-2 text-sm">
               {companyLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-brand-muted hover:text-brand-slate">
+                  <Link
+                    href={l.href}
+                    className="text-brand-muted transition hover:text-brand-slate"
+                  >
                     {l.label}
                   </Link>
                 </li>
@@ -52,7 +60,10 @@ export function SiteFooter() {
             <ul className="mt-3 space-y-2 text-sm">
               {offeringLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-brand-muted hover:text-brand-slate">
+                  <Link
+                    href={l.href}
+                    className="text-brand-muted transition hover:text-brand-slate"
+                  >
                     {l.label}
                   </Link>
                 </li>
@@ -70,12 +81,30 @@ export function SiteFooter() {
                     href={site.links.linkedin}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-brand-muted hover:text-brand-slate"
+                    className="text-brand-muted transition hover:text-brand-slate"
                   >
                     LinkedIn
                   </a>
                 </li>
               ) : null}
+
+              <li>
+                <Link
+                  href="/privacy"
+                  className="text-brand-muted transition hover:text-brand-slate"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/terms"
+                  className="text-brand-muted transition hover:text-brand-slate"
+                >
+                  Terms of Use
+                </Link>
+              </li>
             </ul>
 
             <div className="mt-6">
@@ -86,21 +115,21 @@ export function SiteFooter() {
               <div className="mt-3 flex flex-col gap-2 text-sm">
                 <a
                   href={site.links.boardBriefPdf}
-                  className="text-brand-muted hover:text-brand-slate"
+                  className="text-brand-muted transition hover:text-brand-slate"
                 >
                   Download Board Brief (PDF)
                 </a>
 
                 <Link
                   href={site.links.proofLibrary}
-                  className="text-brand-muted hover:text-brand-slate"
+                  className="text-brand-muted transition hover:text-brand-slate"
                 >
                   View Proof Library (Redacted)
                 </Link>
 
                 <Link
                   href={site.cta.primary.href}
-                  className="text-brand-muted hover:text-brand-slate"
+                  className="text-brand-muted transition hover:text-brand-slate"
                 >
                   {site.cta.primary.label}
                 </Link>
@@ -114,9 +143,13 @@ export function SiteFooter() {
             © {site.year} {site.name}. All rights reserved.
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             {legalLinks.map((l) => (
-              <Link key={l.href} href={l.href} className="hover:text-brand-slate">
+              <Link
+                key={l.href}
+                href={l.href}
+                className="transition hover:text-brand-slate"
+              >
                 {l.label}
               </Link>
             ))}
