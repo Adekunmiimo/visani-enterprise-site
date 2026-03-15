@@ -949,75 +949,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* LEADERSHIP */}
-      <Section className={`relative overflow-hidden ${sectionDarkAlt} reveal`}>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#F6F8FC] via-[#F0F4F9] to-[#E8EEF7]" />
-
-        <div className="relative mx-auto max-w-7xl px-6 py-20">
-          <div className="grid items-start gap-12 lg:grid-cols-2">
-            {/* IMAGE */}
-            <div className="relative order-2 lg:order-1">
-              <div className={`relative aspect-[4/5] overflow-hidden ${cardBase}`}>
-                <Image src="/imgerich.jpg" alt="Richie Adetimehin" fill className="object-cover" />
-              </div>
-
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                {[
-                  { k: "Board ready", v: "Artifacts designed to survive scrutiny." },
-                  { k: "Execution control", v: "Permissioned operation with measurable outcomes." },
-                ].map((x) => (
-                  <div key={x.k} className={`${cardBase} p-6`}>
-                    <p className={subLabelLight}>{x.k}</p>
-                    <p className="mt-3 text-sm leading-relaxed text-brand-slate">{x.v}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* TEXT */}
-            <div className="order-1 lg:order-2">
-              <p className={sectionLabelLight}>Leadership</p>
-
-              <h2 className={sectionMainHeading}>
-                Leadership built for enterprise scale
-              </h2>
-
-              <div className={`${cardBase} mt-8 p-8`}>
-                <p className={cardTitleLight}>
-                  Visani America is led by Richie Adetimehin
-                </p>
-
-                <p className="mt-4 text-sm leading-relaxed text-brand-muted">
-                  Richie helps leadership teams move from pilots to scalable AI by defining decision rights,
-                  implementing runtime controls, and measuring value with evidence.
-                </p>
-
-                <ul className="mt-6 space-y-3 text-sm text-brand-muted">
-                  <li>
-                    <span className="font-semibold text-brand-slate">Operating rigor:</span>{" "}
-                    governance cadence, roles, accountability
-                  </li>
-                  <li>
-                    <span className="font-semibold text-brand-slate">Controls:</span>{" "}
-                    permissioned execution, audit ready evidence
-                  </li>
-                  <li>
-                    <span className="font-semibold text-brand-slate">Cross functional alignment:</span>{" "}
-                    AI, security, data, operations, business
-                  </li>
-                </ul>
-
-                {/* ✅ REDUCED CTA: ONE (leadership section shouldn’t have 3) */}
-                <div className="mt-8 flex flex-wrap gap-4">
-                  <ButtonLink href="/proof/library" variant="secondary">
-                    View Proof Library (Redacted)
-                  </ButtonLink>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Section>
+      
 
       {/* HOW IT WORKS (cinematic) */}
       <CinematicSection backgroundImage="/img777.jpg" overlay="dark">
