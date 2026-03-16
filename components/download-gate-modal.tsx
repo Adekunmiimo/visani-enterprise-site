@@ -75,9 +75,9 @@ function isCompanyEmail(email: string) {
 export function DownloadGateModal({
   buttonText,
   fileUrl,
-  fileName = "downloaded-file.pdf",
-  title = "Download board brief",
-  description = "Complete this short form to access the document.",
+  fileName = "executive-proof-review.pdf",
+  title = "Request Executive Proof Review",
+  description = "Complete this short form to request a redacted executive evidence package.",
   className = "",
   heroImage = "/contact-hero-bg.jpg",
   redirectTo = "/downloads/coe-template-pack",
@@ -128,7 +128,9 @@ export function DownloadGateModal({
       if (!value.trim()) {
         setEmailError("");
       } else if (!isCompanyEmail(value)) {
-        setEmailError("Please use your company email address. Generic email providers are not allowed.");
+        setEmailError(
+          "Please use your company email address. Generic email providers are not allowed."
+        );
       } else {
         setEmailError("");
       }
@@ -141,7 +143,9 @@ export function DownloadGateModal({
     setError("");
 
     if (!isCompanyEmail(formData.email)) {
-      setEmailError("Please use your company email address. Generic email providers are not allowed.");
+      setEmailError(
+        "Please use your company email address. Generic email providers are not allowed."
+      );
       setLoading(false);
       return;
     }
@@ -171,7 +175,7 @@ export function DownloadGateModal({
       setTimeout(() => {
         closeModal();
         router.push(redirectTo);
-      }, 600);
+      }, 900);
     } catch (err) {
       console.error(err);
       setError("Something went wrong. Please try again.");
@@ -209,33 +213,33 @@ export function DownloadGateModal({
 
     if (lowerTitle.includes("control plane")) {
       return {
-        eyebrow: "Control plane resource",
-        rightTitle: "Request access",
-        leftTitle: "Executive resource access",
+        eyebrow: "Executive proof review",
+        rightTitle: "Request review",
+        leftTitle: "Executive evidence access",
         leftIntro:
           "Structured for leaders evaluating permissioned execution, runtime governance, and defensible AI controls.",
         chips: ["Permissioned Execution", "Runtime Telemetry", "Evidence Layer"],
         whatHappensNext: [
-          "Your request is captured for executive follow up and delivery routing.",
-          "You are taken to a branded delivery page with the resource and related next steps.",
+          "Your request is captured for executive review routing.",
+          "You receive an email asking one short question so the right redacted evidence package can be shared.",
           "The experience stays aligned with Visani America’s executive advisory positioning.",
         ],
         reviewNote:
-          "This request supports executive level resource delivery, not a generic document download flow.",
+          "This request supports executive level proof review routing, not a generic document download flow.",
       };
     }
 
     if (lowerTitle.includes("board")) {
       return {
-        eyebrow: "Board level resource",
-        rightTitle: "Request access",
-        leftTitle: "Executive resource access",
+        eyebrow: "Executive proof review",
+        rightTitle: "Request review",
+        leftTitle: "Executive evidence access",
         leftIntro:
           "Structured for leaders evaluating board scrutiny, governance posture, and defensible AI operating models.",
         chips: ["Board Metrics", "Governance Clarity", "Executive Control"],
         whatHappensNext: [
-          "Your request is reviewed as part of a controlled executive resource workflow.",
-          "You are taken to a premium delivery page with the document and recommended next steps.",
+          "Your request is reviewed as part of a controlled executive proof review workflow.",
+          "You receive a routing email so the most relevant redacted evidence package can be shared.",
           "The experience remains aligned with the broader advisory and briefing journey.",
         ],
         reviewNote:
@@ -244,19 +248,19 @@ export function DownloadGateModal({
     }
 
     return {
-      eyebrow: "Executive resource",
-      rightTitle: "Request access",
-      leftTitle: "Executive resource access",
+      eyebrow: "Executive proof review",
+      rightTitle: "Request review",
+      leftTitle: "Executive evidence access",
       leftIntro:
         "Structured for leaders evaluating governed AI execution, ownership clarity, and enterprise control at scale.",
       chips: ["Execution Control", "Runtime Governance", "Board Metrics"],
       whatHappensNext: [
         "Your request is captured through a premium executive intake flow.",
-        "You are taken to a tailored delivery page immediately after submission.",
+        "You receive an email asking one quick routing question so the right proof package can be shared.",
         "The experience stays aligned with the project’s advisory positioning and visual system.",
       ],
       reviewNote:
-        "This request is positioned as a premium executive resource access point, not a generic download wall.",
+        "This request is positioned as a premium executive proof review access point, not a generic download wall.",
     };
   }, [title, fileName]);
 
@@ -520,11 +524,18 @@ export function DownloadGateModal({
                                       className={selectClass}
                                     >
                                       <option value="">Select one</option>
-                                      <option value="Executive briefing">Executive briefing</option>
-                                      <option value="Board brief">Board brief</option>
-                                      <option value="AI governance">AI governance</option>
-                                      <option value="Operating model">Operating model</option>
-                                      <option value="Risk and compliance">Risk and compliance</option>
+                                      <option value="Governance before scale">Governance before scale</option>
+                                      <option value="Ownership & decision rights">Ownership & decision rights</option>
+                                      <option value="Permissioned execution controls">
+                                        Permissioned execution controls
+                                      </option>
+                                      <option value="Runtime observability & audit trail">
+                                        Runtime observability & audit trail
+                                      </option>
+                                      <option value="Value measurement (value ledger)">
+                                        Value measurement (value ledger)
+                                      </option>
+                                      <option value="Sustained adoption">Sustained adoption</option>
                                     </select>
 
                                     <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
@@ -584,7 +595,7 @@ export function DownloadGateModal({
                                 >
                                   <span className="pointer-events-none absolute inset-0 rounded-xl bg-[radial-gradient(1200px_220px_at_20%_0%,rgba(255,255,255,0.35),transparent_55%)]" />
                                   <span className="relative inline-flex items-center justify-center">
-                                    {loading ? "Submitting..." : "Continue to downloads"}
+                                    {loading ? "Submitting..." : "Request proof review"}
                                   </span>
                                 </button>
 
@@ -623,11 +634,12 @@ export function DownloadGateModal({
                             </div>
 
                             <p className="mt-6 text-[1.8rem] font-bold tracking-[-0.03em] text-brand-slate sm:text-[2.2rem]">
-                              Thanks. Taking you to your downloads.
+                              Thanks. Your proof review request has been received.
                             </p>
 
                             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-brand-muted sm:text-base">
-                              Your details have been received. Redirecting you to the delivery page now.
+                              Your details have been received. We’ve emailed the next step for routing
+                              the right evidence package.
                             </p>
 
                             <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -641,7 +653,7 @@ export function DownloadGateModal({
                               >
                                 <span className="pointer-events-none absolute inset-0 rounded-xl bg-[radial-gradient(1200px_220px_at_20%_0%,rgba(255,255,255,0.35),transparent_55%)]" />
                                 <span className="relative inline-flex items-center justify-center">
-                                  Go to downloads
+                                  Continue
                                 </span>
                               </button>
 

@@ -310,11 +310,7 @@ export function ExecutiveBriefingForm() {
           </span>
         </label>
 
-        <button
-          type="submit"
-          disabled={!canSubmit}
-          className={primaryButtonClass}
-        >
+        <button type="submit" disabled={!canSubmit} className={primaryButtonClass}>
           {state === "submitting" ? "Submitting..." : "Request briefing"}
         </button>
 

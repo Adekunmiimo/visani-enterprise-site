@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const GENERIC_EMAIL_DOMAINS = new Set([
   "gmail.com",
   "googlemail.com",
@@ -39,6 +37,15 @@ function isCompanyEmail(email: string) {
 
 export async function POST(req: Request) {
   try {
+    if (!process.env.RESEND_API_KEY) {
+      console.error("RESEND_API_KEY is missing.");
+      return NextResponse.json(
+        { error: "Email service is not configured." },
+        { status: 500 }
+      );
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await req.json();
 
     const {
@@ -69,19 +76,14 @@ export async function POST(req: Request) {
       );
     }
 
-    if (!process.env.RESEND_API_KEY) {
-      console.error("RESEND_API_KEY is missing.");
-      return NextResponse.json(
-        { error: "Email service is not configured." },
-        { status: 500 }
-      );
-    }
-
     const ownerEmail = "cyrussolomon64@gmail.com";
-    const subject = `New download request: ${assetRequested || "Resource request"}`;
+    const bookingLink =
+      "https://calendly.com/richieadetimehin/book-a-30-mins-strategy-call";
+
+    const subject = `New Executive Proof Review request from ${firstName} ${lastName}`;
 
     const text = `
-New resource request submitted
+New Executive Proof Review request
 
 First name: ${firstName}
 Last name: ${lastName}
@@ -99,7 +101,7 @@ Submitted at: ${submittedAt || "N/A"}
 
     const html = `
       <div style="font-family: Arial, sans-serif; color: #111827; line-height: 1.6;">
-        <h2 style="margin-bottom: 16px;">New resource request submitted</h2>
+        <h2 style="margin-bottom: 16px;">New Executive Proof Review request</h2>
 
         <table cellpadding="8" cellspacing="0" border="0" style="border-collapse: collapse;">
           <tr><td><strong>First name:</strong></td><td>${firstName}</td></tr>
@@ -137,50 +139,81 @@ Submitted at: ${submittedAt || "N/A"}
     const userResult = await resend.emails.send({
       from: "Visani America <onboarding@resend.dev>",
       to: [email],
-      subject: `Your request for ${assetRequested || "the requested resource"} has been received`,
+      replyTo: ownerEmail,
+      subject: "Your Executive Proof Review request — next step",
       html: `
-        <div style="font-family: Arial, sans-serif; color: #111827; line-height: 1.6;">
-          <h2>Thanks for your request</h2>
+        <div style="font-family: Arial, sans-serif; color: #111827; line-height: 1.65;">
           <p>Hi ${firstName},</p>
+
+          <p>We’ve received your request for an Executive Proof Review.</p>
+
           <p>
-            We received your request for <strong>${assetRequested || "the requested resource"}</strong>.
+            Visani America shares redacted evidence packages that demonstrate how AI operates under
+            ownership, governance, runtime controls, and measurable outcomes — designed for executive
+            and risk review.
           </p>
+
           <p>
-            Your details have been captured successfully and your request is now in process.
+            <strong>Next step (2 minutes):</strong> reply with one line so we route the right evidence package:
           </p>
+
+          <p><strong>Which is most urgent at ${company} right now?</strong></p>
+
+          <ul style="padding-left: 20px; margin: 12px 0;">
+            <li>Governance before scale</li>
+            <li>Ownership &amp; decision rights</li>
+            <li>Permissioned execution controls</li>
+            <li>Runtime observability &amp; audit trail</li>
+            <li>Value measurement (value ledger)</li>
+            <li>Sustained adoption</li>
+          </ul>
+
           <p>
-            <strong>Company:</strong> ${company}<br />
-            <strong>Role:</strong> ${role}<br />
-            <strong>Interest:</strong> ${interest}
+            If you prefer, you can schedule the private executive review here:
           </p>
+
           <p>
-            You will be directed to the delivery page after submission.
+            <a href="${bookingLink}">${bookingLink}</a>
           </p>
-          <p>Visani America</p>
+
+          <p>
+            Regards,<br />
+            Richie Adetimehin<br />
+            Visani America — Enterprise AI Execution Advisory
+          </p>
         </div>
       `,
       text: `
-Thanks for your request
-
 Hi ${firstName},
 
-We received your request for ${assetRequested || "the requested resource"}.
+We’ve received your request for an Executive Proof Review.
 
-Your details have been captured successfully and your request is now in process.
+Visani America shares redacted evidence packages that demonstrate how AI operates under ownership,
+governance, runtime controls, and measurable outcomes — designed for executive and risk review.
 
-Company: ${company}
-Role: ${role}
-Interest: ${interest}
+Next step (2 minutes): reply with one line so we route the right evidence package:
 
-Visani America
+Which is most urgent at ${company} right now?
+
+- Governance before scale
+- Ownership & decision rights
+- Permissioned execution controls
+- Runtime observability & audit trail
+- Value measurement (value ledger)
+- Sustained adoption
+
+If you prefer, you can schedule the private executive review here:
+${bookingLink}
+
+Regards,
+Richie Adetimehin
+Visani America — Enterprise AI Execution Advisory
       `.trim(),
     });
 
     if (userResult.error) {
       console.error("Resend user confirmation error:", userResult.error);
     }
-
-    console.log("Download gate email sent:", adminResult.data?.id);
 
     return NextResponse.json({
       ok: true,
