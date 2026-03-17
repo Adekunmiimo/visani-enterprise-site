@@ -244,13 +244,13 @@ export default function ContactPage() {
                 <ButtonLink href="#briefing" variant="primary" className="px-8 py-3">
                   Go to Briefing Request Form
                 </ButtonLink>
-                <ButtonLink
+                {/* <ButtonLink
                   href="/downloads/board-brief.pdf"
                   variant="secondary"
                   className="px-8 py-3"
                 >
                   Download Board Brief (PDF)
-                </ButtonLink>
+                </ButtonLink> */}
               </div>
 
               {/* <p className="mt-8 max-w-xl text-xs leading-relaxed text-white">

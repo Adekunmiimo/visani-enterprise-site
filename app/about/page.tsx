@@ -305,14 +305,14 @@ export default function AboutPage() {
                   Book Executive Briefing
                 </ButtonLink>
 
-                <DownloadGateModal
+                {/* <DownloadGateModal
                   buttonText="Download Board Brief (PDF)"
                   fileUrl="/downloads/board-brief.pdf"
                   fileName="board-brief.pdf"
                   title="Download board brief"
                   description="Complete this short form before downloading the board brief."
                   className={secondaryButtonClass}
-                />
+                /> */}
               </div>
             </div>
 

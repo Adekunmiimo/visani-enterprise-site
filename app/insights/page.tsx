@@ -303,7 +303,7 @@ export default function InsightsPage() {
                   Book Executive Briefing
                 </ButtonLink>
 
-                <DownloadGateModal
+                {/* <DownloadGateModal
                   buttonText="Download Board Brief (PDF)"
                   fileUrl="/downloads/board-brief.pdf"
                   fileName="board-brief.pdf"
@@ -311,7 +311,7 @@ export default function InsightsPage() {
                   description="Complete this short form to access the board brief. This helps us understand your current priorities and route the right follow up."
                   heroImage="/aboutimg.jpg"
                   className={heroSecondaryButtonClass}
-                />
+                /> */}
               </div>
 
               <div className="mt-10 grid gap-3 sm:grid-cols-3">
@@ -504,7 +504,7 @@ export default function InsightsPage() {
               </div>
 
               <div className="mt-10 flex flex-wrap gap-4">
-                <DownloadGateModal
+                {/* <DownloadGateModal
                   buttonText="Download Control Plane Checklist"
                   fileUrl="/downloads/control-plane-checklist.pdf"
                   fileName="control-plane-checklist.pdf"
@@ -512,7 +512,7 @@ export default function InsightsPage() {
                   description="Complete this short form to access the control plane checklist. This helps us understand where your organization is in its execution journey."
                   heroImage="/governance.jpg"
                   className={lightPrimaryButtonClass}
-                />
+                /> */}
 
                 <ButtonLink href="/contact#briefing" variant="secondary">
                   Book Executive Briefing
@@ -667,7 +667,7 @@ export default function InsightsPage() {
                   Book Executive Briefing
                 </ButtonLink>
 
-                <DownloadGateModal
+                {/* <DownloadGateModal
                   buttonText="Download Board Brief (PDF)"
                   fileUrl="/downloads/board-brief.pdf"
                   fileName="board-brief.pdf"
@@ -675,7 +675,7 @@ export default function InsightsPage() {
                   description="Complete this short form to access the board brief. This helps us understand your current priorities and route the right follow up."
                   heroImage="/insights-feed-bg.jpg"
                   className={heroSecondaryButtonClass}
-                />
+                /> */}
               </div>
             </div>
           </div>

@@ -514,7 +514,7 @@ export default function ServicesPage() {
                   Book Executive Briefing
                 </ButtonLink>
 
-                <DownloadGateModal
+                {/* <DownloadGateModal
                   buttonText="Download Board Brief (PDF)"
                   fileUrl="/downloads/board-brief.pdf"
                   fileName="board-brief.pdf"
@@ -522,7 +522,7 @@ export default function ServicesPage() {
                   description="Complete this short form to access the board brief. This helps us understand your current priorities and route the right follow up."
                   heroImage="/exec-briefing.jpg"
                   className={heroSecondaryButtonClass}
-                />
+                /> */}
               </div>
             </div>
 
@@ -795,7 +795,7 @@ export default function ServicesPage() {
               </div>
 
               <div className="mt-10 flex flex-wrap gap-4">
-                <DownloadGateModal
+                {/* <DownloadGateModal
                   buttonText="Download Control Plane Checklist"
                   fileUrl="/downloads/control-plane-checklist.pdf"
                   fileName="control-plane-checklist.pdf"
@@ -803,7 +803,7 @@ export default function ServicesPage() {
                   description="Complete this short form to access the control plane checklist. This helps us understand where your organization is in its execution journey."
                   heroImage="/governance.jpg"
                   className={lightPrimaryButtonClass}
-                />
+                /> */}
 
                 <ButtonLink href="/contact#briefing" variant="secondary">
                   Book Executive Briefing
