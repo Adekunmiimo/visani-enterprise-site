@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
+// Set of common generic email domains to ensure work emails only
 const GENERIC_EMAIL_DOMAINS = new Set([
   "gmail.com",
   "googlemail.com",
@@ -22,6 +23,7 @@ const GENERIC_EMAIL_DOMAINS = new Set([
   "gmx.com",
 ]);
 
+// Function to check if email is from a work domain
 function isWorkEmail(email: string) {
   const trimmed = email.trim().toLowerCase();
   const parts = trimmed.split("@");
@@ -37,6 +39,7 @@ function isWorkEmail(email: string) {
 
 export async function POST(req: Request) {
   try {
+    // Ensure the API key exists
     if (!process.env.RESEND_API_KEY) {
       console.error("Missing RESEND_API_KEY");
       return NextResponse.json(
@@ -45,13 +48,16 @@ export async function POST(req: Request) {
       );
     }
 
-    const ownerEmail = process.env.CONTACT_FORM_TO || "richie.visani@gmail.com";
+    // Extract email addresses from environment variables
+    const ownerEmail = process.env.CONTACT_FORM_TO || "richie.visani@gmail.com"; // Default email if not set
     const fromEmail =
-      process.env.RESEND_FROM_EMAIL || "Visani America <onboarding@resend.dev>";
+      process.env.RESEND_FROM_EMAIL || "Visani America <hello@visaniamerica.com>"; // Default sender email if not set
 
+    // Initialize Resend API client
     const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await req.json();
 
+    // Destructure the incoming form data
     const {
       fullName,
       workEmail,
@@ -64,6 +70,7 @@ export async function POST(req: Request) {
       consent,
     } = body ?? {};
 
+    // Validate required fields
     if (!fullName || !workEmail || !company || !title) {
       return NextResponse.json(
         { error: "Missing required fields." },
@@ -71,6 +78,7 @@ export async function POST(req: Request) {
       );
     }
 
+    // Validate work email
     if (!isWorkEmail(workEmail)) {
       return NextResponse.json(
         { error: "Please use your work email address." },
@@ -78,6 +86,7 @@ export async function POST(req: Request) {
       );
     }
 
+    // Ensure consent is provided
     if (!consent) {
       return NextResponse.json(
         { error: "Consent is required before submitting this request." },
@@ -85,6 +94,7 @@ export async function POST(req: Request) {
       );
     }
 
+    // Send email to the owner (admin)
     const adminResult = await resend.emails.send({
       from: fromEmail,
       to: [ownerEmail],
@@ -121,6 +131,7 @@ Consent: ${consent ? "Yes" : "No"}
       `.trim(),
     });
 
+    // Handle any errors from the admin email
     if (adminResult.error) {
       console.error("Resend returned error:", adminResult.error);
       return NextResponse.json(
@@ -129,6 +140,7 @@ Consent: ${consent ? "Yes" : "No"}
       );
     }
 
+    // Prepare confirmation email for the user
     const firstName = fullName.trim().split(" ")[0] || "there";
 
     const userResult = await resend.emails.send({
@@ -172,6 +184,7 @@ Visani America
       `.trim(),
     });
 
+    // Handle any errors from the user confirmation email
     if (userResult.error) {
       console.error("Resend confirmation email error:", userResult.error);
     }
@@ -185,8 +198,7 @@ Visani America
     console.error("briefing route fatal error:", error);
     return NextResponse.json(
       {
-        error:
-          error instanceof Error ? error.message : "Unable to process request.",
+        error: error instanceof Error ? error.message : "Unable to process request.",
       },
       { status: 500 }
     );
