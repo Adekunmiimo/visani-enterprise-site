@@ -45,6 +45,10 @@ export async function POST(req: Request) {
       );
     }
 
+    const ownerEmail = process.env.CONTACT_FORM_TO || "richie.visani@gmail.com";
+    const fromEmail =
+      process.env.RESEND_FROM_EMAIL || "Visani America <onboarding@resend.dev>";
+
     const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await req.json();
 
@@ -76,7 +80,6 @@ export async function POST(req: Request) {
       );
     }
 
-    const ownerEmail = "cyrussolomon64@gmail.com";
     const bookingLink =
       "https://calendly.com/richieadetimehin/book-a-30-mins-strategy-call";
 
@@ -120,7 +123,7 @@ Submitted at: ${submittedAt || "N/A"}
     `;
 
     const adminResult = await resend.emails.send({
-      from: "Visani America <onboarding@resend.dev>",
+      from: fromEmail,
       to: [ownerEmail],
       replyTo: email,
       subject,
@@ -137,7 +140,7 @@ Submitted at: ${submittedAt || "N/A"}
     }
 
     const userResult = await resend.emails.send({
-      from: "Visani America <onboarding@resend.dev>",
+      from: fromEmail,
       to: [email],
       replyTo: ownerEmail,
       subject: "Your Executive Proof Review request — next step",

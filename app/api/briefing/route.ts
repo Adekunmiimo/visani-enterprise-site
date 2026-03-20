@@ -45,6 +45,10 @@ export async function POST(req: Request) {
       );
     }
 
+    const ownerEmail = process.env.CONTACT_FORM_TO || "richie.visani@gmail.com";
+    const fromEmail =
+      process.env.RESEND_FROM_EMAIL || "Visani America <onboarding@resend.dev>";
+
     const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await req.json();
 
@@ -81,10 +85,8 @@ export async function POST(req: Request) {
       );
     }
 
-    const ownerEmail = "cyrussolomon64@gmail.com";
-
     const adminResult = await resend.emails.send({
-      from: "Visani America <onboarding@resend.dev>",
+      from: fromEmail,
       to: [ownerEmail],
       replyTo: workEmail,
       subject: `New Executive Briefing Request from ${fullName}`,
@@ -130,7 +132,7 @@ Consent: ${consent ? "Yes" : "No"}
     const firstName = fullName.trim().split(" ")[0] || "there";
 
     const userResult = await resend.emails.send({
-      from: "Visani America <onboarding@resend.dev>",
+      from: fromEmail,
       to: [workEmail],
       subject: "Your executive briefing request has been received",
       html: `
@@ -189,4 +191,4 @@ Visani America
       { status: 500 }
     );
   }
-}   
+}
