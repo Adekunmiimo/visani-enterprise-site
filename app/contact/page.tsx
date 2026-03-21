@@ -244,18 +244,7 @@ export default function ContactPage() {
                 <ButtonLink href="#briefing" variant="primary" className="px-8 py-3">
                   Go to Briefing Request Form
                 </ButtonLink>
-                {/* <ButtonLink
-                  href="/downloads/board-brief.pdf"
-                  variant="secondary"
-                  className="px-8 py-3"
-                >
-                  Download Board Brief (PDF)
-                </ButtonLink> */}
               </div>
-
-              {/* <p className="mt-8 max-w-xl text-xs leading-relaxed text-white">
-                Confidential. No demos, no vendor pitches, no generic frameworks.
-              </p> */}
             </div>
 
             {/* RIGHT */}
@@ -272,10 +261,6 @@ export default function ContactPage() {
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
                 <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
               </div>
-
-              {/* <p className="mt-4 max-w-sm text-xs leading-relaxed text-white">
-                Structured for clarity, accountability, and disciplined executive decision making.
-              </p> */}
             </div>
           </div>
         </div>
@@ -342,12 +327,7 @@ export default function ContactPage() {
               <div className="mt-8 pointer-events-none h-px bg-gradient-to-r from-transparent via-black/10 to-transparent" />
 
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                {[
-                  { k: "Format", v: "30 minutes, structured agenda" },
-                  { k: "Audience", v: "Exec, board, risk leadership" },
-                  { k: "Output", v: "Decision clarity + next steps" },
-                  { k: "Tone", v: "Direct, evidence based" },
-                ].map((x) => (
+                {[{ k: "Format", v: "30 minutes, structured agenda" }].map((x) => (
                   <div
                     key={x.k}
                     className="rounded-xl bg-black/[0.03] ring-1 ring-inset ring-black/10 px-4 py-3"
@@ -385,9 +365,7 @@ export default function ContactPage() {
                 <div className="mx-auto grid h-12 w-12 place-items-center rounded-xl bg-black/5 ring-1 ring-inset ring-black/10 text-brand-slate">
                   <AudienceIcon kind={a.icon} />
                 </div>
-                <p className={`${cardTitleLight} mt-5`}>
-                  {a.title}
-                </p>
+                <p className={`${cardTitleLight} mt-5`}>{a.title}</p>
                 <p className="mt-3 text-sm leading-relaxed text-brand-muted">{a.desc}</p>
               </div>
             ))}
@@ -452,98 +430,6 @@ export default function ContactPage() {
           </div>
         </div>
       </Section>
-
-      {/* ================= FINAL CTA ================= */}
-      <Section className="relative overflow-hidden reveal">
-        <div className="absolute inset-0">
-          <Image
-            src={img.cta}
-            alt="Schedule an executive briefing"
-            fill
-            className="object-cover object-[70%_center]"
-            sizes="100vw"
-          />
-        </div>
-
-        <div className="absolute inset-0 bg-black/70" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/68 via-black/50 to-black/28" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/75 to-black/90" />
-        <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
-
-        <div className="relative mx-auto max-w-7xl px-6 py-20 sm:py-24">
-          <div className="mx-auto max-w-3xl rounded-[32px] border border-white/15 bg-white/10 px-10 py-12 text-center shadow-[0_70px_180px_-60px_rgba(0,0,0,0.9)] backdrop-blur-2xl sm:px-14 sm:py-16">
-            <div className="mx-auto mb-8 grid h-14 w-14 place-items-center rounded-full bg-white/10 ring-1 ring-white/20 shadow-[0_0_40px_rgba(255,255,255,0.18)]">
-              <svg
-                className="h-7 w-7 text-white"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M12 3l8 4v6c0 5-3.5 9.7-8 10-4.5-.3-8-5-8-10V7l8-4z" />
-                <path d="M9 12l2 2 4-4" />
-              </svg>
-            </div>
-
-            <p className={sectionLabelDark}>Executive briefing</p>
-
-            <h2 className={sectionMainHeadingDark}>
-              Decision clarity
-              <span className="block text-white">before AI becomes material</span>
-            </h2>
-
-            <p className="mt-6 text-base leading-relaxed text-white">
-              If AI is becoming material to enterprise performance, this briefing helps determine whether it is
-              truly governable at scale, before risk, scrutiny, or accountability force the issue.
-            </p>
-
-            <div className="mt-10 flex justify-center">
-              <ButtonLink href="#briefing" variant="primary" className="px-12 py-4 text-base">
-                Schedule a 30 Minute Executive Briefing
-              </ButtonLink>
-            </div>
-
-            <p className="mx-auto mt-8 max-w-xl text-sm leading-relaxed text-white">
-              Confidential and structured for executives, boards, and risk leadership.
-            </p>
-          </div>
-        </div>
-      </Section>
-
-      {/* ================= GLOBAL REVEAL STYLES ================= */}
-      <style jsx global>{`
-        html,
-        body {
-          width: 100%;
-          overflow-x: hidden;
-        }
-
-        body {
-          text-rendering: optimizeLegibility;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-        }
-
-        .reveal {
-          opacity: 0;
-          transform: translateY(16px);
-          transition: opacity 0.6s ease, transform 0.6s ease;
-          will-change: opacity, transform;
-        }
-        .reveal-visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .reveal {
-            transition: none;
-            transform: none;
-            opacity: 1;
-          }
-        }
-      `}</style>
     </>
   );
 }
